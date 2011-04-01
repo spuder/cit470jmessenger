@@ -1,29 +1,16 @@
 package userInterface;
 
 import java.awt.Dimension;
-
 import java.awt.FlowLayout;
-
 import java.awt.event.ActionEvent;
-
 import java.awt.event.ActionListener;
-
 import java.io.File;
-
 import java.util.Vector;
-
 import javax.swing.BoxLayout;
-
 import javax.swing.JButton;
-
 import javax.swing.JFileChooser;
-
-import javax.swing.JFrame;
-
 import javax.swing.JPanel;
-
 import javax.swing.JScrollPane;
-
 import javax.swing.JTable;
 
 
@@ -57,7 +44,7 @@ public class FilePanel extends JPanel {
 	}
 
 	//Sets up table with a set of vector files
-	public FilePanel(int h, int w, Vector files){
+	public FilePanel(int h, int w, Vector<String[]> files){
 
 		// set panel size and width
 		Dimension dimension = new Dimension(h,w);
