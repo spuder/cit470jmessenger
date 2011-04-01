@@ -2,10 +2,6 @@ package userInterface;
 
 import java.awt.Dimension;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.Vector;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -24,6 +20,7 @@ public class MainFrame extends JFrame {
 	@SuppressWarnings("unchecked")
 	public MainFrame() {
 
+		@SuppressWarnings("rawtypes")
 		Vector vector = new Vector();
 		
 		//TODO Test Data: Delete on production
@@ -56,6 +53,7 @@ public class MainFrame extends JFrame {
 		
 	}
 	public static void main(String[] args) {
+		@SuppressWarnings("unused")
 		MainFrame bob = new MainFrame();
 	}
 
