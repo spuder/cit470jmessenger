@@ -10,6 +10,7 @@ import java.util.Vector;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 
+@SuppressWarnings("serial")
 public class MainFrame extends JFrame {
 	
 	public static final int MESSENGER_PANEL_HEIGHT = 400;

@@ -27,6 +27,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 
+@SuppressWarnings("serial")
 public class FilePanel extends JPanel {
 
 	private static final int BUTTON_PANEL_HEIGHT = 20;
