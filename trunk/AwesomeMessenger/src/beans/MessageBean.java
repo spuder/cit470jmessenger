@@ -2,9 +2,10 @@ package beans;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.Date;
 
 public class MessageBean implements Serializable {
+
+	private static final long serialVersionUID = 7338746756665040103L;
 
 	String sender;
 	String message;

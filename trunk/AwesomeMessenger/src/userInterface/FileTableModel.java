@@ -7,6 +7,7 @@ import java.util.Vector;
 import javax.swing.table.AbstractTableModel;
 
 
+@SuppressWarnings("serial")
 public class FileTableModel extends AbstractTableModel {
 
 

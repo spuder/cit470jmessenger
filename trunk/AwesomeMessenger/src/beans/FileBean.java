@@ -6,6 +6,8 @@ import java.sql.Timestamp;
 
 public class FileBean implements Serializable {
 
+	private static final long serialVersionUID = -2555662700007433964L;
+
 	File file;
 	String fileName;
 	Timestamp timestamp;
