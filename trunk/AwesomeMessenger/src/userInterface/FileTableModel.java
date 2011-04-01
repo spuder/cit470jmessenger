@@ -14,7 +14,7 @@ public class FileTableModel extends AbstractTableModel {
 	private Vector<String> columnNames;
 	private Vector<String[]> files;
 
-	public FileTableModel(Vector files, Vector columnNames){
+	public FileTableModel(Vector<String[]> files, Vector<String> columnNames){
 		this.columnNames = columnNames;
 		this.files = files;
 	}
