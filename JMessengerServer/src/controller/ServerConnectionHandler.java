@@ -22,6 +22,7 @@ public class ServerConnectionHandler implements Runnable {
 		this.connection = sock;
 	}
 	
+	@Override
 	public void run() {
 		try {
 			outputStream = new ObjectOutputStream(connection.getOutputStream());
