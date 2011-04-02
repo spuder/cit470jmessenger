@@ -16,6 +16,7 @@ public class ServerController {
 	
 	public ServerController(int port){
 		
+		connectionMap = new HashMap<String, ObjectOutputStream>();
 		//TODO Ask for JDBC credentials and location
 		
 		try{
