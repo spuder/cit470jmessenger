@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Vector;
 
 import org.quickconnect.ControlObject;
 
@@ -25,8 +26,12 @@ public class GetUserListBCO implements ControlObject{
 		try {
 			select = con.prepareStatement("SELECT * from Users");
 			results = select.executeQuery();
+			Vector users = new Vector();
+			while(results.next()) {
+				String[] user = {results.getString(2), results.getString(4)};
+			}
 			HashMap responseMap = new HashMap();
-			responseMap.put("userList", results);
+			responseMap.put("userListVector", users);
 			response.setCommand("UserListResponse");
 			response.setParameters(responseMap);
 		} catch (SQLException e1) {
