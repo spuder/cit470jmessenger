@@ -38,6 +38,7 @@ public class MainFrame extends JFrame {
 	private JMenuItem menuItemSave    = new JMenuItem("Save");
 	private JMenuItem menuItemLogin  = new JMenuItem("Login");
 	private JMenuItem menuItemServer    = new JMenuItem("Server");
+	private JMenuItem menuItemChatSession    = new JMenuItem("Chat Session");
 
 	ClientController CC = new ClientController();
 	
@@ -176,6 +177,7 @@ public class MainFrame extends JFrame {
 		// Menu items for comm menu.
 		chat.add(menuItemLogin);
 		chat.add(menuItemServer);
+		chat.add(menuItemChatSession);
 
 		// Set mnemonics for menu item selections for file menu.
 		menuItemNew.setMnemonic('N');
@@ -186,7 +188,7 @@ public class MainFrame extends JFrame {
 		// Set mnemonics for menu item selections for chat menu.
 		menuItemLogin.setMnemonic('L');
 		menuItemServer.setMnemonic('S');
-
+		menuItemChatSession.setMnemonic('C');
 		// Set the menu bar in the frame and return menu bar.
 		setJMenuBar(menuBar);
 
