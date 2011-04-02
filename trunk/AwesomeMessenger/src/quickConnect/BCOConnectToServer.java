@@ -9,6 +9,9 @@ public class BCOConnectToServer implements ControlObject{
 	@Override
 	public Object handleIt(ArrayList<Object> arg0) {
 		// TODO Auto-generated method stub
+		
+		
+		
 		return null;
 	}
 
