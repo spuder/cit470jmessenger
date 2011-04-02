@@ -1,0 +1,14 @@
+Login
+RetrieveSessionList
+JoinSession
+[server]BroadcastMessage
+UploadFile
+DownloadFile
+RemoveFile
+CreateSession
+
+
+BanUser
+GrantModerator
+AddUser
+CloseSession
