@@ -29,7 +29,7 @@ public class BCOSendLogin implements ControlObject{
 				commBean = (CommunicationBean) controller.getiStream().readObject();
 				if(commBean.getParameters().get("user") != null){
 					controller.setCurUser((UserBean)commBean.getParameters().get("user"));
-					return true;
+					return new Boolean(true);
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -37,9 +37,9 @@ public class BCOSendLogin implements ControlObject{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			return false;
+			return new Boolean(false);
 		} else {
-			return false;	
+			return new Boolean(false);	
 		}
 		
 	}

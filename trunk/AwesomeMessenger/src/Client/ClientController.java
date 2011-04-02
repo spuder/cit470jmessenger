@@ -1,13 +1,46 @@
 package Client;
 
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
+
+import beans.UserBean;
 
 public class ClientController {
 	
 	String ipAddress;
 	int port;
 	Socket socket;
+	ObjectOutputStream oStream;
+	ObjectInputStream iStream;
+	UserBean curUser;
 	
+	
+	
+	public UserBean getCurUser() {
+		return curUser;
+	}
+
+	public void setCurUser(UserBean curUser) {
+		this.curUser = curUser;
+	}
+
+	public ObjectOutputStream getoStream() {
+		return oStream;
+	}
+
+	public void setoStream(ObjectOutputStream oStream) {
+		this.oStream = oStream;
+	}
+
+	public ObjectInputStream getiStream() {
+		return iStream;
+	}
+
+	public void setiStream(ObjectInputStream iStream) {
+		this.iStream = iStream;
+	}
+
 	public ClientController() {
 		
 	}

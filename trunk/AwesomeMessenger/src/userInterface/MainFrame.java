@@ -29,17 +29,22 @@ public class MainFrame extends JFrame {
 	private JMenuBar menuBar = new JMenuBar();
 	private JMenu file = new JMenu("File");
 	private JMenu chat = new JMenu("Chat");
-
+	private JMenu moderation = new JMenu("Moderation");
 
 	// Menu items.
 	private JMenuItem menuItemNew     = new JMenuItem("New");
 	private JMenuItem menuItemOpen    = new JMenuItem("Open");
-	private JMenuItem menuItemClose   = new JMenuItem("Close");
+	private JMenuItem menuItemExit   = new JMenuItem("Exit");
 	private JMenuItem menuItemSave    = new JMenuItem("Save");
 	private JMenuItem menuItemLogin  = new JMenuItem("Login");
 	private JMenuItem menuItemServer    = new JMenuItem("Server");
 	private JMenuItem menuItemChatSession    = new JMenuItem("Chat Session");
-
+	
+	private JMenuItem menuItemRemove   = new JMenuItem("Close");
+	private JMenuItem menuItemBan    = new JMenuItem("Save");
+	private JMenuItem menuItemGrant  = new JMenuItem("Login");
+	private JMenuItem menuItemClose    = new JMenuItem("Server");
+	private JMenuItem menuItemAdd    = new JMenuItem("Add User");
 	ClientController controller = new ClientController();
 
 	JTabbedPane tabs = new JTabbedPane();
@@ -104,7 +109,7 @@ public class MainFrame extends JFrame {
 						// openFile();
 					} 
 				});
-		menuItemClose.addActionListener(
+		menuItemExit.addActionListener(
 				new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)
@@ -164,30 +169,38 @@ public class MainFrame extends JFrame {
 		// Add menus to the menu bar.
 		menuBar.add(file);
 		menuBar.add(chat);
-
+		menuBar.add(moderation);
 
 		// Set mnemonics for menu selections.
 		file.setMnemonic('F');
 		chat.setMnemonic('C');
-
+		moderation.setMnemonic('M');
+		
 		// Menu items for file menu.
 		file.add(menuItemNew);
 		file.addSeparator();
 		file.add(menuItemOpen);
 		file.add(menuItemSave);
-		file.add(menuItemClose);
+		file.add(menuItemExit);
 
-		// Menu items for comm menu.
+		// Menu items for chat menu.
 		chat.add(menuItemLogin);
 		chat.add(menuItemServer);
 		chat.add(menuItemChatSession);
 
+		moderation.add(menuItemRemove);
+		moderation.add(menuItemBan);
+		moderation.add(menuItemGrant);
+		moderation.add(menuItemClose);
+		file.addSeparator();
+		moderation.add(menuItemAdd);
+	
 		// Set mnemonics for menu item selections for file menu.
 		menuItemNew.setMnemonic('N');
 		menuItemOpen.setMnemonic('O');
-		menuItemClose.setMnemonic('C');
+		menuItemExit.setMnemonic('X');
 		menuItemSave.setMnemonic('S');
-
+		
 		// Set mnemonics for menu item selections for chat menu.
 		menuItemLogin.setMnemonic('L');
 		menuItemServer.setMnemonic('S');
@@ -206,6 +219,14 @@ public class MainFrame extends JFrame {
 
 	public void setController(ClientController controller) {
 		this.controller = controller;
+	}
+
+	public JMenuItem getMenuItemAdd() {
+		return menuItemAdd;
+	}
+
+	public void setMenuItemAdd(JMenuItem menuItemAdd) {
+		this.menuItemAdd = menuItemAdd;
 	}
 
 }
