@@ -16,8 +16,9 @@ public class MainFrame extends JFrame {
 	public static final int MAIN_HEIGHT = 500;
 	public static final int MAIN_WIDTH = 500;
 	
-	
 	MessengerPanel aMessengerPanel;
+	
+	String username;
 	
 	@SuppressWarnings("unchecked")
 	public MainFrame() {
@@ -44,7 +45,7 @@ public class MainFrame extends JFrame {
 		this.setLocationRelativeTo(null);
 		
 		//Set Frame Settings
-		this.setTitle("Palantir - ");
+		this.setTitle("Palantir");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		//Organize Interface
