@@ -8,7 +8,12 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
+
+import controller.ServerController;
+
+import qc.QCCommandMappings;
 
 public class MainFrame extends JFrame{
 	
@@ -23,8 +28,17 @@ public class MainFrame extends JFrame{
 	JMenuBar menuBar;
 	JMenu fileMenu, sessionsMenu;
 	JMenuItem exitItem, newSessionItem, closeSessionItem;
+	
+	ServerController controller;
 
 	public MainFrame(){
+		
+		//Setup QC
+		QCCommandMappings.mapCommands();
+		
+		//Setup Controller
+		int port = Integer.parseInt(JOptionPane.showInputDialog("Enter Port:"));
+		controller = new ServerController(port);
 		
 		//Set size
 		Dimension dim = new Dimension(MAIN_FRAME_WIDTH,MAIN_FRAME_HEIGHT);
@@ -51,8 +65,9 @@ public class MainFrame extends JFrame{
 		this.pack();
 		this.setVisible(true);
 		
+		
+		
 	}
-	
 	
 	private void buildMenu() {
 		menuBar = new JMenuBar();
