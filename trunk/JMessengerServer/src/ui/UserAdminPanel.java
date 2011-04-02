@@ -70,6 +70,10 @@ public class UserAdminPanel extends JPanel{
 		this.add(lowerPanel);
 		
 	}
+	
+	public void setUsersList(Vector users){
+		((StandardTableModel)usersTable.getModel()).setItems(users);
+	}
 
 	private Vector<String[]> getUsersList() {
 		// TODO Get list of users from DB

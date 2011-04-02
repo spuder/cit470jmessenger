@@ -39,4 +39,14 @@ public class StandardTableModel extends AbstractTableModel {
 		return (items.get(vectorIndex))[arrayIndex];
 	}
 
+	public Vector<String[]> getItems() {
+		return items;
+	}
+
+	public void setItems(Vector<String[]> items) {
+		this.items = items;
+		this.fireTableDataChanged();
+	}
+	
+
 }
