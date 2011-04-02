@@ -36,7 +36,7 @@ public class ConnectionPool {
 		return con;
 	}
 	
-	protected Connection getConnection() {
+	public Connection getConnection() {
 		if(this.pool.isEmpty()) {
 			this.pool.add(createConnection());
 		}
