@@ -9,7 +9,6 @@ public abstract class QCCommandMappings {
 		
 		QuickConnect.mapCommandToValCO(null, null);
 		QuickConnect.mapCommandToBCO("login", BCOConnectToServer.class);
-		
 		QuickConnect.mapCommandToBCO("login", BCOHashPassword.class);
 		QuickConnect.mapCommandToBCO("login", BCOSendLogin.class);
 		
