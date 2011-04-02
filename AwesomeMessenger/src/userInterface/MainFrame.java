@@ -4,12 +4,16 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
+import org.quickconnect.QuickConnect;
 
 import Client.ClientController;
 
@@ -41,7 +45,6 @@ public class MainFrame extends JFrame {
 	ClientController CC = new ClientController();
 	MessengerPanel aMessengerPanel;
 	FilePanel aFilePanel;
-	String username;
 
 	@SuppressWarnings("unchecked")
 	public MainFrame() {
@@ -67,7 +70,15 @@ public class MainFrame extends JFrame {
 		this.setLayout(new BoxLayout(getContentPane(), BoxLayout.X_AXIS));
 		this.setSize(MAIN_WIDTH,MAIN_HEIGHT);
 		this.setLocationRelativeTo(null);
-
+		
+		
+		String uName = JOptionPane.showInputDialog("enter username");
+		String pWord = JOptionPane.showInputDialog("enter password");
+		ArrayList params = new ArrayList();
+		params.add(uName);
+		params.add(pWord);
+		QuickConnect.handleRequest("login", params);
+		
 		//Set Frame Settings
 		this.setTitle("Palantir");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -78,6 +89,11 @@ public class MainFrame extends JFrame {
 		this.add(aFilePanel);
 		this.pack();
 		this.setVisible(true);
+		
+		// ***********************************************************************************
+		// ********************************** ACTION LISTENERS *******************************
+		// ***********************************************************************************
+		
 		aMessengerPanel.sendMessageButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				//aMessengerPanel.send();
@@ -144,7 +160,11 @@ public class MainFrame extends JFrame {
 
 					}
 				});
+		// ***********************************************************************************
+		// *************************** END OF ACTION LISTENERS *******************************
+		// ***********************************************************************************
 	}
+	
 	public static void main(String[] args) {
 		@SuppressWarnings("unused")
 		MainFrame bob = new MainFrame();
