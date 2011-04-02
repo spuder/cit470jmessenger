@@ -40,28 +40,20 @@ public class MainFrame extends JFrame {
 	private JMenuItem menuItemServer    = new JMenuItem("Server");
 	private JMenuItem menuItemChatSession    = new JMenuItem("Chat Session");
 
-	ClientController CC = new ClientController();
-	
+	ClientController controller = new ClientController();
+
 	JTabbedPane tabs = new JTabbedPane();
 
 	@SuppressWarnings("unchecked")
 	public MainFrame() {
 		// initialize quick connect
 		QCCommandMappings.mapCommands();
-		
-		
+
 		//Configure Layout
 		this.setLayout(new BoxLayout(getContentPane(), BoxLayout.X_AXIS));
 		this.setSize(MAIN_WIDTH,MAIN_HEIGHT);
 		this.setLocationRelativeTo(null);
 
-		String uName = JOptionPane.showInputDialog("enter username");
-		String pWord = JOptionPane.showInputDialog("enter password");
-		ArrayList params = new ArrayList();
-		params.add(this);
-		params.add(uName);
-		params.add(pWord);
-		QuickConnect.handleRequest("login", params);
 
 		//Set Frame Settings
 		this.setTitle("Palantir");
@@ -73,16 +65,16 @@ public class MainFrame extends JFrame {
 		this.add(tabs);
 		this.pack();
 		this.setVisible(true);
-		
+
 		// ***********************************************************************************
 		// ********************************** ACTION LISTENERS *******************************
 		// ***********************************************************************************
 
-//		aMessengerPanel.sendMessageButton.addActionListener(new ActionListener(){
-//			public void actionPerformed(ActionEvent e){
-//				//aMessengerPanel.send();
-//			}
-//		});
+		//		aMessengerPanel.sendMessageButton.addActionListener(new ActionListener(){
+		//			public void actionPerformed(ActionEvent e){
+		//				//aMessengerPanel.send();
+		//			}
+		//		});
 		menuItemNew.addActionListener(
 				new ActionListener()
 				{
@@ -126,8 +118,13 @@ public class MainFrame extends JFrame {
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						// Open file.
-						// openFile();
+						String uName = JOptionPane.showInputDialog("enter username");
+						String pWord = JOptionPane.showInputDialog("enter password");
+						ArrayList params = new ArrayList();
+						params.add(this);
+						params.add(uName);
+						params.add(pWord);
+						QuickConnect.handleRequest("login", params);
 					} 
 				});
 		menuItemServer.addActionListener(
@@ -135,8 +132,8 @@ public class MainFrame extends JFrame {
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						// Open file.
-						// openFile();
+						controller.setIpAddress(JOptionPane.showInputDialog("Enter Server IP:"));
+						controller.setPort(Integer.parseInt(JOptionPane.showInputDialog("Enter Server Port:")));
 					}
 				});
 		menuItemChatSession.addActionListener(
@@ -155,7 +152,7 @@ public class MainFrame extends JFrame {
 	public void newSession() {
 		ChatSessionPanel newPanel = new ChatSessionPanel();
 		tabs.addTab("test", newPanel);
-		
+
 	}
 
 	public static void main(String[] args) {
