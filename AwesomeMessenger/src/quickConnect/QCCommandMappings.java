@@ -1,4 +1,4 @@
-package userInterface;
+package quickConnect;
 
 import org.quickconnect.*;
 

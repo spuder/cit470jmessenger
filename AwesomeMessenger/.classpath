@@ -2,6 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
-	<classpathentry kind="lib" path="/Users/skyler/Desktop/School Work/ComSci/Palantir1/JMessenger/qc.jar"/>
+	<classpathentry kind="lib" path="C:/Documents and Settings/tyler/Desktop/CIT 210/programs/messenger/qc.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
