@@ -101,7 +101,6 @@ public class MainFrame extends JFrame {
 					{
 						// Open file.
 						// openFile();
-
 					} 
 				}); 
 		menuItemSave.addActionListener(
@@ -111,7 +110,6 @@ public class MainFrame extends JFrame {
 					{
 						// Open file.
 						// openFile();
-
 					} 
 				});
 		menuItemClose.addActionListener(
@@ -139,6 +137,14 @@ public class MainFrame extends JFrame {
 					{
 						// Open file.
 						// openFile();
+					}
+				});
+		menuItemChatSession.addActionListener(
+				new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
+						newSession();
 					}
 				});
 		// ***********************************************************************************
