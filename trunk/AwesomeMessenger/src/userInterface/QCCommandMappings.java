@@ -2,9 +2,11 @@ package userInterface;
 
 import org.quickconnect.*;
 
-public class QCCommandMappings {
+public abstract class QCCommandMappings {
 	
-	public QCCommandMappings() {
+	
+	public static void MapCommands() {
+		
 		QuickConnect.mapCommandToValCO(null, null);
 	}
 
