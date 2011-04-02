@@ -7,7 +7,8 @@ public class QCCommandMappings {
 
 	public static void mapCommands() {
 		
-		QuickConnect.mapCommandToValCO(null, null);
+		QuickConnect.mapCommandToBCO("getUsersList", GetUserListBCO.class);
+		QuickConnect.mapCommandToValCO("getUsersList", UpdateUserListVCO.class);
 		
 	}
 	
