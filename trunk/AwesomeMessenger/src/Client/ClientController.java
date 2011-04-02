@@ -72,6 +72,12 @@ public class ClientController {
 	public void setSocket(Socket socket) {
 		this.socket = socket;
 	}
+
+	public void newThread(ObjectInputStream iStream, MainFrame mainFrame) {
+		ClientListener clientListener = new ClientListener(iStream);
+		Thread receivingThread = new Thread(clientListener);
+		receivingThread.start();
+	}
 	
 	
 }

@@ -1,8 +1,12 @@
 package userInterface;
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Vector;
 import javax.swing.JPanel;
+
+import org.quickconnect.QuickConnect;
 
 public class ChatSessionPanel extends JPanel {
 	public static final int MESSENGER_PANEL_HEIGHT = 400;
@@ -28,6 +32,15 @@ public class ChatSessionPanel extends JPanel {
 		aFilePanel.setPreferredSize(new Dimension(FILE_PANEL_WIDTH + 10, FILE_PANEL_HEIGHT));
 		this.add(aMessengerPanel);
 		this.add(aFilePanel);
+		
+		
+		aMessengerPanel.sendMessageButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				
+			}
+		});
 	}
+	
+	
 
 }

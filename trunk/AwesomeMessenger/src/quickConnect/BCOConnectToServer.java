@@ -19,6 +19,7 @@ public class BCOConnectToServer implements ControlObject{
 		// TODO Auto-generated method stub
 		
 		ClientController controller = ((MainFrame)arg0.get(0)).getController();
+		MainFrame mainFrame = (MainFrame) arg0.get(0);
 		Socket sock = controller.getSocket();
 		String ip = controller.getIpAddress();
 		int port = controller.getPort();
@@ -29,9 +30,12 @@ public class BCOConnectToServer implements ControlObject{
 			controller.setoStream(new ObjectOutputStream(sock.getOutputStream()));
 			controller.setiStream(new ObjectInputStream(sock.getInputStream()));
 			
+			controller.newThread((ObjectInputStream)controller.getiStream(), mainFrame);
+			
+			return controller;
 		} catch (IOException e) { e.printStackTrace(); }
 		
-		return controller;
+		return false;
 	}
 
 }
