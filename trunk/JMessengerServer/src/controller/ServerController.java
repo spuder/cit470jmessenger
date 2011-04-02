@@ -1,14 +1,18 @@
 package controller;
 
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.HashMap;
+
 import javax.swing.JOptionPane;
 
 public class ServerController {
 
 	ServerSocket serSock;
 	Socket userConnection;
+	HashMap<String, ObjectOutputStream> connectionMap; //username and objectoutputstream
 	
 	public ServerController(int port){
 		
