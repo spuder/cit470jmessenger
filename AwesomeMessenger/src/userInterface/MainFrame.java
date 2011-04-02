@@ -12,6 +12,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JTabbedPane;
 
 import org.quickconnect.QuickConnect;
 
@@ -22,17 +23,13 @@ import quickConnect.QCCommandMappings;
 @SuppressWarnings("serial")
 public class MainFrame extends JFrame {
 
-	public static final int MESSENGER_PANEL_HEIGHT = 400;
-	public static final int MESSENGER_PANEL_WIDTH = 300;
-	public static final int FILE_PANEL_HEIGHT = 400;
-	public static final int FILE_PANEL_WIDTH = 250;
 	public static final int MAIN_HEIGHT = 500;
 	public static final int MAIN_WIDTH = 500;
-	
+
 	private JMenuBar menuBar = new JMenuBar();
 	private JMenu file = new JMenu("File");
 	private JMenu chat = new JMenu("Chat");
-	
+
 
 	// Menu items.
 	private JMenuItem menuItemNew     = new JMenuItem("New");
@@ -41,36 +38,22 @@ public class MainFrame extends JFrame {
 	private JMenuItem menuItemSave    = new JMenuItem("Save");
 	private JMenuItem menuItemLogin  = new JMenuItem("Login");
 	private JMenuItem menuItemServer    = new JMenuItem("Server");
-	
+
 	ClientController CC = new ClientController();
-	MessengerPanel aMessengerPanel;
-	FilePanel aFilePanel;
+	
+	JTabbedPane tabs = new JTabbedPane();
 
 	@SuppressWarnings("unchecked")
 	public MainFrame() {
-		// initialize quickconnect
+		// initialize quick connect
 		QCCommandMappings.mapCommands();
-		Vector vector = new Vector();
-
-		//TODO Test Data: Delete on production
-		String[] set1 = {"main.java","tyler","10:22:33"};
-		String[] set2 = {"messagePanel.java", "sam", "11:22:31"};
-		String[] set3 = {"filePanel.java", "skyler", "12:22:22"};
-		vector.add(set1);
-		vector.add(set2);
-		vector.add(set3);
-
-		//Create panels
-		aMessengerPanel = new MessengerPanel(MESSENGER_PANEL_WIDTH, MESSENGER_PANEL_HEIGHT);
-		aFilePanel = new FilePanel(FILE_PANEL_WIDTH, FILE_PANEL_HEIGHT, vector);
-		aFilePanel.setPreferredSize(new Dimension(FILE_PANEL_WIDTH + 10, FILE_PANEL_HEIGHT));
-
+		
+		
 		//Configure Layout
 		this.setLayout(new BoxLayout(getContentPane(), BoxLayout.X_AXIS));
 		this.setSize(MAIN_WIDTH,MAIN_HEIGHT);
 		this.setLocationRelativeTo(null);
-		
-		
+
 		String uName = JOptionPane.showInputDialog("enter username");
 		String pWord = JOptionPane.showInputDialog("enter password");
 		ArrayList params = new ArrayList();
@@ -78,27 +61,27 @@ public class MainFrame extends JFrame {
 		params.add(uName);
 		params.add(pWord);
 		QuickConnect.handleRequest("login", params);
-		
+
 		//Set Frame Settings
 		this.setTitle("Palantir");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		//Organize Interface
 		buildMenu();
-		this.add(aMessengerPanel);
-		this.add(aFilePanel);
+		newSession();
+		this.add(tabs);
 		this.pack();
 		this.setVisible(true);
 		
 		// ***********************************************************************************
 		// ********************************** ACTION LISTENERS *******************************
 		// ***********************************************************************************
-		
-		aMessengerPanel.sendMessageButton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				//aMessengerPanel.send();
-			}
-		});
+
+//		aMessengerPanel.sendMessageButton.addActionListener(new ActionListener(){
+//			public void actionPerformed(ActionEvent e){
+//				//aMessengerPanel.send();
+//			}
+//		});
 		menuItemNew.addActionListener(
 				new ActionListener()
 				{
@@ -137,7 +120,6 @@ public class MainFrame extends JFrame {
 					{
 						// Open file.
 						// openFile();
-
 					} 
 				});
 		menuItemLogin.addActionListener(
@@ -147,7 +129,6 @@ public class MainFrame extends JFrame {
 					{
 						// Open file.
 						// openFile();
-
 					} 
 				});
 		menuItemServer.addActionListener(
@@ -157,17 +138,22 @@ public class MainFrame extends JFrame {
 					{
 						// Open file.
 						// openFile();
-
 					}
 				});
 		// ***********************************************************************************
 		// *************************** END OF ACTION LISTENERS *******************************
 		// ***********************************************************************************
 	}
-	
+
+	public void newSession() {
+		ChatSessionPanel newPanel = new ChatSessionPanel();
+		tabs.addTab("test", newPanel);
+		
+	}
+
 	public static void main(String[] args) {
 		@SuppressWarnings("unused")
-		MainFrame bob = new MainFrame();
+		MainFrame mf = new MainFrame();
 	}
 	private JMenuBar buildMenu()
 	{
@@ -186,7 +172,7 @@ public class MainFrame extends JFrame {
 		file.add(menuItemOpen);
 		file.add(menuItemSave);
 		file.add(menuItemClose);
-		
+
 		// Menu items for comm menu.
 		chat.add(menuItemLogin);
 		chat.add(menuItemServer);
