@@ -43,7 +43,11 @@ public class UserAdminPanel extends JPanel{
 		//Create UI components
 		upperPanel = new JPanel();
 		lowerPanel = new JPanel();
-		usersTable = new JTable(new StandardTableModel(null,columnNames));
+		//empty vector to allow JTable to construct prior to populating via QC Call
+		/*Vector emptyVector = new Vector();
+		String[] emptyStringArray = {"",""};
+		emptyVector.add(emptyStringArray);*/
+		usersTable = new JTable(new StandardTableModel(new Vector(),columnNames));
 		getUsersList();
 		usersTableScroll = new JScrollPane(usersTable);
 		newUsersNameField = new JTextField();
