@@ -4,8 +4,14 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.*;
+
+import org.quickconnect.QuickConnect;
+
+import beans.CommunicationBean;
 
 
 @SuppressWarnings("serial")
@@ -88,7 +94,19 @@ public class MessengerPanel extends JPanel{
 			String msgToSend = sendArea.getText();
 			sendArea.setText("");
 		
-			receiveArea.append("> " + msgToSend + "\n");
+			receiveArea.append("> " + msgToSend + "\n"); //TODO Remove once Server sends out all chat updates
+			
+			CommunicationBean commBean = new CommunicationBean();
+			commBean.setCommand("sendMessage");
+			HashMap params = new HashMap();
+			params.put("message", msgToSend);
+			commBean.setParameters(params);
+			
+			ArrayList qcParams = new ArrayList();
+			qcParams.add(MainFrame.mainFrame);
+			qcParams.add(commBean);
+			QuickConnect.handleRequest("sendMessage", qcParams);
+			
 		}
 	}
 

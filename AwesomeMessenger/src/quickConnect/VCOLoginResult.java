@@ -17,9 +17,11 @@ public class VCOLoginResult implements ControlObject {
 		if(result){
 			((MainFrame)arg0.get(0)).setTitle("Palantir - " + arg0.get(1));
 			JOptionPane.showMessageDialog(null, "Login Successful");
-			if(!((((MainFrame) arg0.get(0))).getController().getCurUser().getRole().equals("ADMIN"))) {
-				((MainFrame)arg0.get(0)).getMenuItemAdd().setEnabled(false);
+			((MainFrame)arg0.get(0)).setAll(true);
+			if(((MainFrame) arg0.get(0)).getController().getCurUser().getRole().equals("ADMIN")) {
+				((MainFrame)arg0.get(0)).getMenuItemAdd().setEnabled(true);
 			}
+			
 		} else {
 			JOptionPane.showMessageDialog(null, "You Shall Not Pass");
 		}

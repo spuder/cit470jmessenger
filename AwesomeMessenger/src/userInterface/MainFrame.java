@@ -25,7 +25,9 @@ public class MainFrame extends JFrame {
 
 	public static final int MAIN_HEIGHT = 500;
 	public static final int MAIN_WIDTH = 500;
-
+	public static MainFrame mainFrame;
+	
+	
 	private JMenuBar menuBar = new JMenuBar();
 	private JMenu file = new JMenu("File");
 	private JMenu chat = new JMenu("Chat");
@@ -39,7 +41,7 @@ public class MainFrame extends JFrame {
 	private JMenuItem menuItemLogin  = new JMenuItem("Login");
 	private JMenuItem menuItemServer    = new JMenuItem("Server");
 	private JMenuItem menuItemChatSession    = new JMenuItem("Chat Session");
-	
+
 	private JMenuItem menuItemRemove   = new JMenuItem("Close");
 	private JMenuItem menuItemBan    = new JMenuItem("Save");
 	private JMenuItem menuItemGrant  = new JMenuItem("Login");
@@ -53,6 +55,7 @@ public class MainFrame extends JFrame {
 	public MainFrame() {
 		// initialize quick connect
 		QCCommandMappings.mapCommands();
+		MainFrame.mainFrame = this;
 
 		//Configure Layout
 		this.setLayout(new BoxLayout(getContentPane(), BoxLayout.X_AXIS));
@@ -69,7 +72,7 @@ public class MainFrame extends JFrame {
 		setAll(false);
 		newSession();
 		this.add(tabs);
-		
+
 		this.pack();
 		this.setVisible(true);
 
@@ -77,11 +80,6 @@ public class MainFrame extends JFrame {
 		// ********************************** ACTION LISTENERS *******************************
 		// ***********************************************************************************
 
-		//		aMessengerPanel.sendMessageButton.addActionListener(new ActionListener(){
-		//			public void actionPerformed(ActionEvent e){
-		//				//aMessengerPanel.send();
-		//			}
-		//		});
 		menuItemNew.addActionListener(
 				new ActionListener()
 				{
@@ -140,6 +138,7 @@ public class MainFrame extends JFrame {
 					{
 						controller.setIpAddress(JOptionPane.showInputDialog("Enter Server IP:"));
 						controller.setPort(Integer.parseInt(JOptionPane.showInputDialog("Enter Server Port:")));
+						menuItemLogin.setEnabled(true);
 					}
 				});
 		menuItemChatSession.addActionListener(
@@ -176,7 +175,7 @@ public class MainFrame extends JFrame {
 		file.setMnemonic('F');
 		chat.setMnemonic('C');
 		moderation.setMnemonic('M');
-		
+
 		// Menu items for file menu.
 		file.add(menuItemNew);
 		file.addSeparator();
@@ -195,13 +194,13 @@ public class MainFrame extends JFrame {
 		moderation.add(menuItemClose);
 		moderation.addSeparator();
 		moderation.add(menuItemAdd);
-	
+
 		// Set mnemonics for menu item selections for file menu.
 		menuItemNew.setMnemonic('N');
 		menuItemOpen.setMnemonic('O');
 		menuItemExit.setMnemonic('X');
 		menuItemSave.setMnemonic('S');
-		
+
 		// Set mnemonics for menu item selections for chat menu.
 		menuItemLogin.setMnemonic('L');
 		menuItemServer.setMnemonic('S');
