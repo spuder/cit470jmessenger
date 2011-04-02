@@ -112,7 +112,17 @@ public class MainFrame extends JFrame{
 			}
 		});
 	}
+	
+	
 
+
+	public ServerController getController() {
+		return controller;
+	}
+
+	public void setController(ServerController controller) {
+		this.controller = controller;
+	}
 
 	public static void main(String args[]){
 		MainFrame mf = new MainFrame();
