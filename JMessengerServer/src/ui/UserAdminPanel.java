@@ -1,6 +1,7 @@
 package ui;
 
 import java.awt.GridLayout;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.BoxLayout;
@@ -11,6 +12,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+
+import org.quickconnect.QuickConnect;
 
 public class UserAdminPanel extends JPanel{
 
@@ -40,7 +43,8 @@ public class UserAdminPanel extends JPanel{
 		//Create UI components
 		upperPanel = new JPanel();
 		lowerPanel = new JPanel();
-		usersTable = new JTable(new StandardTableModel(getUsersList(),columnNames));
+		usersTable = new JTable(new StandardTableModel(null,columnNames));
+		getUsersList();
 		usersTableScroll = new JScrollPane(usersTable);
 		newUsersNameField = new JTextField();
 		newUsersNameField.setColumns(UN_FIELD_LENGTH);
@@ -75,9 +79,9 @@ public class UserAdminPanel extends JPanel{
 		((StandardTableModel)usersTable.getModel()).setItems(users);
 	}
 
-	private Vector<String[]> getUsersList() {
+	private void getUsersList() {
 		// TODO Get list of users from DB
-		Vector vector = new Vector();
+		/*Vector vector = new Vector();
 		
 		//Test Data
 		String[] user1 = {"sonken","Admin"};
@@ -85,7 +89,9 @@ public class UserAdminPanel extends JPanel{
 		vector.add(user1);
 		vector.add(user2);
 	
-		return vector;
+		return vector;*/
+		
+		QuickConnect.handleRequest("getUsersList", new ArrayList());
 	}
 	
 }
