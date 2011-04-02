@@ -13,11 +13,12 @@ public class ServerController {
 	ServerSocket serSock;
 	Socket userConnection;
 	HashMap<String, ObjectOutputStream> connectionMap; //username and objectoutputstream
+	ConnectionPool connectionPool;
 	
-	public ServerController(int port){
+	public ServerController(int port, String uname, String pword){
 		
 		connectionMap = new HashMap<String, ObjectOutputStream>();
-		//TODO Ask for JDBC credentials and location
+		connectionPool = new ConnectionPool(uname, pword);
 		
 		try{
 			serSock = new ServerSocket(port);
@@ -52,5 +53,15 @@ public class ServerController {
 			System.out.println("Server: Failed to stop server");
 		}
 	}
+
+	public ConnectionPool getConnectionPool() {
+		return connectionPool;
+	}
+
+	public void setConnectionPool(ConnectionPool connectionPool) {
+		this.connectionPool = connectionPool;
+	}
+	
+	
 	
 }
