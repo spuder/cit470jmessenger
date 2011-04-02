@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import javax.swing.JOptionPane;
@@ -10,6 +11,9 @@ public class ServerController {
 	Socket userConnection;
 	
 	public ServerController(int port){
+		
+		//TODO Ask for JDBC credentials and location
+		
 		try{
 			serSock = new ServerSocket(port);
 		} catch (Exception ec){
@@ -18,10 +22,9 @@ public class ServerController {
 			System.exit(0);
 		}
 		System.out.println("Server: Listener started");
-		startServer();
 	}
 	
-	private void startServer(){
+	public void startServer(){
 		while(true){
 			//listen for connections
 			try{
@@ -34,6 +37,15 @@ public class ServerController {
 				new Exception("Server: Client could not connect");
 			}
 		}		
+	}
+	
+	public void shutdownServer(){
+		try {
+			this.serSock.close();
+			System.out.println("Server: Server Stopped");
+		} catch (IOException e) {
+			System.out.println("Server: Failed to stop server");
+		}
 	}
 	
 }

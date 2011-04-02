@@ -4,6 +4,13 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
+
+import org.quickconnect.QuickConnect;
+
+import ui.MainFrame;
+
+import beans.CommunicationBean;
 
 public class ServerConnectionHandler implements Runnable {
 
@@ -28,7 +35,18 @@ public class ServerConnectionHandler implements Runnable {
 		}
 		
 		while(connection.isConnected()){
-				
+			CommunicationBean commBean;
+			try {
+				commBean = (CommunicationBean)inputStream.readObject();
+				ArrayList params = new ArrayList();
+				params.add(MainFrame.mainFrame);
+				params.add(commBean.getParameters());
+				QuickConnect.handleRequest(commBean.getCommand(), params);
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	

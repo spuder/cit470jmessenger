@@ -19,6 +19,7 @@ public class MainFrame extends JFrame{
 	
 	private static final int MAIN_FRAME_WIDTH = 800;
 	private static final int MAIN_FRAME_HEIGHT = 500;
+	public static MainFrame mainFrame;
 
 	JTabbedPane tabPane;
 	ChatPanel chatPanel;
@@ -32,6 +33,8 @@ public class MainFrame extends JFrame{
 	ServerController controller;
 
 	public MainFrame(){
+		
+		mainFrame = this;
 		
 		//Setup QC
 		QCCommandMappings.mapCommands();
@@ -65,7 +68,7 @@ public class MainFrame extends JFrame{
 		this.pack();
 		this.setVisible(true);
 		
-		
+		controller.startServer();
 		
 	}
 	
@@ -102,6 +105,7 @@ public class MainFrame extends JFrame{
 		exitItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				controller.shutdownServer();
 				System.exit(EXIT_ON_CLOSE);
 			}
 		});
