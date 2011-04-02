@@ -50,7 +50,6 @@ public class MainFrame extends JFrame {
 	public MainFrame() {
 		// initialize quickconnect
 		QCCommandMappings.mapCommands();
-		@SuppressWarnings("rawtypes")
 		Vector vector = new Vector();
 
 		//TODO Test Data: Delete on production
