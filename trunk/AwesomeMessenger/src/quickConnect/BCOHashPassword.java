@@ -11,14 +11,15 @@ public class BCOHashPassword implements ControlObject{
 
 	@Override
 	public Object handleIt(ArrayList<Object> arg0) {
+		String hash = "";
 		try {
-			SHA1((String) arg0.get(1));
+			hash = SHA1((String) arg0.get(2));
 		} catch (NoSuchAlgorithmException e) {	
 			e.printStackTrace();
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return hash;
 	}
 	private static String convertToHex(byte[] data) { 
 		StringBuffer buf = new StringBuffer();
