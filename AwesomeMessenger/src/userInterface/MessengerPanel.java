@@ -84,10 +84,12 @@ public class MessengerPanel extends JPanel{
 	// Method and inner class to send messages and do it on enter keypress
 	
 	public void sendMessage() {
-		String msgToSend = sendArea.getText();
-		sendArea.setText("");
+		if(!sendArea.getText().trim().equals("")){
+			String msgToSend = sendArea.getText();
+			sendArea.setText("");
 		
-		receiveArea.append("> " + msgToSend + "\n");
+			receiveArea.append("> " + msgToSend + "\n");
+		}
 	}
 
 	class SendAction extends AbstractAction {

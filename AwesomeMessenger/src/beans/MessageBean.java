@@ -10,6 +10,7 @@ public class MessageBean implements Serializable {
 	String sender;
 	String message;
 	Timestamp timestamp; // SQL Friendly object
+	String session;
 	
 	public MessageBean(String sender, String message, Timestamp timestamp){
 		this.sender = sender;
