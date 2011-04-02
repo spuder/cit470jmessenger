@@ -41,7 +41,9 @@ public class MainFrame extends JFrame{
 		
 		//Setup Controller
 		int port = Integer.parseInt(JOptionPane.showInputDialog("Enter Port:"));
-		controller = new ServerController(port);
+		String un = JOptionPane.showInputDialog("Enter MySQL Username:");
+		String pw = JOptionPane.showInputDialog("Enter MySQL Password:");
+		controller = new ServerController(port,un,pw);
 		
 		//Set size
 		Dimension dim = new Dimension(MAIN_FRAME_WIDTH,MAIN_FRAME_HEIGHT);
