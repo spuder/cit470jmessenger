@@ -74,6 +74,7 @@ public class MainFrame extends JFrame {
 		String uName = JOptionPane.showInputDialog("enter username");
 		String pWord = JOptionPane.showInputDialog("enter password");
 		ArrayList params = new ArrayList();
+		params.add(this);
 		params.add(uName);
 		params.add(pWord);
 		QuickConnect.handleRequest("login", params);
