@@ -84,17 +84,6 @@ public class UserAdminPanel extends JPanel{
 	}
 
 	private void getUsersList() {
-		// TODO Get list of users from DB
-		/*Vector vector = new Vector();
-		
-		//Test Data
-		String[] user1 = {"sonken","Admin"};
-		String[] user2 = {"shood", "Admin"};
-		vector.add(user1);
-		vector.add(user2);
-	
-		return vector;*/
-		
 		QuickConnect.handleRequest("getUsersList", new ArrayList());
 	}
 	
