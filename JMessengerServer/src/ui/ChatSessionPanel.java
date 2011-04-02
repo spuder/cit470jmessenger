@@ -2,8 +2,9 @@ package ui;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Vector;
-
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -11,6 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
+
+import beans.SessionBean;
 
 public class ChatSessionPanel extends JPanel {
 
@@ -27,6 +30,7 @@ public class ChatSessionPanel extends JPanel {
 	JScrollPane chatScroll;
 	JPanel leftPanel;
 	JButton banButton;
+	SessionBean session;
 	
 	static {
 		columnNames = new Vector<String>();
@@ -62,6 +66,11 @@ public class ChatSessionPanel extends JPanel {
 		
 	}
 
+	public ChatSessionPanel(SessionBean newSession) {
+		this();
+		this.session = newSession;
+	}
+
 	private Vector<String[]> getSessionUsersList() {
 		// TODO return list of users in the current session
 		Vector vector = new Vector();
@@ -72,6 +81,14 @@ public class ChatSessionPanel extends JPanel {
 		vector.add(user2);
 		
 		return vector;
+	}
+	
+	public SessionBean getSessionObject(){
+		return session;
+	}
+	
+	public void setSessionObject(SessionBean bean){
+		this.session = bean;
 	}
 	
 }

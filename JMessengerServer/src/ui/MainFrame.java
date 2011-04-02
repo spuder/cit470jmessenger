@@ -1,8 +1,13 @@
 package ui;
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JTabbedPane;
 
 public class MainFrame extends JFrame{
@@ -13,6 +18,11 @@ public class MainFrame extends JFrame{
 	JTabbedPane tabPane;
 	ChatPanel chatPanel;
 	UserAdminPanel adminPanel;
+	
+	//Menu
+	JMenuBar menuBar;
+	JMenu fileMenu, sessionsMenu;
+	JMenuItem exitItem, newSessionItem, closeSessionItem;
 
 	public MainFrame(){
 		
@@ -30,6 +40,9 @@ public class MainFrame extends JFrame{
 		
 		this.add(tabPane);
 		
+		buildMenu();
+		setJMenuBar(menuBar);
+		
 		//Set Frame Settings
 		this.setTitle("Palantir Server");
 		this.setLocationRelativeTo(null);
@@ -41,6 +54,45 @@ public class MainFrame extends JFrame{
 	}
 	
 	
+	private void buildMenu() {
+		menuBar = new JMenuBar();
+		fileMenu = new JMenu("File");
+		sessionsMenu = new JMenu("Sessions");
+		exitItem = new JMenuItem("Exit");
+		newSessionItem = new JMenuItem("New Session");
+		closeSessionItem = new JMenuItem("Close Session");
+		
+		menuBar.add(fileMenu);
+		menuBar.add(sessionsMenu);
+		
+		fileMenu.add(exitItem);
+		sessionsMenu.add(newSessionItem);
+		sessionsMenu.add(closeSessionItem);
+		
+		newSessionItem.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				chatPanel.newSession();
+			}
+		});
+		
+		closeSessionItem.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				chatPanel.closeSession(chatPanel.getTabbedPane().getSelectedIndex());
+			}			
+		});
+		
+		exitItem.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(EXIT_ON_CLOSE);
+			}
+		});
+	}
+
+
 	public static void main(String args[]){
 		MainFrame mf = new MainFrame();
 	}
