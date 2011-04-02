@@ -239,4 +239,9 @@ public class MainFrame extends JFrame {
 		menuItemClose.setEnabled(setter);
 		menuItemAdd.setEnabled(setter);
 	}
+
+	public void setText(String id, String messageText) {
+		
+		
+	}
 }
