@@ -66,8 +66,10 @@ public class MainFrame extends JFrame {
 
 		//Organize Interface
 		buildMenu();
+		setAll(false);
 		newSession();
 		this.add(tabs);
+		
 		this.pack();
 		this.setVisible(true);
 
@@ -114,8 +116,7 @@ public class MainFrame extends JFrame {
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						// Open file.
-						// openFile();
+						//TODO be sure to close the socket
 					} 
 				});
 		menuItemLogin.addActionListener(
@@ -192,7 +193,7 @@ public class MainFrame extends JFrame {
 		moderation.add(menuItemBan);
 		moderation.add(menuItemGrant);
 		moderation.add(menuItemClose);
-		file.addSeparator();
+		moderation.addSeparator();
 		moderation.add(menuItemAdd);
 	
 		// Set mnemonics for menu item selections for file menu.
@@ -228,5 +229,15 @@ public class MainFrame extends JFrame {
 	public void setMenuItemAdd(JMenuItem menuItemAdd) {
 		this.menuItemAdd = menuItemAdd;
 	}
-
+	public void setAll(boolean setter) {
+		menuItemOpen.setEnabled(setter);
+		menuItemSave.setEnabled(setter);
+		menuItemLogin.setEnabled(setter);
+		menuItemChatSession.setEnabled(setter);
+		menuItemRemove.setEnabled(setter);
+		menuItemBan.setEnabled(setter);
+		menuItemGrant.setEnabled(setter);
+		menuItemClose.setEnabled(setter);
+		menuItemAdd.setEnabled(setter);
+	}
 }

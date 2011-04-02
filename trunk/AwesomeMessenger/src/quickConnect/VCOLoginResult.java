@@ -15,6 +15,7 @@ public class VCOLoginResult implements ControlObject {
 		
 		Boolean result = (Boolean)(arg0.get(arg0.size() - 1));
 		if(result){
+			((MainFrame)arg0.get(0)).setTitle("Palantir - " + arg0.get(1));
 			JOptionPane.showMessageDialog(null, "Login Successful");
 			if(!((((MainFrame) arg0.get(0))).getController().getCurUser().getRole().equals("ADMIN"))) {
 				((MainFrame)arg0.get(0)).getMenuItemAdd().setEnabled(false);
