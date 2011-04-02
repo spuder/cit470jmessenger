@@ -24,6 +24,7 @@ public class AddUserBCO implements ControlObject{
 		Connection con = (Connection) ((MainFrame) arg0.get(0)).getController().getConnectionPool().getConnection();
 		java.sql.PreparedStatement select = null;
 		ResultSet results = null;
+		CommunicationBean response = new CommunicationBean();
 		try {
 			select = con.prepareStatement("SELECT UserName from Users WHERE UserName = ?");
 			select.setString(1, username);
@@ -45,14 +46,12 @@ public class AddUserBCO implements ControlObject{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				CommunicationBean response = new CommunicationBean();
 				response.setCommand("addUserResponse");
 				HashMap responseMap = new HashMap();
 				responseMap.put("success", true);
 				response.setParameters(map);
 			}
 			else {
-				CommunicationBean response = new CommunicationBean();
 				response.setCommand("addUserResponse");
 				HashMap responseMap = new HashMap();
 				responseMap.put("success", false);
@@ -63,7 +62,7 @@ public class AddUserBCO implements ControlObject{
 			e.printStackTrace();
 		}
 		
-		return null;
+		return response;
 	}
 
 }
