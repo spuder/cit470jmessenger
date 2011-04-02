@@ -17,6 +17,7 @@ public class MainFrame extends JFrame {
 	public static final int MAIN_WIDTH = 500;
 	
 	MessengerPanel aMessengerPanel;
+	FilePanel aFilePanel;
 	
 	String username;
 	
@@ -36,7 +37,7 @@ public class MainFrame extends JFrame {
 
 		//Create panels
 		aMessengerPanel = new MessengerPanel(MESSENGER_PANEL_WIDTH, MESSENGER_PANEL_HEIGHT);
-		FilePanel aFilePanel = new FilePanel(FILE_PANEL_WIDTH, FILE_PANEL_HEIGHT, vector);
+		aFilePanel = new FilePanel(FILE_PANEL_WIDTH, FILE_PANEL_HEIGHT, vector);
 		aFilePanel.setPreferredSize(new Dimension(FILE_PANEL_WIDTH + 10, FILE_PANEL_HEIGHT));
 		
 		//Configure Layout
