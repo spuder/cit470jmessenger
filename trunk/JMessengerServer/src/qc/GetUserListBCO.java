@@ -22,23 +22,19 @@ public class GetUserListBCO implements ControlObject{
 		Connection con = (Connection) ((MainFrame) arg0.get(0)).getController().getConnectionPool().getConnection();
 		java.sql.PreparedStatement select = null;
 		ResultSet results = null;
-		CommunicationBean response = new CommunicationBean();
+		Vector users = new Vector();
 		try {
 			select = con.prepareStatement("SELECT * from Users");
 			results = select.executeQuery();
-			Vector users = new Vector();
 			while(results.next()) {
 				String[] user = {results.getString(2), results.getString(4)};
 			}
-			HashMap responseMap = new HashMap();
-			responseMap.put("userListVector", users);
-			response.setCommand("UserListResponse");
-			response.setParameters(responseMap);
-		} catch (SQLException e1) {
+		} 
+		catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		return response;
+		return users;
 	}
 
 }
