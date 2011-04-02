@@ -11,6 +11,10 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import Client.ClientController;
+
+import quickConnect.QCCommandMappings;
+
 @SuppressWarnings("serial")
 public class MainFrame extends JFrame {
 
@@ -34,9 +38,9 @@ public class MainFrame extends JFrame {
 	private JMenuItem menuItemLogin  = new JMenuItem("Login");
 	private JMenuItem menuItemServer    = new JMenuItem("Server");
 	
+	ClientController CC = new ClientController();
 	MessengerPanel aMessengerPanel;
 	FilePanel aFilePanel;
-
 	String username;
 
 	@SuppressWarnings("unchecked")
