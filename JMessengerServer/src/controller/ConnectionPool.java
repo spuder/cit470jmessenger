@@ -27,7 +27,7 @@ public class ConnectionPool {
 		Connection con = null;
 		
 		try {
-			con = DriverManager.getConnection("jdbc:mysql:///Palantir", this.username, this.password);
+			con = DriverManager.getConnection("jdbc:mysql://localhost:8889/Palantir", this.username, this.password);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
