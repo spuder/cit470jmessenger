@@ -112,9 +112,15 @@ public class MainFrame extends JFrame{
 			}
 		});
 	}
-	
-	
 
+
+	public UserAdminPanel getAdminPanel() {
+		return adminPanel;
+	}
+
+	public void setAdminPanel(UserAdminPanel adminPanel) {
+		this.adminPanel = adminPanel;
+	}
 
 	public ServerController getController() {
 		return controller;

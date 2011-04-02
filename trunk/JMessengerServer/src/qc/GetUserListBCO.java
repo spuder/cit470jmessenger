@@ -24,10 +24,11 @@ public class GetUserListBCO implements ControlObject{
 		ResultSet results = null;
 		Vector users = new Vector();
 		try {
-			select = con.prepareStatement("SELECT * from Users");
+			select = con.prepareStatement("SELECT u.UserName, c.CommonLookupDescription from User u JOIN CommonLookup c WHERE u.UserRole = c.CommonLookupID");
 			results = select.executeQuery();
 			while(results.next()) {
-				String[] user = {results.getString(2), results.getString(4)};
+				String[] user = {results.getString(1), results.getString(2)};
+				users.add(user);
 			}
 		} 
 		catch (SQLException e1) {

@@ -84,7 +84,9 @@ public class UserAdminPanel extends JPanel{
 	}
 
 	private void getUsersList() {
-		QuickConnect.handleRequest("getUsersList", new ArrayList());
+		ArrayList al = new ArrayList();
+		al.add(MainFrame.mainFrame);
+		QuickConnect.handleRequest("getUsersList", al);
 	}
 	
 }
