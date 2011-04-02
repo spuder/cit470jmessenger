@@ -200,4 +200,12 @@ public class MainFrame extends JFrame {
 
 	} // End of buildMenu() method.
 
+	public ClientController getController() {
+		return controller;
+	}
+
+	public void setController(ClientController controller) {
+		this.controller = controller;
+	}
+
 }
