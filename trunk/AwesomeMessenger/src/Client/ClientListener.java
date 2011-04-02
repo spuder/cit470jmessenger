@@ -22,9 +22,9 @@ public class ClientListener implements Runnable {
 				CommunicationBean commBean = (CommunicationBean) iStream.readObject();
 				String id = (String) ((MessageBean)commBean.getParameters().get("message")).getSessionid(); // fix this
 				String messageText = (String) ((MessageBean)commBean.getParameters().get("message")).getMessage();
-			mainFrame.setText(id, messageText);
+				mainFrame.setText(id, messageText);
 			} catch (IOException e) { e.printStackTrace(); } catch (ClassNotFoundException e) { e.printStackTrace(); }
-			
+
 
 		}
 

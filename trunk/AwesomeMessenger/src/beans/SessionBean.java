@@ -1,17 +1,20 @@
 package beans;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 public class SessionBean implements Serializable {
 
 	static int session_number = 0;
 	
-	int sessionNumber;
+	String sessionId;
 	String sessionName;
+	Timestamp creationTime;
 	
 	public SessionBean(){
-		this.sessionNumber = SessionBean.session_number++;
-		this.sessionName = "Session " + this.sessionNumber;
+		creationTime = new Timestamp(System.currentTimeMillis());
+		this.sessionId = "" + SessionBean.session_number++ + "-" + creationTime.toString();
+		this.sessionName = "Session " + this.sessionId;
 	}
 	
 	public SessionBean(String name){
@@ -19,12 +22,12 @@ public class SessionBean implements Serializable {
 		this.sessionName = name;
 	}
 
-	public int getSessionNumber() {
-		return sessionNumber;
+	public String getSessionId() {
+		return sessionId;
 	}
 
-	public void setSessionNumber(int sessionNumber) {
-		this.sessionNumber = sessionNumber;
+	public void setSessionId(String sessionId) {
+		this.sessionId = sessionId;
 	}
 
 	public String getSessionName() {

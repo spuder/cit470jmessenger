@@ -8,12 +8,14 @@ import javax.swing.JPanel;
 
 import org.quickconnect.QuickConnect;
 
+import beans.SessionBean;
+
 public class ChatSessionPanel extends JPanel {
 	public static final int MESSENGER_PANEL_HEIGHT = 400;
 	public static final int MESSENGER_PANEL_WIDTH = 300;
 	public static final int FILE_PANEL_HEIGHT = 400;
 	public static final int FILE_PANEL_WIDTH = 250;
-	
+	SessionBean session;
 	MessengerPanel aMessengerPanel;
 	FilePanel aFilePanel;
 
@@ -41,6 +43,9 @@ public class ChatSessionPanel extends JPanel {
 		});
 	}
 	
-	
+	public ChatSessionPanel(SessionBean newSession) {
+		this();
+		this.session = newSession;
+	}
 
 }
