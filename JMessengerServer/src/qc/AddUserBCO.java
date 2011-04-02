@@ -26,7 +26,7 @@ public class AddUserBCO implements ControlObject{
 		ResultSet results = null;
 		CommunicationBean response = new CommunicationBean();
 		try {
-			select = con.prepareStatement("SELECT UserName from Users WHERE UserName = ?");
+			select = con.prepareStatement("SELECT UserName from User WHERE UserName = ?");
 			select.setString(1, username);
 			results = select.executeQuery();
 		} catch (SQLException e1) {
@@ -38,7 +38,7 @@ public class AddUserBCO implements ControlObject{
 				
 				java.sql.PreparedStatement insert = null;
 				try {
-					insert = con.prepareStatement("INSERT INTO Users (UserName, UserPass) VALUES (?,?)");
+					insert = con.prepareStatement("INSERT INTO User (UserName, UserPass) VALUES (?,?)");
 					insert.setString(1, username);
 					insert.setString(2, password);
 					insert.execute();

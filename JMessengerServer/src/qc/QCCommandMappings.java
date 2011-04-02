@@ -1,6 +1,7 @@
 package qc;
 
 import org.quickconnect.QuickConnect;
+import qc.*;
 
 
 public class QCCommandMappings {
@@ -8,7 +9,7 @@ public class QCCommandMappings {
 	public static void mapCommands() {
 		
 		QuickConnect.mapCommandToBCO("getUsersList", GetUserListBCO.class);
-		QuickConnect.mapCommandToValCO("getUsersList", UpdateUserListVCO.class);
+		QuickConnect.mapCommandToVCO("getUsersList", UpdateUserListVCO.class);
 		
 	}
 	

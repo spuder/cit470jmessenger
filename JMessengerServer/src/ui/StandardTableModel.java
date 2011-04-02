@@ -15,10 +15,12 @@ public class StandardTableModel extends AbstractTableModel {
 		this.items = items;
 	}
 
+	@Override
 	public String getColumnName(int col){
 		return columnNames.get(col);
 	}
 
+	@Override
 	public boolean isCellEditable(int row, int col){ 
 		return false; 
 	}
