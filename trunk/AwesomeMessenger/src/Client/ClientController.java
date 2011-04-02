@@ -4,6 +4,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+import userInterface.MainFrame;
+
 import beans.UserBean;
 
 public class ClientController {
@@ -74,7 +76,7 @@ public class ClientController {
 	}
 
 	public void newThread(ObjectInputStream iStream, MainFrame mainFrame) {
-		ClientListener clientListener = new ClientListener(iStream);
+		ClientListener clientListener = new ClientListener(iStream, mainFrame);
 		Thread receivingThread = new Thread(clientListener);
 		receivingThread.start();
 	}
