@@ -87,9 +87,11 @@ public class MainFrame extends JFrame {
 					public void actionPerformed(ActionEvent e)
 					{
 						String name = JOptionPane.showInputDialog("Enter New Chat Session Name");
-						ArrayList params = new ArrayList();
-						params.add(name);
-						QuickConnect.handleRequest("createSession", params);
+						if(name != null || !name.equals("")){
+							ArrayList params = new ArrayList();
+							params.add(name);
+							QuickConnect.handleRequest("createSession", params);
+						}
 					} // End of actionPerformed method.
 				}); // End of menuItemNew action listener.
 
@@ -154,7 +156,8 @@ public class MainFrame extends JFrame {
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						
+						ArrayList params = new ArrayList();
+						QuickConnect.handleRequest("sessionList", params);
 					}
 				});
 		// ***********************************************************************************
