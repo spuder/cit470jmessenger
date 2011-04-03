@@ -12,12 +12,12 @@ public class ServerController {
 
 	ServerSocket serSock;
 	Socket userConnection;
-	HashMap<String, ObjectOutputStream> connectionMap; //username and objectoutputstream
+	HashMap<String, HashMap> connectionMap; //username and objectoutputstream
 	ConnectionPool connectionPool;
 	
 	public ServerController(int port, String uname, String pword){
 		
-		connectionMap = new HashMap<String, ObjectOutputStream>();
+		connectionMap = new HashMap<String, HashMap>();
 		connectionPool = new ConnectionPool(uname, pword);
 		
 		try{

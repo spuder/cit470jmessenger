@@ -11,10 +11,12 @@ import org.quickconnect.QuickConnect;
 import ui.MainFrame;
 
 import beans.CommunicationBean;
+import beans.UserBean;
 
 public class ServerConnectionHandler implements Runnable {
 
 	Socket connection;
+	UserBean user;
 	ObjectOutputStream outputStream;
 	ObjectInputStream inputStream;
 	
@@ -40,7 +42,7 @@ public class ServerConnectionHandler implements Runnable {
 			try {
 				commBean = (CommunicationBean)inputStream.readObject();
 				ArrayList params = new ArrayList();
-				params.add(MainFrame.mainFrame);
+				params.add(this);
 				params.add(commBean.getParameters());
 				QuickConnect.handleRequest(commBean.getCommand(), params);
 			} catch (IOException e) {
@@ -50,5 +52,39 @@ public class ServerConnectionHandler implements Runnable {
 			}
 		}
 	}
+
+	public Socket getConnection() {
+		return connection;
+	}
+
+	public void setConnection(Socket connection) {
+		this.connection = connection;
+	}
+
+	public ObjectOutputStream getOutputStream() {
+		return outputStream;
+	}
+
+	public void setOutputStream(ObjectOutputStream outputStream) {
+		this.outputStream = outputStream;
+	}
+
+	public ObjectInputStream getInputStream() {
+		return inputStream;
+	}
+
+	public void setInputStream(ObjectInputStream inputStream) {
+		this.inputStream = inputStream;
+	}
+
+	public UserBean getUser() {
+		return user;
+	}
+
+	public void setUser(UserBean user) {
+		this.user = user;
+	}
+	
+	
 	
 }
