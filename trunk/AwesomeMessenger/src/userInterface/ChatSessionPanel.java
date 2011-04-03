@@ -21,12 +21,6 @@ public class ChatSessionPanel extends JPanel {
 
 	public ChatSessionPanel()  {
 		Vector vector = new Vector();
-		String[] set1 = {"main.java","tyler","10:22:33"};
-		String[] set2 = {"messagePanel.java", "sam", "11:22:31"};
-		String[] set3 = {"filePanel.java", "skyler", "12:22:22"};
-		vector.add(set1);
-		vector.add(set2);
-		vector.add(set3);
 
 		//Create panels
 		aMessengerPanel = new MessengerPanel(MESSENGER_PANEL_WIDTH, MESSENGER_PANEL_HEIGHT);
