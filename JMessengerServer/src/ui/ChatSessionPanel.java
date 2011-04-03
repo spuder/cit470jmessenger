@@ -44,7 +44,6 @@ public class ChatSessionPanel extends JPanel {
 		
 		//instantiate UI elements
 		usersTable = new JTable(new StandardTableModel(new Vector(),columnNames));
-		populateUsersTable();
 		usersTableScroll = new JScrollPane(usersTable);
 		usersTableScroll.setPreferredSize(new Dimension(USERS_TABLE_MAX_WIDTH,USERS_TABLE_MAX_HEIGHT));
 		chatScroll = new JScrollPane();
@@ -72,6 +71,7 @@ public class ChatSessionPanel extends JPanel {
 	public ChatSessionPanel(SessionBean newSession) {
 		this();
 		this.session = newSession;
+		populateUsersTable();
 	}
 	
 	public SessionBean getSessionObject(){
