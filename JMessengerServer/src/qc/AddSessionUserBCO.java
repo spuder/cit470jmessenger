@@ -35,20 +35,38 @@ public class AddSessionUserBCO implements ControlObject {
 		java.sql.PreparedStatement select = null;
 		ResultSet results = null;
 		
-		//try {
-			//select = con.prepareStatement("INSERT INTO SessionParticipants ");
-			//select.setString(,id);
-			//select.setString(, curUser.getUsername());
-			//select.setString(, ) // Session Role info
-			//select.execute();
+		try {
+			select = con.prepareStatement("SELECT SessionID,SessionNumber,SessionName from Session WHERE SessionNumber = ? AND SessionActive = 1");
+			select.setString(1, id);
+			results = select.executeQuery();
 			
+			if(results.next()){
+				SessionBean session = new SessionBean();
+				int sessionPk = results.getInt(1);
+				session.setSessionId(results.getString(2));
+				session.setSessionName(results.getString(3));
 			
-			responseParams.put("success", true);
-		//} 
-		/*catch (SQLException e1) {
+				select = con.prepareStatement("INSERT INTO SessionParticipants (?,(SELECT UserID FROM User WHERE UserName = ?),?)");
+				select.setInt(1,sessionPk);
+				select.setString(2, curUser.getUsername());
+				if(curUser.getRole().equals("ADMIN")){
+					select.setInt(3, 1);
+				} else {
+					select.setInt(3, 2); 
+				}
+				select.execute();
+		
+				responseParams.put("session", session);
+				
+				responseParams.put("success", true);
+			} else {
+				responseParams.put("success", false);
+			}
+		} 
+		catch (SQLException e1) {
 			responseParams.put("success", false);
 			e1.printStackTrace();
-		}*/
+		}
 		commBean.setParameters(responseParams);
 		return commBean;
 	}
