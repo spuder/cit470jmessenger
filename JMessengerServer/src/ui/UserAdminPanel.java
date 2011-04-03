@@ -17,6 +17,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.TableColumn;
 
 import org.quickconnect.QuickConnect;
 
@@ -96,6 +97,16 @@ public class UserAdminPanel extends JPanel{
 			
 		});
 		
+		deleteUserButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				deleteUser();
+				
+			}
+			
+		});
+		
 	}
 	
 	public void setUsersList(Vector users){
@@ -158,6 +169,17 @@ public class UserAdminPanel extends JPanel{
 			al.add(map);
 			QuickConnect.handleRequest("addUser", al);
 		}
+	}
+	
+	private void deleteUser() {
+		
+		HashMap map = new HashMap();
+		ArrayList al = new ArrayList();
+		String user = (String) usersTable.getValueAt(usersTable.getSelectedRow(), 0);
+		map.put("username", user);
+		al.add(MainFrame.mainFrame);
+		al.add(map);
+		QuickConnect.handleRequest("deleteUser", al);
 	}
 	
 	private static String convToHex(byte[] data) {
