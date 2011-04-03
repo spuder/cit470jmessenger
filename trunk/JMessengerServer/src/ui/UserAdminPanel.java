@@ -158,59 +158,65 @@ public class UserAdminPanel extends JPanel{
 
 	private void addUser() {
 		
-		String pass1 = new String(newUsersPwField1.getPassword());
-		String pass2 = new String(newUsersPwField2.getPassword());
-		if (pass1.equals(pass2)) {
-			ArrayList al = new ArrayList();
-			al.add(MainFrame.mainFrame);
-			HashMap map = new HashMap();
-			MessageDigest md;
-			String hashString = null;
-			try {
-				md = MessageDigest.getInstance("SHA1");
-				md.update(new String(newUsersPwField1.getPassword()).getBytes());
-				hashString = convToHex(md.digest());
-			} catch (NoSuchAlgorithmException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		String pass1 = new String(newUsersPwField1.getPassword()).trim();
+		String pass2 = new String(newUsersPwField2.getPassword()).trim();
+		if (!newUsersNameField.getText().trim().equals("") && !pass1.equals("") && !pass2.equals("")) {
+			if (pass1.equals(pass2)) {
+				ArrayList al = new ArrayList();
+				al.add(MainFrame.mainFrame);
+				HashMap map = new HashMap();
+				MessageDigest md;
+				String hashString = null;
+				try {
+					md = MessageDigest.getInstance("SHA1");
+					md.update(new String(newUsersPwField1.getPassword()).getBytes());
+					hashString = convToHex(md.digest());
+				} catch (NoSuchAlgorithmException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				map.put("username", newUsersNameField.getText());
+				map.put("password", hashString);
+				map.put("role", "USER");
+				al.add(map);
+				QuickConnect.handleRequest("addUser", al);
 			}
-			map.put("username", newUsersNameField.getText());
-			map.put("password", hashString);
-			map.put("role", "USER");
-			al.add(map);
-			QuickConnect.handleRequest("addUser", al);
 		}
 	}
 	
 	private void deleteUser() {
 		
-		HashMap map = new HashMap();
-		ArrayList al = new ArrayList();
-		String user = (String) usersTable.getValueAt(usersTable.getSelectedRow(), 0);
-		map.put("username", user);
-		al.add(MainFrame.mainFrame);
-		al.add(map);
-		QuickConnect.handleRequest("deleteUser", al);
+		if(usersTable.getSelectedRow() != -1){
+			HashMap map = new HashMap();
+			ArrayList al = new ArrayList();
+			String user = (String) usersTable.getValueAt(usersTable.getSelectedRow(), 0);
+			map.put("username", user);
+			al.add(MainFrame.mainFrame);
+			al.add(map);
+			QuickConnect.handleRequest("deleteUser", al);
+		}
 	}
 	
 	private void updateUser() {
 		
-		HashMap map = new HashMap();
-		ArrayList al = new ArrayList();
-		String user = (String) usersTable.getValueAt(usersTable.getSelectedRow(), 0);
-		int role = Integer.parseInt(JOptionPane.showInputDialog("New Role: 1 for ADMIN, 2 for USER"));
-		if (role==1 || role==2) {
-			map.put("username", user);
-			if(role==1) {
-				map.put("role", "ADMIN");
-				
+		if(usersTable.getSelectedRow() != -1){
+			HashMap map = new HashMap();
+			ArrayList al = new ArrayList();
+			String user = (String) usersTable.getValueAt(usersTable.getSelectedRow(), 0);
+			int role = Integer.parseInt(JOptionPane.showInputDialog("New Role: 1 for ADMIN, 2 for USER"));
+			if (role==1 || role==2) {
+				map.put("username", user);
+				if(role==1) {
+					map.put("role", "ADMIN");
+
+				}
+				else if(role==2) {
+					map.put("role", "USER");
+				}
+				al.add(MainFrame.mainFrame);
+				al.add(map);
+				QuickConnect.handleRequest("updateRole", al);
 			}
-			else if(role==2) {
-				map.put("role", "USER");
-			}
-			al.add(MainFrame.mainFrame);
-			al.add(map);
-			QuickConnect.handleRequest("updateRole", al);
 		}
 	}
 	
