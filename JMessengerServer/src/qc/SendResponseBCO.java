@@ -24,7 +24,7 @@ public class SendResponseBCO implements ControlObject {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}		
-		return true;
+		return response;
 	}
 
 }
