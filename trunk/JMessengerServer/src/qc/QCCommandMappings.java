@@ -34,6 +34,8 @@ public class QCCommandMappings {
 		QuickConnect.mapCommandToBCO("joinSession", AddSessionUserBCO.class);
 		QuickConnect.mapCommandToBCO("joinSession", SendResponseBCO.class);
 		QuickConnect.mapCommandToVCO("joinSession", UpdateSessionUsersVCO.class);
+		
+		QuickConnect.mapCommandToBCO("getSessionUsers", GetSessionUsersBCO.class);
 	}
 	
 }
