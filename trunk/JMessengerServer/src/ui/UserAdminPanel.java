@@ -36,6 +36,8 @@ public class UserAdminPanel extends JPanel{
 	JPasswordField newUsersPwField2;
 	JButton addUserButton;
 	JButton deleteUserButton;
+	JButton changeUserRoleButton;
+	JPanel buttonPanel;
 	
 	static {
 		columnNames = new Vector<String>();
@@ -48,6 +50,7 @@ public class UserAdminPanel extends JPanel{
 		//Create UI components
 		upperPanel = new JPanel();
 		lowerPanel = new JPanel();
+		buttonPanel = new JPanel();
 		usersTable = new JTable(new StandardTableModel(new Vector(),columnNames));
 		getUsersList();
 		usersTableScroll = new JScrollPane(usersTable);
@@ -59,6 +62,7 @@ public class UserAdminPanel extends JPanel{
 		newUsersPwField2.setColumns(PW_FIELD_LENGTH);
 		addUserButton = new JButton("Add User");
 		deleteUserButton = new JButton("Delete User");
+		changeUserRoleButton = new JButton("Change Role");
 		
 		//Add components
 		upperPanel.setLayout(new GridLayout(0,2));
@@ -70,9 +74,13 @@ public class UserAdminPanel extends JPanel{
 		upperPanel.add(newUsersPwField2);
 		upperPanel.add(addUserButton);
 		
+		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
+		buttonPanel.add(deleteUserButton);
+		buttonPanel.add(changeUserRoleButton);
+		
 		lowerPanel.setLayout(new BoxLayout(lowerPanel, BoxLayout.Y_AXIS));
 		lowerPanel.add(usersTableScroll);
-		lowerPanel.add(deleteUserButton);
+		lowerPanel.add(buttonPanel);
 		
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.add(upperPanel);
