@@ -12,7 +12,7 @@ public class ServerController {
 
 	ServerSocket serSock;
 	Socket userConnection;
-	HashMap<String, HashMap> connectionMap; //username and objectoutputstream
+	HashMap<String, HashMap> connectionMap; //K= Session Number   Value=HashMap   <--- That map has Username - OutputStream pair
 	ConnectionPool connectionPool;
 	
 	public ServerController(int port, String uname, String pword){
@@ -61,7 +61,14 @@ public class ServerController {
 	public void setConnectionPool(ConnectionPool connectionPool) {
 		this.connectionPool = connectionPool;
 	}
-	
+
+	public HashMap<String, HashMap> getConnectionMap() {
+		return connectionMap;
+	}
+
+	public void setConnectionMap(HashMap<String, HashMap> connectionMap) {
+		this.connectionMap = connectionMap;
+	}
 	
 	
 }
