@@ -1,4 +1,3 @@
-Login
 RetrieveSessionList
 JoinSession
 [server]BroadcastMessage
