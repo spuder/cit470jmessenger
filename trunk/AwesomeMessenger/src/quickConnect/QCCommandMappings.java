@@ -1,6 +1,10 @@
 package quickConnect;
 
 import org.quickconnect.*;
+
+import quickConnect.CreateSessionBCO;
+import quickConnect.JoinSessionBCO;
+import quickConnect.UpdateSessionsVCO;
 import quickConnect.*;
 
 public abstract class QCCommandMappings {
@@ -16,7 +20,12 @@ public abstract class QCCommandMappings {
 		
 		QuickConnect.mapCommandToBCO("sendMessage", BCOsendMessage.class);
 	
+		QuickConnect.mapCommandToBCO("createSession", CreateSessionBCO.class);
 		
+		QuickConnect.mapCommandToBCO("sessionCreated", ParseSessionIdBCO.class);
+		QuickConnect.mapCommandToBCO("sessionCreated", JoinSessionBCO.class);
+		
+		QuickConnect.mapCommandToVCO("sessionJoined", UpdateSessionsVCO.class);
 	}
 
 }

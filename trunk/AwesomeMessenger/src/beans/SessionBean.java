@@ -5,6 +5,8 @@ import java.sql.Timestamp;
 
 public class SessionBean implements Serializable {
 
+	private static final long serialVersionUID = 973620567644323290L;
+	
 	static int session_number = 0;
 	
 	String sessionId;
