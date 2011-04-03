@@ -15,18 +15,17 @@ public class ChatPanel extends JPanel{
 	public ChatPanel(){
 		
 		chatSessions = new ArrayList<ChatSessionPanel>();
-		tabs = new JTabbedPane();
-		newSession();		
+		tabs = new JTabbedPane();	
 		//Organize UI
 		tabs.setSize(this.getSize());
 		this.add(tabs);
 	}
 
-	public void newSession() {
-		SessionBean newSession = new SessionBean();
+	public void newSession(SessionBean newSession) {
 		ChatSessionPanel newPanel = new ChatSessionPanel(newSession);
 		tabs.addTab(newSession.getSessionName(), newPanel);
 		this.chatSessions.add(newPanel);
+		this.repaint();
 	}
 	
 	public JTabbedPane getTabbedPane(){

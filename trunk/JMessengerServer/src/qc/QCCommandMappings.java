@@ -26,6 +26,14 @@ public class QCCommandMappings {
 		QuickConnect.mapCommandToBCO("updateRole", GetUserListBCO.class);
 		QuickConnect.mapCommandToVCO("updateRole", UpdateUserListVCO.class);
 		
+		//TODO Add the make user moderator BCOs to this
+		QuickConnect.mapCommandToBCO("createSession", CreateSessionBCO.class);
+		QuickConnect.mapCommandToBCO("createSession", SendResponseBCO.class);
+		QuickConnect.mapCommandToBCO("createSession", AddSessionVCO.class);
+		
+		QuickConnect.mapCommandToBCO("joinSession", AddSessionUserBCO.class);
+		QuickConnect.mapCommandToBCO("joinSession", SendResponseBCO.class);
+		QuickConnect.mapCommandToVCO("joinSession", UpdateSessionUsersVCO.class);
 	}
 	
 }
