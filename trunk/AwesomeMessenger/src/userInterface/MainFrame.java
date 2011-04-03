@@ -203,6 +203,7 @@ public class MainFrame extends JFrame {
 		moderation.add(menuItemClose);
 		moderation.addSeparator();
 		moderation.add(menuItemAdd);
+		menuItemAdd.setEnabled(false);
 
 		// Set mnemonics for menu item selections for file menu.
 		menuItemNew.setMnemonic('N');
@@ -234,9 +235,6 @@ public class MainFrame extends JFrame {
 		return menuItemAdd;
 	}
 
-	public void setMenuItemAdd(JMenuItem menuItemAdd) {
-		this.menuItemAdd = menuItemAdd;
-	}
 	public void setAll(boolean setter) {
 		menuItemNew.setEnabled(setter);
 		menuItemOpen.setEnabled(setter);
@@ -247,7 +245,6 @@ public class MainFrame extends JFrame {
 		menuItemBan.setEnabled(setter);
 		menuItemGrant.setEnabled(setter);
 		menuItemClose.setEnabled(setter);
-		menuItemAdd.setEnabled(setter);
 	}
 
 	public void setText(String id, String messageText) {

@@ -28,7 +28,7 @@ public class JoinSessionBCO implements ControlObject {
 			
 			HashMap params = new HashMap();
 			params.put("sessionId", idToJoin);
-	
+			commBean.setParameters(params);
 			try {
 				controller.getoStream().writeObject(commBean);
 			} catch (IOException e) {
