@@ -92,7 +92,7 @@ public class ChatSessionPanel extends JPanel {
 		map.put("session", this.getSessionObject().getSessionId());
 		al.add(MainFrame.mainFrame);
 		al.add(map);
-		QuickConnect.handleRequest("", al);
+		QuickConnect.handleRequest("updateSessionUsers", al);
 	}
 	
 	
