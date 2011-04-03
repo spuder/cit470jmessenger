@@ -20,7 +20,7 @@ public class GetSessionListBCO implements ControlObject {
 	public Object handleIt(ArrayList<Object> arg0) {
 		
 		CommunicationBean commBean = new CommunicationBean();
-		commBean.setCommand("sessionList");
+		commBean.setCommand("sessionListResponse");
 		HashMap responseParams = new HashMap();
 		
 		Connection con = (Connection) ((MainFrame) arg0.get(0)).getController().getConnectionPool().getConnection();
