@@ -3,7 +3,7 @@ package userInterface;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Vector;
 import javax.swing.BoxLayout;
@@ -13,7 +13,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
-
 import org.quickconnect.QuickConnect;
 
 import beans.SessionBean;
@@ -36,18 +35,18 @@ public class MainFrame extends JFrame {
 	private JMenu moderation = new JMenu("Moderation");
 
 	// Menu items.
-	private JMenuItem menuItemNew     = new JMenuItem("New");
+	private JMenuItem menuItemNew     = new JMenuItem("New Chat Session");
 	private JMenuItem menuItemOpen    = new JMenuItem("Open");
 	private JMenuItem menuItemExit   = new JMenuItem("Exit");
 	private JMenuItem menuItemSave    = new JMenuItem("Save");
 	private JMenuItem menuItemLogin  = new JMenuItem("Login");
-	private JMenuItem menuItemServer    = new JMenuItem("Server");
-	private JMenuItem menuItemChatSession    = new JMenuItem("Chat Session");
+	private JMenuItem menuItemServer    = new JMenuItem("Configure Server");
+	private JMenuItem menuItemChatSession    = new JMenuItem("Join Chat");
 
-	private JMenuItem menuItemRemove   = new JMenuItem("Close");
-	private JMenuItem menuItemBan    = new JMenuItem("Save");
-	private JMenuItem menuItemGrant  = new JMenuItem("Login");
-	private JMenuItem menuItemClose    = new JMenuItem("Server");
+	private JMenuItem menuItemRemove   = new JMenuItem("Remove File");
+	private JMenuItem menuItemBan    = new JMenuItem("Ban User");
+	private JMenuItem menuItemGrant  = new JMenuItem("Make Moderator");
+	private JMenuItem menuItemClose    = new JMenuItem("Close Session");
 	private JMenuItem menuItemAdd    = new JMenuItem("Add User");
 	ClientController controller = new ClientController();
 
@@ -117,7 +116,13 @@ public class MainFrame extends JFrame {
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						//TODO be sure to close the socket
+						if(getController().getSocket() != null){
+							try {
+								getController().getSocket().close();
+							} catch (IOException e1) {
+							}
+						}
+						System.exit(EXIT_ON_CLOSE);
 					} 
 				});
 		menuItemLogin.addActionListener(
@@ -125,8 +130,8 @@ public class MainFrame extends JFrame {
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						String uName = JOptionPane.showInputDialog("enter username");
-						String pWord = JOptionPane.showInputDialog("enter password");
+						String uName = JOptionPane.showInputDialog("Enter Username");
+						String pWord = JOptionPane.showInputDialog("Enter Password");
 						ArrayList params = new ArrayList();
 						params.add(this);
 						params.add(uName);
@@ -181,7 +186,6 @@ public class MainFrame extends JFrame {
 
 		// Menu items for file menu.
 		file.add(menuItemNew);
-		file.addSeparator();
 		file.add(menuItemOpen);
 		file.add(menuItemSave);
 		file.add(menuItemExit);
@@ -189,6 +193,8 @@ public class MainFrame extends JFrame {
 		// Menu items for chat menu.
 		chat.add(menuItemLogin);
 		chat.add(menuItemServer);
+		chat.addSeparator();
+		chat.add(menuItemNew);
 		chat.add(menuItemChatSession);
 
 		moderation.add(menuItemRemove);
@@ -232,6 +238,7 @@ public class MainFrame extends JFrame {
 		this.menuItemAdd = menuItemAdd;
 	}
 	public void setAll(boolean setter) {
+		menuItemNew.setEnabled(setter);
 		menuItemOpen.setEnabled(setter);
 		menuItemSave.setEnabled(setter);
 		menuItemLogin.setEnabled(setter);

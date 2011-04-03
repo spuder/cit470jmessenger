@@ -1,6 +1,7 @@
 package quickConnect;
 
 import org.quickconnect.*;
+import quickConnect.*;
 
 public abstract class QCCommandMappings {
 	
