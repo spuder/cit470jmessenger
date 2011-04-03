@@ -1,5 +1,6 @@
 package qc;
 
+import java.io.ObjectOutputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -36,6 +37,9 @@ public class CreateSessionBCO implements ControlObject {
 			System.out.println("Server: Session " + session.getSessionName() + " Created with ID " + session.getSessionId());
 			responseParams.put("success", true);
 			responseParams.put("session", session);
+			
+			HashMap connections = MainFrame.mainFrame.getController().getConnectionMap();
+			connections.put(session.getSessionId(), new HashMap<String, ObjectOutputStream>());
 		} 
 		catch (SQLException e1) {
 			responseParams.put("success", false);
