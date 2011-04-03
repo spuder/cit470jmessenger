@@ -100,6 +100,32 @@ public class UserAdminPanel extends JPanel{
 		QuickConnect.handleRequest("getUsersList", al);
 	}
 	
+	
+	
+	public JTextField getNewUsersNameField() {
+		return newUsersNameField;
+	}
+
+	public void setNewUsersNameField(JTextField newUsersNameField) {
+		this.newUsersNameField = newUsersNameField;
+	}
+
+	public JPasswordField getNewUsersPwField1() {
+		return newUsersPwField1;
+	}
+
+	public void setNewUsersPwField1(JPasswordField newUsersPwField1) {
+		this.newUsersPwField1 = newUsersPwField1;
+	}
+
+	public JPasswordField getNewUsersPwField2() {
+		return newUsersPwField2;
+	}
+
+	public void setNewUsersPwField2(JPasswordField newUsersPwField2) {
+		this.newUsersPwField2 = newUsersPwField2;
+	}
+
 	private void addUser() {
 		//if (newUsersPwField1.getPassword() == newUsersPwField2.getPassword()) {
 			ArrayList al = new ArrayList();
@@ -138,6 +164,8 @@ public class UserAdminPanel extends JPanel{
         }
         return buf.toString();
     }
+	
+	
 
 	
 }
