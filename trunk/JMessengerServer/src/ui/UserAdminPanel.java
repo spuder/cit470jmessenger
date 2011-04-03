@@ -203,20 +203,13 @@ public class UserAdminPanel extends JPanel{
 			HashMap map = new HashMap();
 			ArrayList al = new ArrayList();
 			String user = (String) usersTable.getValueAt(usersTable.getSelectedRow(), 0);
-			int role = Integer.parseInt(JOptionPane.showInputDialog("New Role: 1 for ADMIN, 2 for USER"));
-			if (role==1 || role==2) {
-				map.put("username", user);
-				if(role==1) {
-					map.put("role", "ADMIN");
-
-				}
-				else if(role==2) {
-					map.put("role", "USER");
-				}
-				al.add(MainFrame.mainFrame);
-				al.add(map);
-				QuickConnect.handleRequest("updateRole", al);
-			}
+			String role = (String) JOptionPane.showInputDialog(MainFrame.mainFrame, "Please choose a Role", "Change User Role",
+			JOptionPane.QUESTION_MESSAGE, null, new Object[] { "ADMIN", "USER" }, "USER");
+			map.put("username", user);
+			map.put("role", role);
+			al.add(MainFrame.mainFrame);
+			al.add(map);
+			QuickConnect.handleRequest("updateRole", al);
 		}
 	}
 	
