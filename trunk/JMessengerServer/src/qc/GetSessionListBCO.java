@@ -23,7 +23,7 @@ public class GetSessionListBCO implements ControlObject {
 		commBean.setCommand("sessionListResponse");
 		HashMap responseParams = new HashMap();
 		
-		Connection con = (Connection) ((MainFrame) arg0.get(0)).getController().getConnectionPool().getConnection();
+		Connection con = (Connection)MainFrame.mainFrame.getController().getConnectionPool().getConnection();
 		java.sql.PreparedStatement select = null;
 		ResultSet results = null;
 		Vector sessions = new Vector();
@@ -31,7 +31,7 @@ public class GetSessionListBCO implements ControlObject {
 			select = con.prepareStatement("SELECT SessionNumber, SessionName from Session WHERE SessionActive = 1");
 			results = select.executeQuery();
 			while(results.next()) {
-				String[] session = {results.getString(1), results.getString(2)};
+				String[] session = {results.getString(2), results.getString(1)};
 				sessions.add(session);
 			}
 		} 
