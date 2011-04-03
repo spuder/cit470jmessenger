@@ -73,11 +73,6 @@ public class ChatSessionPanel extends JPanel {
 		// TODO return list of users in the current session
 		Vector vector = new Vector();
 		
-		String[] user1 = {"psumpsion","Moderator"};
-		String[] user2 = {"dshay","User"};
-		vector.add(user1);
-		vector.add(user2);
-		
 		return vector;
 	}
 	
