@@ -92,7 +92,7 @@ public class MainFrame extends JFrame{
 		newSessionItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				chatPanel.newSession();
+				//TODO implement local version
 			}
 		});
 		
@@ -113,6 +113,13 @@ public class MainFrame extends JFrame{
 		});
 	}
 
+	public ChatPanel getChatPanel() {
+		return chatPanel;
+	}
+
+	public void setChatPanel(ChatPanel chatPanel) {
+		this.chatPanel = chatPanel;
+	}
 
 	public UserAdminPanel getAdminPanel() {
 		return adminPanel;
