@@ -16,7 +16,7 @@ public class AddSessionVCO implements ControlObject {
 	public Object handleIt(ArrayList<Object> arg0) {
 		
 		//get the communication bean sent back with the success message
-		CommunicationBean commBean = (CommunicationBean) arg0.get(arg0.size()-1);
+		CommunicationBean commBean = (CommunicationBean) arg0.get(arg0.size()-2);
 		HashMap params = commBean.getParameters();
 		boolean success = (Boolean) params.get("success");
 		if(success){
