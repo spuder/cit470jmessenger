@@ -18,6 +18,7 @@ import javax.swing.WindowConstants;
 import org.quickconnect.ControlObject;
 import org.quickconnect.QuickConnect;
 
+import userInterface.MainFrame;
 import userInterface.StandardTableModel;
 
 public class DisplaySessionListVCO implements ControlObject {
@@ -70,6 +71,7 @@ public class DisplaySessionListVCO implements ControlObject {
 		
 		dialog.setTitle("Select Chat To Join:");
 		dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		dialog.setLocationRelativeTo(MainFrame.mainFrame);
 		
 		dialog.getContentPane().add(panel);
 		
