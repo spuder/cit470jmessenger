@@ -2,6 +2,9 @@ package Client;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.ArrayList;
+
+import org.quickconnect.QuickConnect;
 
 import userInterface.MainFrame;
 
@@ -17,15 +20,14 @@ public class ClientListener implements Runnable {
 	}
 	@Override
 	public void run() {
-		while(true) {
+		while(mainFrame.getController().getSocket().isConnected()) {
 			try {
 				CommunicationBean commBean = (CommunicationBean) iStream.readObject();
-				String id = (String) ((MessageBean)commBean.getParameters().get("message")).getSessionid(); // fix this
-				String messageText = (String) ((MessageBean)commBean.getParameters().get("message")).getMessage();
-				mainFrame.setText(id, messageText);
+				ArrayList params = new ArrayList();
+				params.add(commBean.getParameters());
+				QuickConnect.handleRequest(commBean.getCommand(), params);
+				//mainFrame.setText(id, messageText);
 			} catch (IOException e) { e.printStackTrace(); } catch (ClassNotFoundException e) { e.printStackTrace(); }
-
-
 		}
 
 	}

@@ -72,7 +72,6 @@ public class MainFrame extends JFrame {
 		//Organize Interface
 		buildMenu();
 		setAll(false);
-		newSession();
 		this.add(tabs);
 
 		this.pack();
@@ -87,9 +86,10 @@ public class MainFrame extends JFrame {
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						// New file.
-						// newFile();
-
+						String name = JOptionPane.showInputDialog("Enter New Chat Session Name");
+						ArrayList params = new ArrayList();
+						params.add(name);
+						QuickConnect.handleRequest("createSession", params);
 					} // End of actionPerformed method.
 				}); // End of menuItemNew action listener.
 
@@ -154,7 +154,7 @@ public class MainFrame extends JFrame {
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						newSession();
+						
 					}
 				});
 		// ***********************************************************************************
@@ -162,10 +162,10 @@ public class MainFrame extends JFrame {
 		// ***********************************************************************************
 	}
 
-	public void newSession() {
-		SessionBean newSession = new SessionBean();
+	public void newSession(SessionBean newSession) {
 		ChatSessionPanel newPanel = new ChatSessionPanel(newSession);
 		tabs.addTab(newSession.getSessionName(), newPanel);
+		this.repaint();
 	}
 
 	public static void main(String[] args) {
