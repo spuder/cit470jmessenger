@@ -3,6 +3,8 @@ package ui;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -10,6 +12,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
+
+import org.quickconnect.QuickConnect;
 
 import controller.ServerController;
 
@@ -92,7 +96,13 @@ public class MainFrame extends JFrame{
 		newSessionItem.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//TODO implement local version
+				String name = JOptionPane.showInputDialog("New Session Name:");
+				HashMap facadeMap = new HashMap();
+				facadeMap.put("sessionName", name);
+				ArrayList params = new ArrayList();
+				params.add(this);
+				params.add(facadeMap);
+				QuickConnect.handleRequest("localCreateSession", params);
 			}
 		});
 		
