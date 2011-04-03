@@ -32,6 +32,7 @@ public class CreateSessionBCO implements ControlObject {
 			select = con.prepareStatement("INSERT INTO Session (SessionNumber,SessionName,SessionActive) values (?,?,1)");
 			select.setString(1, session.getSessionId());
 			select.setString(2, session.getSessionName());
+			select.execute();
 			System.out.println("Server: Session " + session.getSessionName() + " Created with ID " + session.getSessionId());
 			responseParams.put("success", true);
 			responseParams.put("session", session);

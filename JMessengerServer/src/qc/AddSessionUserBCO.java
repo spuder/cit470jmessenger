@@ -35,15 +35,20 @@ public class AddSessionUserBCO implements ControlObject {
 		java.sql.PreparedStatement select = null;
 		ResultSet results = null;
 		
-		try {
-			select = con.prepareStatement("INSERT INTO SessionParticipants (SessionID,SessionName,SessionActive) values (?,?,1)");
+		//try {
+			//select = con.prepareStatement("INSERT INTO SessionParticipants ");
+			//select.setString(,id);
+			//select.setString(, curUser.getUsername());
+			//select.setString(, ) // Session Role info
+			//select.execute();
+			
 			
 			responseParams.put("success", true);
-		} 
-		catch (SQLException e1) {
+		//} 
+		/*catch (SQLException e1) {
 			responseParams.put("success", false);
 			e1.printStackTrace();
-		}
+		}*/
 		commBean.setParameters(responseParams);
 		return commBean;
 	}
