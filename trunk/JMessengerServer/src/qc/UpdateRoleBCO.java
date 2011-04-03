@@ -30,6 +30,7 @@ public class UpdateRoleBCO implements ControlObject{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		MainFrame.mainFrame.getController().getConnectionPool().returnConnection(con);
 		return worked;
 	}
 

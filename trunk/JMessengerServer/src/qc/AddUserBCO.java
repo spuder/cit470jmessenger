@@ -63,7 +63,7 @@ public class AddUserBCO implements ControlObject{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		MainFrame.mainFrame.getController().getConnectionPool().returnConnection(con);
 		return response;
 	}
 
