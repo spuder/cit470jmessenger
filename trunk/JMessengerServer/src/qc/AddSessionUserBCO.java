@@ -60,6 +60,10 @@ public class AddSessionUserBCO implements ControlObject {
 				//Add user to the output stream for that session
 				HashMap<String, HashMap<String, ObjectOutputStream>> sessions = MainFrame.mainFrame.getController().getConnectionMap();
 				HashMap<String,ObjectOutputStream> sessionMap = sessions.get(session.getSessionId());
+				if(sessionMap == null){
+					sessionMap = new HashMap<String, ObjectOutputStream>();
+					sessions.put(session.getSessionId(), sessionMap);
+				}
 				sessionMap.put(curUser.getUsername(), handler.getOutputStream());
 				
 				responseParams.put("session", session);
