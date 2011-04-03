@@ -37,5 +37,15 @@ public class ChatPanel extends JPanel{
 		//TODO Do other stuff here to stop and close down the session
 		chatSessions.remove(selectedIndex);
 	}
+
+	public ArrayList<ChatSessionPanel> getChatSessions() {
+		return chatSessions;
+	}
+
+	public void setChatSessions(ArrayList<ChatSessionPanel> chatSessions) {
+		this.chatSessions = chatSessions;
+	}
+	
+	
 	
 }
