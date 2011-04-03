@@ -3,11 +3,14 @@ package qc;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Vector;
 
 import org.quickconnect.ControlObject;
 
 import ui.MainFrame;
+
+import beans.CommunicationBean;
 
 import com.mysql.jdbc.Connection;
 
@@ -15,6 +18,10 @@ public class GetSessionListBCO implements ControlObject {
 
 	@Override
 	public Object handleIt(ArrayList<Object> arg0) {
+		
+		CommunicationBean commBean = new CommunicationBean();
+		commBean.setCommand("sessionList");
+		HashMap responseParams = new HashMap();
 		
 		Connection con = (Connection) ((MainFrame) arg0.get(0)).getController().getConnectionPool().getConnection();
 		java.sql.PreparedStatement select = null;
@@ -24,8 +31,8 @@ public class GetSessionListBCO implements ControlObject {
 			select = con.prepareStatement("SELECT SessionNumber, SessionName from Session WHERE SessionActive = 1");
 			results = select.executeQuery();
 			while(results.next()) {
-				String[] user = {results.getString(1), results.getString(2)};
-				sessions.add(user);
+				String[] session = {results.getString(1), results.getString(2)};
+				sessions.add(session);
 			}
 		} 
 		catch (SQLException e1) {
@@ -33,7 +40,9 @@ public class GetSessionListBCO implements ControlObject {
 			e1.printStackTrace();
 		}
 		MainFrame.mainFrame.getController().getConnectionPool().returnConnection(con);
-		return sessions;
+		responseParams.put("list",sessions);
+		commBean.setParameters(responseParams);
+		return commBean;
 	}
 
 }
