@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 
 public class CommunicationBean implements Serializable {
+	private static final long serialVersionUID = -1581083365948288661L;
 	private String command;
 	private HashMap parameters;
 	
