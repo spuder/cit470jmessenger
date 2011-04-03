@@ -45,7 +45,7 @@ public class ConnectionPool {
         return con;
 	}
 	
-	protected void returnConnection(Connection con) {
+	public void returnConnection(Connection con) {
 		
 		if (this.pool.size() < poolsize) {
 			this.pool.add(con);
