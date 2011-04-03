@@ -1,5 +1,6 @@
 package qc;
 
+import java.io.ObjectOutputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -56,6 +57,11 @@ public class AddSessionUserBCO implements ControlObject {
 				}
 				select.execute();
 		
+				//Add user to the output stream for that session
+				HashMap<String, HashMap<String, ObjectOutputStream>> sessions = MainFrame.mainFrame.getController().getConnectionMap();
+				HashMap<String,ObjectOutputStream> sessionMap = sessions.get(session.getSessionId());
+				sessionMap.put(curUser.getUsername(), handler.getOutputStream());
+				
 				responseParams.put("session", session);
 				
 				responseParams.put("success", true);
