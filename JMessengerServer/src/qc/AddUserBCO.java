@@ -21,6 +21,7 @@ public class AddUserBCO implements ControlObject{
 		HashMap map = (HashMap) arg0.get(1);
 		String password = (String) map.get("password");
 		String username = (String) map.get("username");
+		String role = (String) map.get("role");
 		Connection con = (Connection) ((MainFrame) arg0.get(0)).getController().getConnectionPool().getConnection();
 		java.sql.PreparedStatement select = null;
 		ResultSet results = null;
@@ -38,9 +39,10 @@ public class AddUserBCO implements ControlObject{
 				
 				java.sql.PreparedStatement insert = null;
 				try {
-					insert = con.prepareStatement("INSERT INTO User (UserName, UserPass) VALUES (?,?)");
+					insert = con.prepareStatement("INSERT INTO User (UserName, UserPass, UserRole) VALUES (?,?, (SELECT CommonLookupID from CommonLookup WHERE CommonLookupDescription = ?))");
 					insert.setString(1, username);
 					insert.setString(2, password);
+					insert.setString(3, role);
 					insert.execute();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
