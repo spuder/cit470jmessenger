@@ -166,6 +166,7 @@ public class MainFrame extends JFrame {
 		ChatSessionPanel newPanel = new ChatSessionPanel(newSession);
 		tabs.addTab(newSession.getSessionName(), newPanel);
 		this.repaint();
+		this.pack();
 	}
 
 	public static void main(String[] args) {
