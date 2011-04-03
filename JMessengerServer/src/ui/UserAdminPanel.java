@@ -1,7 +1,12 @@
 package ui;
 
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Vector;
 
 import javax.swing.BoxLayout;
@@ -43,10 +48,6 @@ public class UserAdminPanel extends JPanel{
 		//Create UI components
 		upperPanel = new JPanel();
 		lowerPanel = new JPanel();
-		//empty vector to allow JTable to construct prior to populating via QC Call
-		/*Vector emptyVector = new Vector();
-		String[] emptyStringArray = {"",""};
-		emptyVector.add(emptyStringArray);*/
 		usersTable = new JTable(new StandardTableModel(new Vector(),columnNames));
 		getUsersList();
 		usersTableScroll = new JScrollPane(usersTable);
@@ -77,6 +78,16 @@ public class UserAdminPanel extends JPanel{
 		this.add(upperPanel);
 		this.add(lowerPanel);
 		
+		addUserButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				addUser();
+				
+			}
+			
+		});
+		
 	}
 	
 	public void setUsersList(Vector users){
@@ -87,6 +98,26 @@ public class UserAdminPanel extends JPanel{
 		ArrayList al = new ArrayList();
 		al.add(MainFrame.mainFrame);
 		QuickConnect.handleRequest("getUsersList", al);
+	}
+	
+	private void addUser() {
+		ArrayList al = new ArrayList();
+		al.add(MainFrame.mainFrame);
+		HashMap map = new HashMap();
+		MessageDigest md;
+		String hashString = null;
+		try {
+			md = MessageDigest.getInstance("SHA");
+			md.update(new String(newUsersPwField1.getPassword()).getBytes());
+			hashString = new String(md.digest());
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		map.put("username", newUsersNameField.getText());
+		map.put("password", hashString);
+		al.add(map);
+		QuickConnect.handleRequest("addUser", al);
 	}
 	
 }
