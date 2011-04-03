@@ -1,10 +1,13 @@
 package quickConnect;
 
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
 import org.quickconnect.ControlObject;
+
+import Client.ClientController;
 
 import userInterface.MainFrame;
 
@@ -15,11 +18,15 @@ public class VCOLoginResult implements ControlObject {
 		
 		Boolean result = (Boolean)(arg0.get(arg0.size() - 1));
 		if(result){
-			((MainFrame)arg0.get(0)).setTitle("Palantir - " + arg0.get(1));
+			MainFrame.mainFrame.setTitle("Palantir - " + arg0.get(1));
 			JOptionPane.showMessageDialog(null, "Login Successful");
-			((MainFrame)arg0.get(0)).setAll(true);
-			if(((MainFrame) arg0.get(0)).getController().getCurUser().getRole().equals("ADMIN")) {
-				((MainFrame)arg0.get(0)).getMenuItemAdd().setEnabled(true);
+			ClientController controller = MainFrame.mainFrame.getController();
+			
+			//Spawn separate thread for inputstream
+			controller.newThread((ObjectInputStream)controller.getiStream(), MainFrame.mainFrame);
+			MainFrame.mainFrame.setAll(true);
+			if(MainFrame.mainFrame.getController().getCurUser().getRole().equals("ADMIN")) {
+				MainFrame.mainFrame.getMenuItemAdd().setEnabled(true);
 			}
 			
 		} else {

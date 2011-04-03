@@ -18,20 +18,18 @@ public class BCOConnectToServer implements ControlObject{
 	public Object handleIt(ArrayList<Object> arg0) {
 		// TODO Auto-generated method stub
 		
-		ClientController controller = ((MainFrame)arg0.get(0)).getController();
-		MainFrame mainFrame = (MainFrame) arg0.get(0);
-		Socket sock = controller.getSocket();
+		ClientController controller = MainFrame.mainFrame.getController();
+		Socket sock;
 		String ip = controller.getIpAddress();
 		int port = controller.getPort();
 
 		
 		try {
 			sock = new Socket(ip,port);
+			controller.setSocket(sock);
 			controller.setoStream(new ObjectOutputStream(sock.getOutputStream()));
 			controller.setiStream(new ObjectInputStream(sock.getInputStream()));
-			
-			controller.newThread((ObjectInputStream)controller.getiStream(), mainFrame);
-			
+			System.out.println("Client: Connected to Server");
 			return controller;
 		} catch (IOException e) { e.printStackTrace(); }
 		

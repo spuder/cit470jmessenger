@@ -28,6 +28,7 @@ public class BCOSendLogin implements ControlObject{
 				controller.getoStream().writeObject(commBean);
 				commBean = (CommunicationBean) controller.getiStream().readObject();
 				if(commBean.getParameters().get("user") != null){
+					System.out.println("Client: Successful Login");
 					controller.setCurUser((UserBean)commBean.getParameters().get("user"));
 					return new Boolean(true);
 				}
