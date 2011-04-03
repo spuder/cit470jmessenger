@@ -12,6 +12,8 @@ import javax.swing.*;
 import org.quickconnect.QuickConnect;
 
 import beans.CommunicationBean;
+import beans.MessageBean;
+import beans.SessionBean;
 
 
 @SuppressWarnings("serial")
@@ -94,12 +96,19 @@ public class MessengerPanel extends JPanel{
 			String msgToSend = sendArea.getText();
 			sendArea.setText("");
 		
-			receiveArea.append("> " + msgToSend + "\n"); //TODO Remove once Server sends out all chat updates
-			
+			//receiveArea.append("> " + msgToSend + "\n"); //TODO Remove once Server sends out all chat updates
+		
 			CommunicationBean commBean = new CommunicationBean();
 			commBean.setCommand("sendMessage");
+			
+			SessionBean session = ((ChatSessionPanel)this.getParent()).getSession();
+			
+			MessageBean msg = new MessageBean(MainFrame.mainFrame.getController().getCurUser().getUsername(),msgToSend);
+			msg.setSessionid(session.getSessionId());
+			msg.setSession(session.getSessionName());
+			
 			HashMap params = new HashMap();
-			params.put("message", msgToSend);
+			params.put("message", msg);
 			commBean.setParameters(params);
 			
 			ArrayList qcParams = new ArrayList();
@@ -116,5 +125,15 @@ public class MessengerPanel extends JPanel{
 			sendMessage();
 		}
 	}
+
+	public JTextArea getReceiveArea() {
+		return receiveArea;
+	}
+
+	public void setReceiveArea(JTextArea receiveArea) {
+		this.receiveArea = receiveArea;
+	}
+	
+	
 	
 }

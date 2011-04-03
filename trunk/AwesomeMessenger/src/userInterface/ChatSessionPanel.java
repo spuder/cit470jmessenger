@@ -42,4 +42,30 @@ public class ChatSessionPanel extends JPanel {
 		this.session = newSession;
 	}
 
+	public SessionBean getSession() {
+		return session;
+	}
+
+	public void setSession(SessionBean session) {
+		this.session = session;
+	}
+
+	public MessengerPanel getaMessengerPanel() {
+		return aMessengerPanel;
+	}
+
+	public void setaMessengerPanel(MessengerPanel aMessengerPanel) {
+		this.aMessengerPanel = aMessengerPanel;
+	}
+
+	public FilePanel getaFilePanel() {
+		return aFilePanel;
+	}
+
+	public void setaFilePanel(FilePanel aFilePanel) {
+		this.aFilePanel = aFilePanel;
+	}
+	
+	
+
 }

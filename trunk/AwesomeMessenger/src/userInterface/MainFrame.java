@@ -168,6 +168,7 @@ public class MainFrame extends JFrame {
 	public void newSession(SessionBean newSession) {
 		ChatSessionPanel newPanel = new ChatSessionPanel(newSession);
 		tabs.addTab(newSession.getSessionName(), newPanel);
+		chatSessions.add(newPanel);
 		this.repaint();
 		this.pack();
 	}
@@ -251,12 +252,13 @@ public class MainFrame extends JFrame {
 		menuItemClose.setEnabled(setter);
 	}
 
-	public void setText(String id, String messageText) {
-		int counter = this.tabs.getTabCount();
-		for (int i = 0 ; i < counter; i++) {
-			String title = tabs.getTitleAt(i);
-		}
+	public ArrayList<ChatSessionPanel> getChatSessions() {
+		return chatSessions;
 	}
+
+
+	
+	
 }
 
 
