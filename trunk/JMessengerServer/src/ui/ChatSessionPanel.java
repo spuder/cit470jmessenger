@@ -89,7 +89,7 @@ public class ChatSessionPanel extends JPanel {
 	public void populateUsersTable() {
 		HashMap map = new HashMap();
 		ArrayList al = new ArrayList();
-		map.put("session", this.getSessionObject().getSessionId());
+		map.put("sessionId", this.getSessionObject().getSessionId());
 		al.add(MainFrame.mainFrame);
 		al.add(map);
 		QuickConnect.handleRequest("updateSessionUsers", al);
