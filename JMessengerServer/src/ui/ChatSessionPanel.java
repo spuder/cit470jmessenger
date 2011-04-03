@@ -73,13 +73,6 @@ public class ChatSessionPanel extends JPanel {
 		this();
 		this.session = newSession;
 	}
-
-	private Vector<String[]> getSessionUsersList() {
-		// TODO return list of users in the current session
-		Vector vector = new Vector();
-		
-		return vector;
-	}
 	
 	public SessionBean getSessionObject(){
 		return session;
