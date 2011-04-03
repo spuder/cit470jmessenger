@@ -127,7 +127,10 @@ public class UserAdminPanel extends JPanel{
 	}
 
 	private void addUser() {
-		//if (newUsersPwField1.getPassword() == newUsersPwField2.getPassword()) {
+		
+		String pass1 = new String(newUsersPwField1.getPassword());
+		String pass2 = new String(newUsersPwField2.getPassword());
+		if (pass1.equals(pass2)) {
 			ArrayList al = new ArrayList();
 			al.add(MainFrame.mainFrame);
 			HashMap map = new HashMap();
@@ -146,7 +149,7 @@ public class UserAdminPanel extends JPanel{
 			map.put("role", "USER");
 			al.add(map);
 			QuickConnect.handleRequest("addUser", al);
-		//}
+		}
 	}
 	
 	private static String convToHex(byte[] data) {
