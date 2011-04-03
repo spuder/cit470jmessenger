@@ -46,13 +46,13 @@ public class AddSessionUserBCO implements ControlObject {
 				session.setSessionId(results.getString(2));
 				session.setSessionName(results.getString(3));
 			
-				select = con.prepareStatement("INSERT INTO SessionParticipants (?,(SELECT UserID FROM User WHERE UserName = ?),?)");
+				select = con.prepareStatement("INSERT SessionParticipants (SessionID,UserID,SessionRole) SELECT ?,UserID,? FROM User WHERE UserName = ?");
 				select.setInt(1,sessionPk);
-				select.setString(2, curUser.getUsername());
+				select.setString(3, curUser.getUsername());
 				if(curUser.getRole().equals("ADMIN")){
-					select.setInt(3, 1);
+					select.setInt(2, 1);
 				} else {
-					select.setInt(3, 2); 
+					select.setInt(2, 2); 
 				}
 				select.execute();
 		
