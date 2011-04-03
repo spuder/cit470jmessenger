@@ -11,6 +11,9 @@ public class QCCommandMappings {
 		QuickConnect.mapCommandToBCO("getUsersList", GetUserListBCO.class);
 		QuickConnect.mapCommandToVCO("getUsersList", UpdateUserListVCO.class);
 		
+		QuickConnect.mapCommandToBCO("addUser", AddUserBCO.class);
+		QuickConnect.mapCommandToVCO("addUser", UpdateUserListVCO.class);
+		
 	}
 	
 }
