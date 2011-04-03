@@ -97,12 +97,14 @@ public class MainFrame extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String name = JOptionPane.showInputDialog("New Session Name:");
-				HashMap facadeMap = new HashMap();
-				facadeMap.put("sessionName", name);
-				ArrayList params = new ArrayList();
-				params.add(this);
-				params.add(facadeMap);
-				QuickConnect.handleRequest("localCreateSession", params);
+				if(name != null || !name.equals("")){
+					HashMap facadeMap = new HashMap();
+					facadeMap.put("sessionName", name);
+					ArrayList params = new ArrayList();
+					params.add(this);
+					params.add(facadeMap);
+					QuickConnect.handleRequest("localCreateSession", params);
+				}
 			}
 		});
 		
