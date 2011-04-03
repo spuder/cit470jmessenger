@@ -12,6 +12,7 @@ import java.util.Vector;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
@@ -107,6 +108,16 @@ public class UserAdminPanel extends JPanel{
 			
 		});
 		
+		changeUserRoleButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				updateUser();
+				
+			}
+			
+		});
+		
 	}
 	
 	public void setUsersList(Vector users){
@@ -180,6 +191,27 @@ public class UserAdminPanel extends JPanel{
 		al.add(MainFrame.mainFrame);
 		al.add(map);
 		QuickConnect.handleRequest("deleteUser", al);
+	}
+	
+	private void updateUser() {
+		
+		HashMap map = new HashMap();
+		ArrayList al = new ArrayList();
+		String user = (String) usersTable.getValueAt(usersTable.getSelectedRow(), 0);
+		int role = Integer.parseInt(JOptionPane.showInputDialog("New Role: 1 for ADMIN, 2 for USER"));
+		if (role==1 || role==2) {
+			map.put("username", user);
+			if(role==1) {
+				map.put("role", "ADMIN");
+				
+			}
+			else if(role==2) {
+				map.put("role", "USER");
+			}
+			al.add(MainFrame.mainFrame);
+			al.add(map);
+			QuickConnect.handleRequest("updateRole", al);
+		}
 	}
 	
 	private static String convToHex(byte[] data) {
