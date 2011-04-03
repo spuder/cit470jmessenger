@@ -27,7 +27,11 @@ public class ClientListener implements Runnable {
 				params.add(commBean.getParameters());
 				QuickConnect.handleRequest(commBean.getCommand(), params);
 				//mainFrame.setText(id, messageText);
-			} catch (IOException e) { e.printStackTrace(); } catch (ClassNotFoundException e) { e.printStackTrace(); }
+			} catch (IOException e) { e.printStackTrace(); } 
+			catch (ClassNotFoundException e) { 
+				System.out.println("Client: Not a CommBean!");
+				e.printStackTrace(); 
+			}
 		}
 
 	}

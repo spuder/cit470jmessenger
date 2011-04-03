@@ -28,6 +28,8 @@ public class CreateSessionBCO implements ControlObject {
 		
 		HashMap params = new HashMap();
 		params.put("sessionName", chatName);
+		
+		commBean.setParameters(params);
 
 		try {
 			controller.getoStream().writeObject(commBean);
