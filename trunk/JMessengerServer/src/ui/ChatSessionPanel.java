@@ -86,6 +86,14 @@ public class ChatSessionPanel extends JPanel {
 		((StandardTableModel)usersTable.getModel()).setItems(users);
 	}
 	
+	public JTextArea getChatBox() {
+		return chatBox;
+	}
+
+	public void setChatBox(JTextArea chatBox) {
+		this.chatBox = chatBox;
+	}
+
 	public void populateUsersTable() {
 		HashMap map = new HashMap();
 		ArrayList al = new ArrayList();
