@@ -51,6 +51,9 @@ public class QCCommandMappings {
 		
 		QuickConnect.mapCommandToBCO("getActiveSessions", GetSessionListBCO.class);
 		QuickConnect.mapCommandToVCO("getActiveSessions", PopulateChatSessionTabsVCO.class);
+		
+		QuickConnect.mapCommandToBCO("stopSession", StopSessionBCO.class);
+		QuickConnect.mapCommandToVCO("stopSession", RemoveStoppedSessionVCO.class);
 	}
 	
 }
