@@ -24,6 +24,7 @@ CREATE  TABLE IF NOT EXISTS `Palantir`.`User` (
   `UserName` VARCHAR(45) NULL ,
   `UserPass` VARCHAR(45) NULL ,
   `UserRole` INT NULL ,
+  `UserActiveFlag` TINYINT(1)  NULL DEFAULT 1 ,
   PRIMARY KEY (`UserID`) ,
   INDEX `FK_User1` (`UserRole` ASC) ,
   CONSTRAINT `FK_User1`
@@ -131,7 +132,7 @@ CREATE  TABLE IF NOT EXISTS `Palantir`.`File` (
   `FileID` INT NOT NULL AUTO_INCREMENT ,
   `UserID` INT NULL ,
   `SessionID` INT NULL ,
-  `FileSendTime` DATETIME NULL ,
+  `FileSendTime` TIMESTAMP NULL ,
   `FileName` VARCHAR(45) NULL ,
   `FileDescription` VARCHAR(100) NULL ,
   `FileData` BLOB NULL ,
