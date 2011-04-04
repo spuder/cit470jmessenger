@@ -36,7 +36,7 @@ public class ProcessLoginBCO implements ControlObject {
 		ResultSet results = null;
 		try {
 			select = con.prepareStatement("SELECT u.UserName, c.CommonLookupDescription from User u JOIN CommonLookup c ON u.UserRole = c.CommonLookupID"
-					+ " WHERE u.UserName = ? AND u.UserPass = ?");
+					+ " WHERE u.UserName = ? AND u.UserPass = ? AND u.UserActiveFlag = 1");
 			select.setString(1, un);
 			select.setString(2, pw);
 			
