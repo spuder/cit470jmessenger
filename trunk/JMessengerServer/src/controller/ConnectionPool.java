@@ -12,6 +12,7 @@ public class ConnectionPool {
 	private String username;
 	private String password;
 	
+	
 	public ConnectionPool(String uname, String pword) {
 		username = uname;
 		password = pword;
