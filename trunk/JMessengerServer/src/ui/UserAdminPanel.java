@@ -180,10 +180,10 @@ public class UserAdminPanel extends JPanel{
 				map.put("role", "USER");
 				al.add(map);
 				QuickConnect.handleRequest("addUser", al);
+			} else {
+				JOptionPane.showMessageDialog(null, "Passwords Must Match");
 			}
-		} else {
-			JOptionPane.showMessageDialog(null, "Passwords Must Match");
-		}
+		} 
 	}
 	
 	private void deleteUser() {
