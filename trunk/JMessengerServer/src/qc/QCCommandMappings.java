@@ -83,6 +83,11 @@ public class QCCommandMappings {
 		QuickConnect.mapCommandToBCO("requestDownload",SendRequestedFileBCO.class);
 		QuickConnect.mapCommandToBCO("requestDownload",SendResponseBCO.class);
 		
+		QuickConnect.mapCommandToBCO("updateFile", DeactivateOldFileBCO.class);
+		QuickConnect.mapCommandToBCO("updateFile", InsertNewFileBCO.class);
+		QuickConnect.mapCommandToBCO("updateFile", GetFileListBCO.class);
+		QuickConnect.mapCommandToBCO("updateFile", BroadcastResponseBCO.class);
+		
 	}
 	
 }
