@@ -66,6 +66,19 @@ public class QCCommandMappings {
 		QuickConnect.mapCommandToBCO("uploadFile", GetFileListBCO.class);
 		QuickConnect.mapCommandToBCO("uploadFile", BroadcastResponseBCO.class);
 		
+		QuickConnect.mapCommandToBCO("banUser", AddBannedUserBCO.class);
+		QuickConnect.mapCommandToBCO("banUser", DeleteBannedSessionUserBCO.class);
+		QuickConnect.mapCommandToBCO("banUser", NotifySessionOfBannedUserBCO.class);
+		QuickConnect.mapCommandToBCO("banUser", GetSessionUsersBCO.class);
+		QuickConnect.mapCommandToVCO("banUser", UpdateSessionUsersVCO.class);
+		
+		QuickConnect.mapCommandToBCO("leaveUser", DeleteSessionUserBCO.class);
+		QuickConnect.mapCommandToBCO("leaveUser", NotifySessionOfLeftUserBCO.class);
+		QuickConnect.mapCommandToBCO("leaveUser", GetSessionUsersBCO.class);
+		QuickConnect.mapCommandToVCO("leaveUser", UpdateSessionUsersVCO.class);
+		
+		
+		
 
 	}
 	
