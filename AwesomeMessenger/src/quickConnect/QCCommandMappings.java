@@ -40,6 +40,8 @@ public abstract class QCCommandMappings {
 		QuickConnect.mapCommandToVCO("fileListResponse", DisplayFileListVCO.class);
 		
 		QuickConnect.mapCommandToBCO("uploadFile", SendFileToUploadBCO.class);
+		
+		QuickConnect.mapCommandToBCO("requestDownload", SendDownloadRequestBCO.class);
 	}
 
 }
