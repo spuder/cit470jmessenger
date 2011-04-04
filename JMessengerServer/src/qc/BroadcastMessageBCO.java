@@ -9,6 +9,7 @@ import org.quickconnect.ControlObject;
 
 import ui.MainFrame;
 
+import beans.CommunicationBean;
 import beans.MessageBean;
 
 public class BroadcastMessageBCO implements ControlObject {
@@ -18,6 +19,11 @@ public class BroadcastMessageBCO implements ControlObject {
 
 		MessageBean message = (MessageBean) arg0.get(arg0.size()-1);
 		String sessionNumber = message.getSessionid();
+		CommunicationBean commBean = new CommunicationBean();
+		HashMap params = new HashMap();
+		params.put("message", message);
+		commBean.setParameters(params);
+		commBean.setCommand("receiveMessage");
 		
 		HashMap<String, HashMap<String, ObjectOutputStream>> sessions = MainFrame.mainFrame.getController().getConnectionMap();
 		
@@ -29,7 +35,7 @@ public class BroadcastMessageBCO implements ControlObject {
 		for(int i = 0; i < streams.size(); i++){
 			ObjectOutputStream curStream = (ObjectOutputStream) streams.get(i);
 			try {
-				curStream.writeObject(message);
+				curStream.writeObject(commBean);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
