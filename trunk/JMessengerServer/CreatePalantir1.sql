@@ -136,7 +136,7 @@ CREATE  TABLE IF NOT EXISTS `Palantir`.`File` (
   `FileName` VARCHAR(45) NULL ,
   `FileDescription` VARCHAR(100) NULL ,
   `FileData` BLOB NULL ,
-  `FileActiveFlage` TINYINT(1)  NULL ,
+  `FileActiveFlag` TINYINT(1)  NULL ,
   PRIMARY KEY (`FileID`) ,
   INDEX `FK_File1` (`UserID` ASC) ,
   INDEX `FK_File2` (`SessionID` ASC) ,
