@@ -97,6 +97,30 @@ public class FilePanel extends JPanel {
 			}
 		});
 		
+		resendFileButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				int returnVal = chooser.showOpenDialog(sendFileButton);
+				if(returnVal == JFileChooser.APPROVE_OPTION) {
+					currentFile = chooser.getSelectedFile();
+					ArrayList params = new ArrayList();
+					params.add(currentFile); // index 0 
+					
+					ChatSessionPanel panel = (ChatSessionPanel)getParent();
+					params.add(panel.getSession().getSessionId()); // index 1
+					
+					params.add(table.getModel().getValueAt(table.getSelectedRow(), 3)); // index 2 filenumber
+					
+					String desc = JOptionPane.showInputDialog("Enter Updated Description");
+					if(desc.length() > 99){
+						desc = desc.substring(0, 99); // so it fits in the DB
+					}
+					params.add(desc); // index 3
+					
+					QuickConnect.handleRequest("updateFile", params);
+				}
+			}
+		});
+		
 		this.downloadFileButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
