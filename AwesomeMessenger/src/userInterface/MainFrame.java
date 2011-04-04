@@ -34,7 +34,6 @@ public class MainFrame extends JFrame {
 
 	// Menu items.
 	private JMenuItem menuItemNew     = new JMenuItem("New Chat Session");
-	private JMenuItem menuItemOpen    = new JMenuItem("Open");
 	private JMenuItem menuItemExit   = new JMenuItem("Exit");
 	private JMenuItem menuItemSave    = new JMenuItem("Save");
 	private JMenuItem menuItemLogin  = new JMenuItem("Login");
@@ -94,13 +93,18 @@ public class MainFrame extends JFrame {
 					} // End of actionPerformed method.
 				}); // End of menuItemNew action listener.
 
-		menuItemOpen.addActionListener(
+		menuItemLeaveSession.addActionListener(
 				new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						// Open file.
-						// openFile();
+						ArrayList params = new ArrayList();
+						ChatSessionPanel panel = (ChatSessionPanel)tabs.getSelectedComponent();
+						String sessionId = panel.getSession().getSessionId();
+						params.add(tabs);
+						params.add(tabs.getSelectedIndex());
+						params.add(sessionId);
+						QuickConnect.handleRequest("leaveSession", params);
 					} 
 				}); 
 		menuItemSave.addActionListener(
@@ -190,7 +194,6 @@ public class MainFrame extends JFrame {
 
 		// Menu items for file menu.
 		file.add(menuItemNew);
-		file.add(menuItemOpen);
 		file.add(menuItemSave);
 		file.add(menuItemExit);
 
@@ -213,7 +216,6 @@ public class MainFrame extends JFrame {
 
 		// Set mnemonics for menu item selections for file menu.
 		menuItemNew.setMnemonic('N');
-		menuItemOpen.setMnemonic('O');
 		menuItemExit.setMnemonic('X');
 		menuItemSave.setMnemonic('S');
 
@@ -243,7 +245,6 @@ public class MainFrame extends JFrame {
 
 	public void setAll(boolean setter) {
 		menuItemNew.setEnabled(setter);
-		menuItemOpen.setEnabled(setter);
 		menuItemSave.setEnabled(setter);
 		menuItemLogin.setEnabled(setter);
 		menuItemChatSession.setEnabled(setter);
