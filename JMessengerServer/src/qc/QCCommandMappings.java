@@ -46,6 +46,9 @@ public class QCCommandMappings {
 		QuickConnect.mapCommandToBCO("sessionList", GetSessionListBCO.class);
 		QuickConnect.mapCommandToBCO("sessionList", SendResponseBCO.class);
 		
+		QuickConnect.mapCommandToBCO("fileList", GetFileListBCO.class);
+		QuickConnect.mapCommandToBCO("fileList", SendResponseBCO.class);
+		
 		QuickConnect.mapCommandToBCO("sendMessage", ParseMessageBCO.class);
 		QuickConnect.mapCommandToBCO("sendMessage", BroadcastMessageBCO.class);
 		QuickConnect.mapCommandToVCO("sendMessage", UpdateLocalChatVCO.class);
