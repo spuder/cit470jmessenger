@@ -79,6 +79,7 @@ public class AddSessionUserBCO implements ControlObject {
 			e1.printStackTrace();
 		}
 		commBean.setParameters(responseParams);
+		MainFrame.mainFrame.getController().getConnectionPool().returnConnection(con);
 		return commBean;
 	}
 

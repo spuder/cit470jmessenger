@@ -39,7 +39,7 @@ public class ParseMessageBCO implements ControlObject {
 		catch (SQLException e1) {
 			e1.printStackTrace();
 		}
-		
+		MainFrame.mainFrame.getController().getConnectionPool().returnConnection(con);
 		return msg;
 	}
 
