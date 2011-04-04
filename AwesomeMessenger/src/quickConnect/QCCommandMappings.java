@@ -2,9 +2,6 @@ package quickConnect;
 
 import org.quickconnect.*;
 
-import quickConnect.CreateSessionBCO;
-import quickConnect.JoinSessionBCO;
-import quickConnect.UpdateSessionsVCO;
 import quickConnect.*;
 
 public abstract class QCCommandMappings {
@@ -42,6 +39,8 @@ public abstract class QCCommandMappings {
 		QuickConnect.mapCommandToBCO("uploadFile", SendFileToUploadBCO.class);
 		
 		QuickConnect.mapCommandToBCO("requestDownload", SendDownloadRequestBCO.class);
+		
+		QuickConnect.mapCommandToBCO("fileDownloadResponse", DownloadFileBCO.class);	
 	}
 
 }
