@@ -22,7 +22,7 @@ public class AddUserBCO implements ControlObject{
 		String password = (String) map.get("password");
 		String username = (String) map.get("username");
 		String role = (String) map.get("role");
-		Connection con = (Connection) ((MainFrame) arg0.get(0)).getController().getConnectionPool().getConnection();
+		Connection con = (Connection) MainFrame.mainFrame.getController().getConnectionPool().getConnection();
 		java.sql.PreparedStatement select = null;
 		ResultSet results = null;
 		CommunicationBean response = new CommunicationBean();
