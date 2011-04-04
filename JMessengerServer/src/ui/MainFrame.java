@@ -87,7 +87,7 @@ public class MainFrame extends JFrame{
 		sessionsMenu = new JMenu("Sessions");
 		exitItem = new JMenuItem("Exit");
 		newSessionItem = new JMenuItem("New Session");
-		closeSessionItem = new JMenuItem("Close Session");
+		closeSessionItem = new JMenuItem("Stop Session");
 		
 		menuBar.add(fileMenu);
 		menuBar.add(sessionsMenu);
@@ -115,7 +115,13 @@ public class MainFrame extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				chatPanel.closeSession(chatPanel.getTabbedPane().getSelectedIndex());
+				ArrayList params = new ArrayList();
+				HashMap mapFacade = new HashMap();
+				mapFacade.put("sessionId",((ChatSessionPanel)chatPanel.getTabbedPane().getSelectedComponent())
+						.getSessionObject().getSessionId());
+				params.add(mapFacade); // index 0
+				params.add(chatPanel.getTabbedPane().getSelectedIndex()); // index 1
+				QuickConnect.handleRequest("stopSession", params);
 			}			
 		});
 		
