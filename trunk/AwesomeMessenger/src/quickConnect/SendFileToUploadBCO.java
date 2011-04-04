@@ -37,9 +37,9 @@ public class SendFileToUploadBCO implements ControlObject {
 		commBean.setParameters(params);
 		
 		try {
-			MainFrame.mainFrame.getController().getoStream().writeObject((CommunicationBean)arg0.get(1));
+			MainFrame.mainFrame.getController().getoStream().writeObject(commBean);
 		} catch (IOException e) { e.printStackTrace(); }
-		
+				
 		return null;
 	}
 

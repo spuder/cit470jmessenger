@@ -83,7 +83,7 @@ public class FilePanel extends JPanel {
 					params.add(panel.getSession().getSessionId()); // index 1
 					
 					String desc = JOptionPane.showInputDialog("Enter File Description");
-					desc = desc.substring(0, 99); // so it fits in the DB
+					//desc = desc.substring(0, 99); // so it fits in the DB
 					params.add(desc); // index 2
 					
 					QuickConnect.handleRequest("uploadFile", params);
