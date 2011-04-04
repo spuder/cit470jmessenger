@@ -1,5 +1,8 @@
 	package qc;
 
+
+import javax.swing.JOptionPane;
+
 import org.quickconnect.QuickConnect;
 import qc.*;
 
@@ -77,7 +80,8 @@ public class QCCommandMappings {
 		QuickConnect.mapCommandToBCO("leaveUser", GetSessionUsersBCO.class);
 		QuickConnect.mapCommandToVCO("leaveUser", UpdateSessionUsersVCO.class);
 		
-		
+		QuickConnect.mapCommandToBCO("requestDownload",SendRequestedFileBCO.class);
+		QuickConnect.mapCommandToBCO("requestDownload",SendResponseBCO.class);
 		
 
 	}
