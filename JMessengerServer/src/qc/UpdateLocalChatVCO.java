@@ -18,7 +18,7 @@ public class UpdateLocalChatVCO implements ControlObject {
 		MessageBean msg = (MessageBean) params.get("message");
 		
 		ArrayList sessions = MainFrame.mainFrame.getChatPanel().getChatSessions();
-		String session = msg.getSession();
+		String session = msg.getSessionid();
 		for (int i=0; i < sessions.size(); i++) {
 			ChatSessionPanel current = (ChatSessionPanel) sessions.get(i);
 			if (session.equals(current.getSessionObject().getSessionId())) {
