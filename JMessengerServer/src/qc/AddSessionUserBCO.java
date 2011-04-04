@@ -42,6 +42,7 @@ public class AddSessionUserBCO implements ControlObject {
 			results = select.executeQuery();
 			
 			if(results.next()){
+				
 				SessionBean session = new SessionBean();
 				int sessionPk = results.getInt(1);
 				session.setSessionId(results.getString(2));
