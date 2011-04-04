@@ -42,6 +42,7 @@ public class GetSessionListBCO implements ControlObject {
 		MainFrame.mainFrame.getController().getConnectionPool().returnConnection(con);
 		responseParams.put("list",sessions);
 		commBean.setParameters(responseParams);
+		MainFrame.mainFrame.getController().getConnectionPool().returnConnection(con);
 		return commBean;
 	}
 

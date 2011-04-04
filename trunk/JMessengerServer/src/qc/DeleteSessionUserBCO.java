@@ -35,7 +35,7 @@ public class DeleteSessionUserBCO implements ControlObject{
 			worked = false;
 			e.printStackTrace();
 		}
-		
+		MainFrame.mainFrame.getController().getConnectionPool().returnConnection(con);
 		return worked;
 	}
 
