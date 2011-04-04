@@ -40,6 +40,7 @@ public class MainFrame extends JFrame {
 	private JMenuItem menuItemLogin  = new JMenuItem("Login");
 	private JMenuItem menuItemServer    = new JMenuItem("Configure Server");
 	private JMenuItem menuItemChatSession    = new JMenuItem("Join Chat");
+	private JMenuItem menuItemLeaveSession = new JMenuItem("Leave Session");
 
 	private JMenuItem menuItemRemove   = new JMenuItem("Remove File");
 	private JMenuItem menuItemBan    = new JMenuItem("Ban User");
@@ -199,6 +200,8 @@ public class MainFrame extends JFrame {
 		chat.addSeparator();
 		chat.add(menuItemNew);
 		chat.add(menuItemChatSession);
+		chat.addSeparator();
+		chat.add(menuItemLeaveSession);
 
 		moderation.add(menuItemRemove);
 		moderation.add(menuItemBan);
@@ -248,6 +251,7 @@ public class MainFrame extends JFrame {
 		menuItemBan.setEnabled(setter);
 		menuItemGrant.setEnabled(setter);
 		menuItemClose.setEnabled(setter);
+		menuItemLeaveSession.setEnabled(setter);
 	}
 
 	public ArrayList<ChatSessionPanel> getChatSessions() {
