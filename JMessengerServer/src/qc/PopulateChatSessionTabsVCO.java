@@ -32,6 +32,8 @@ public class PopulateChatSessionTabsVCO implements ControlObject{
 			curSession.setSessionId(sessionsNumberArray.get(i)[1]);
 			MainFrame.mainFrame.getChatPanel().newSession(curSession);
 		}
+		MainFrame.mainFrame.getChatPanel().repaint();
+		MainFrame.mainFrame.pack();
 		return null;
 	}
 

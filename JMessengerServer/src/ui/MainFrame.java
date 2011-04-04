@@ -71,6 +71,9 @@ public class MainFrame extends JFrame{
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		ArrayList params = new ArrayList();
+		QuickConnect.handleRequest("getActiveSessions", params);
+		
 		this.pack();
 		this.setVisible(true);
 		

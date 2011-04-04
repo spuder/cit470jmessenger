@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
+import org.quickconnect.QuickConnect;
+
 import beans.SessionBean;
 
 public class ChatPanel extends JPanel{
