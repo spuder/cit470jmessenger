@@ -62,7 +62,7 @@ public class ServerConnectionHandler implements Runnable {
 		for (int i = 0; i< sessionsAsArray.size(); i++){
 			HashMap curHashMap = sessionsAsArray.get(i);
 			System.out.println("Deleting user: " + username + " from Session.");
-			if(curHashMap.get(username).equals(username)) {
+			if(curHashMap.containsKey(username)) {
 				ArrayList al = new ArrayList();
 				HashMap map = new HashMap();
 				curHashMap.remove(username);
