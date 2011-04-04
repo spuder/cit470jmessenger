@@ -29,6 +29,7 @@ public class FilePanel extends JPanel {
 	private JScrollPane scrollTable = null;
 	private JButton sendFileButton;
 	private JButton resendFileButton;
+	private JButton downloadFileButton;
 	private JPanel buttonPanel;
 
 	// Other Components
@@ -65,9 +66,12 @@ public class FilePanel extends JPanel {
 		
 		sendFileButton = new JButton();
 		resendFileButton = new JButton();
+		downloadFileButton = new JButton();
 		
 		sendFileButton.setText("Send File");
-		resendFileButton.setText("Resend File");
+		resendFileButton.setText("Update File");
+		downloadFileButton.setText("Download File");
+		
 
 		//set button action listeners
 		chooser = new JFileChooser();
@@ -83,11 +87,23 @@ public class FilePanel extends JPanel {
 					params.add(panel.getSession().getSessionId()); // index 1
 					
 					String desc = JOptionPane.showInputDialog("Enter File Description");
-					//desc = desc.substring(0, 99); // so it fits in the DB
+					if(desc.length() > 99){
+						desc = desc.substring(0, 99); // so it fits in the DB
+					}
 					params.add(desc); // index 2
 					
 					QuickConnect.handleRequest("uploadFile", params);
 				}
+			}
+		});
+		
+		this.downloadFileButton.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				ArrayList params = new ArrayList();
+				String fileNumber = (String) table.getModel().getValueAt(table.getSelectedRow(), 3); // 4th unseen row
+				params.add(fileNumber);
+				QuickConnect.handleRequest("requestDownload", params);
 			}
 		});
 
@@ -107,6 +123,7 @@ public class FilePanel extends JPanel {
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.add(buttonPanel);
 		this.add(scrollTable);
+		this.add(downloadFileButton);
 
 	}
 
