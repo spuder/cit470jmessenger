@@ -40,7 +40,9 @@ public abstract class QCCommandMappings {
 		
 		QuickConnect.mapCommandToBCO("requestDownload", SendDownloadRequestBCO.class);
 		
-		QuickConnect.mapCommandToBCO("fileDownloadResponse", DownloadFileBCO.class);	
+		QuickConnect.mapCommandToBCO("fileDownloadResponse", DownloadFileBCO.class);
+		
+		QuickConnect.mapCommandToBCO("updateFile", SendUpdatedFileBCO.class);
 	}
 
 }
