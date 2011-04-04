@@ -22,7 +22,7 @@ public class DeleteUserBCO implements ControlObject{
 		java.sql.PreparedStatement delete = null;
 		boolean worked = false;
 		try {
-			delete = con.prepareStatement("DELETE FROM User WHERE UserName=?");
+			delete = con.prepareStatement("UPDATE User SET UserActiveFlag=0 WHERE UserName=?");
 			delete.setString(1, username);
 			delete.execute();
 			worked = true;
