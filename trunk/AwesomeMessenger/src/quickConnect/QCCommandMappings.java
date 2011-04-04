@@ -34,6 +34,9 @@ public abstract class QCCommandMappings {
 		
 		QuickConnect.mapCommandToBCO("joinSession", JoinSessionBCO.class);
 		
+		QuickConnect.mapCommandToBCO("leaveSession", LeaveSessionBCO.class);
+		QuickConnect.mapCommandToVCO("leaveSession", DeleteSessionTabVCO.class);
+		
 		QuickConnect.mapCommandToVCO("fileListResponse", DisplayFileListVCO.class);
 		
 		QuickConnect.mapCommandToBCO("uploadFile", SendFileToUploadBCO.class);
