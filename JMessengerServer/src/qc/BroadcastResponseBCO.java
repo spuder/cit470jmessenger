@@ -24,16 +24,17 @@ public class BroadcastResponseBCO implements ControlObject{
 		HashMap<String, HashMap<String, ObjectOutputStream>> sessions = MainFrame.mainFrame.getController().getConnectionMap();
 		
 		HashMap<String, ObjectOutputStream> session = sessions.get(sessionNumber);
+		if(session != null){
+			ArrayList streams = new ArrayList(session.values());
 		
-		ArrayList streams = new ArrayList(session.values());
 		
-		
-		for(int i = 0; i < streams.size(); i++){
-			ObjectOutputStream curStream = (ObjectOutputStream) streams.get(i);
-			try {
-				curStream.writeObject(commBean);
-			} catch (IOException e) {
-				e.printStackTrace();
+			for(int i = 0; i < streams.size(); i++){
+				ObjectOutputStream curStream = (ObjectOutputStream) streams.get(i);
+				try {
+					curStream.writeObject(commBean);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		
