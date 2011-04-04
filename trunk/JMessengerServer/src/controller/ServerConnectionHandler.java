@@ -6,6 +6,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 
 import org.quickconnect.QuickConnect;
 
@@ -49,12 +50,28 @@ public class ServerConnectionHandler implements Runnable {
 			} catch (IOException e) {
 				try {
 					connection.close();
-//					ArrayList al = new ArrayList();
-//					HashMap map = new HashMap();
-//					String sessionId = "";
-//					al.add(this);
-//					al.add(map);
-//					QuickConnect.handleRequest("leaveUser", al);
+					String username = this.user.getUsername();
+					HashMap<String, HashMap<String, ObjectOutputStream>> allSessions = MainFrame.mainFrame.getController().getConnectionMap();
+					ArrayList<HashMap<String,ObjectOutputStream>> sessionsAsArray = new ArrayList(allSessions.values());
+					ArrayList<String> keys = new ArrayList(allSessions.keySet());
+					for (int i = 0; i< sessionsAsArray.size(); i++){
+						HashMap curHashMap = sessionsAsArray.get(i);
+						System.out.println("Deleting user: " + username + " from Session.");
+						if(curHashMap.get(username).equals(username)) {
+							ArrayList al = new ArrayList();
+							HashMap map = new HashMap();
+							curHashMap.remove(username);
+							map.put("sessionId", keys.get(i));
+							al.add(this);
+							al.add(map);
+							QuickConnect.handleRequest("leaveUser", al);
+
+						}
+
+
+					}
+					
+					
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
