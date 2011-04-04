@@ -36,6 +36,7 @@ public class FilePanel extends JPanel {
 		columnNames = new Vector<String>();
 		columnNames.add("File");
 		columnNames.add("Sender");
+		columnNames.add("Description");
 		columnNames.add("Timestamp");
 	}
 
