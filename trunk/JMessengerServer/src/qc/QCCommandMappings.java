@@ -50,7 +50,7 @@ public class QCCommandMappings {
 		QuickConnect.mapCommandToVCO("sendMessage", UpdateLocalChatVCO.class);
 		
 		QuickConnect.mapCommandToBCO("getActiveSessions", GetSessionListBCO.class);
-		QuickConnect.mapCommandToValCO("getActiveSessions", PopulateChatSessionTabsVCO.class);
+		QuickConnect.mapCommandToVCO("getActiveSessions", PopulateChatSessionTabsVCO.class);
 	}
 	
 }
