@@ -18,7 +18,7 @@ public class VCOLoginResult implements ControlObject {
 		
 		Boolean result = (Boolean)(arg0.get(arg0.size() - 1));
 		if(result){
-			MainFrame.mainFrame.setTitle("Palantir - " + arg0.get(1));
+			MainFrame.mainFrame.setTitle("Palantir [" + arg0.get(1) + "]");
 			JOptionPane.showMessageDialog(null, "Login Successful");
 			ClientController controller = MainFrame.mainFrame.getController();
 			
