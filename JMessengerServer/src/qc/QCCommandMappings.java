@@ -60,6 +60,7 @@ public class QCCommandMappings {
 		
 		QuickConnect.mapCommandToBCO("stopSession", StopSessionBCO.class);
 		QuickConnect.mapCommandToVCO("stopSession", RemoveStoppedSessionVCO.class);
+		
 	}
 	
 }
