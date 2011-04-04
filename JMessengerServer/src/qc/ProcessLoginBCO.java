@@ -41,7 +41,9 @@ public class ProcessLoginBCO implements ControlObject {
 			select.setString(2, pw);
 			
 			results = select.executeQuery();
+			boolean success = false;
 			while(results.next()) {
+				success = true;
 				UserBean user = new UserBean();
 				user.setUsername(results.getString(1));
 				user.setRole(results.getString(2));
@@ -52,6 +54,7 @@ public class ProcessLoginBCO implements ControlObject {
 				responseParams.put("response", false);
 				System.out.println("Server: Login Successful as " + user.getUsername());
 			}
+			
 		} 
 		catch (SQLException e1) {
 			// TODO Auto-generated catch block
