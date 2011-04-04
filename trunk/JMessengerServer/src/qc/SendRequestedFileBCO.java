@@ -30,7 +30,7 @@ public class SendRequestedFileBCO implements ControlObject{
 		commBean.setCommand("fileDownloadResponse");
 		HashMap responseParams = new HashMap();
 		
-		Connection con = (Connection) ((MainFrame) arg0.get(0)).getController().getConnectionPool().getConnection();
+		Connection con = (Connection) MainFrame.mainFrame.getController().getConnectionPool().getConnection();
 		java.sql.PreparedStatement select = null;
 		ResultSet results = null;
 		try {
@@ -39,7 +39,7 @@ public class SendRequestedFileBCO implements ControlObject{
 			results = select.executeQuery();
 			while(results.next()) {
 				String fileName = results.getString(1);
-				File file = new File(fileName);
+				File file = File.createTempFile(fileName, ".tmp");
 				FileOutputStream fos = new FileOutputStream(file);
 				
 				byte[] buffer = new byte[256];
