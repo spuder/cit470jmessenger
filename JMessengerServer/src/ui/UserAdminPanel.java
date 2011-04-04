@@ -181,6 +181,8 @@ public class UserAdminPanel extends JPanel{
 				al.add(map);
 				QuickConnect.handleRequest("addUser", al);
 			}
+		} else {
+			JOptionPane.showMessageDialog(null, "Passwords Must Match");
 		}
 	}
 	
