@@ -29,7 +29,7 @@ public class ParseMessageBCO implements ControlObject {
 		
 		try {
 			select = con.prepareStatement("INSERT Message (UserID,SessionID,MessageSendTime,Message) "
-					+ "SELECT UserID, ?, ?, ? FROM User WHERE UserName = ?");
+					+ "SELECT UserID, (SELECT SessionID FROM Session WHERE SessionNumber = ?), ?, ? FROM User WHERE UserName = ?");
 			select.setString(1, msg.getSessionid());
 			select.setTimestamp(2, msg.getTimestamp());
 			select.setString(3, msg.getMessage());
