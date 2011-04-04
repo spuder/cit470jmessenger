@@ -18,7 +18,7 @@ public class UpdateSessionUsersVCO implements ControlObject {
 		HashMap map = (HashMap) arg0.get(1);
 		String session = (String) map.get("sessionId");
 		for (int i = 0; i < sessions.size(); i++) {
-			if (sessions.get(i).getSessionObject().getSessionId() == session) {
+			if (sessions.get(i).getSessionObject().getSessionId().equals(session)) {
 				sessions.get(i).setUsersList(users);
 				return null;
 			}
