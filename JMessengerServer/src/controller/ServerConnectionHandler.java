@@ -49,7 +49,6 @@ public class ServerConnectionHandler implements Runnable {
 				QuickConnect.handleRequest(commBean.getCommand(), params);
 			} catch (IOException e) {
 				try {
-					connection.close();
 					String username = this.user.getUsername();
 					HashMap<String, HashMap<String, ObjectOutputStream>> allSessions = MainFrame.mainFrame.getController().getConnectionMap();
 					ArrayList<HashMap<String,ObjectOutputStream>> sessionsAsArray = new ArrayList(allSessions.values());
@@ -71,10 +70,11 @@ public class ServerConnectionHandler implements Runnable {
 
 					}
 					
-					
+					connection.close();
+	
 				} catch (IOException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
+					break;
 				}
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
