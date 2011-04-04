@@ -1,10 +1,14 @@
 package qc;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Vector;
 
 import org.quickconnect.ControlObject;
+
+import com.mysql.jdbc.Connection;
 
 import beans.CommunicationBean;
 import beans.SessionBean;
@@ -16,16 +20,17 @@ public class PopulateChatSessionTabsVCO implements ControlObject{
 	@Override
 	public Object handleIt(ArrayList<Object> arg0) {
 		
-		System.out.println("Server: Adding Session Tabs");
-		//get the communication bean sent back with the success message
 		CommunicationBean commBean = (CommunicationBean) arg0.get(arg0.size()-1);
 		HashMap params = commBean.getParameters();
-		boolean success = (Boolean) params.get("success");
-		if(success){
-			SessionBean session = (SessionBean) params.get("session");
-			Vector sessions = (Vector) params.get("list");
-			//for (int i=)
-			//MainFrame.mainFrame.getChatPanel().newSession(session);
+		
+		Vector sessions = (Vector) params.get("list");
+		ArrayList<String[]> sessionsNumberArray = new ArrayList<String[]>(sessions);
+		
+		for(int i = 0; i< sessionsNumberArray.size(); i++){
+			SessionBean curSession = new SessionBean();
+			curSession.setSessionName(sessionsNumberArray.get(i)[0]);
+			curSession.setSessionId(sessionsNumberArray.get(i)[1]);
+			MainFrame.mainFrame.getChatPanel().newSession(curSession);
 		}
 		return null;
 	}
