@@ -20,11 +20,9 @@ public class DisplayFileListVCO implements ControlObject {
 		String id = (String) params.get("sessionId");
 		
 		ArrayList<ChatSessionPanel> sessions = MainFrame.mainFrame.getChatSessions();
-		System.out.println("Displaying Files");
 		for(int i = 0; i < sessions.size(); i++){
 			SessionBean curSession = sessions.get(i).getSession();
 			if(curSession.getSessionId().equals(id)){
-				System.out.println("Found Session To Display To");
 				sessions.get(i).getaFilePanel().setFileList(list);
 				break;
 			}
