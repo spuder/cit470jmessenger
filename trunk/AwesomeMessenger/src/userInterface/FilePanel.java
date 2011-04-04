@@ -102,4 +102,14 @@ public class FilePanel extends JPanel {
 		this.currentFile = file;
 	}
 
+	public JTable getTable() {
+		return table;
+	}
+
+	public void setFileList(Vector list) {
+		StandardTableModel newModel = new StandardTableModel(list, columnNames);
+		this.table.setModel(newModel);
+		this.table.repaint();
+	}
+	
 }
