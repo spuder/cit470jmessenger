@@ -5,6 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.quickconnect.QuickConnect;
 
@@ -46,7 +47,18 @@ public class ServerConnectionHandler implements Runnable {
 				params.add(commBean.getParameters());
 				QuickConnect.handleRequest(commBean.getCommand(), params);
 			} catch (IOException e) {
-				e.printStackTrace();
+				try {
+					connection.close();
+//					ArrayList al = new ArrayList();
+//					HashMap map = new HashMap();
+//					String sessionId = "";
+//					al.add(this);
+//					al.add(map);
+//					QuickConnect.handleRequest("leaveUser", al);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			}
