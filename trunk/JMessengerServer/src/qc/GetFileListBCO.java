@@ -31,11 +31,13 @@ public class GetFileListBCO implements ControlObject {
 		ResultSet results = null;
 		Vector sessions = new Vector();
 		try {
-			select = con.prepareStatement("SELECT f.FileName, u.UserName ,f.FileDescription, f.FileSendTime FROM File f JOIN User u ON u.UserID = f.UserID WHERE FileActiveFlag = 1 AND SessionID = ?");
+			System.out.println("Server: Finding File List");
+			select = con.prepareStatement("SELECT f.FileName, u.UserName ,f.FileDescription, f.FileSendTime FROM File f JOIN User u ON u.UserID = f.UserID WHERE f.FileActiveFlag = 1 AND f.SessionID = (SELECT SessionID FROM Session WHERE SessionNumber = ?)");
 			select.setString(1, id);
 			results = select.executeQuery();
 			while(results.next()) {
 				String[] session = {results.getString(1), results.getString(2), results.getString(3), results.getTimestamp(4).toString()};
+				System.out.println("File: " + session[0]);
 				sessions.add(session);
 			}
 		} 
