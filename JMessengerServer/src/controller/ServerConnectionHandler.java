@@ -48,38 +48,34 @@ public class ServerConnectionHandler implements Runnable {
 				params.add(commBean.getParameters());
 				QuickConnect.handleRequest(commBean.getCommand(), params);
 			} catch (IOException e) {
-				try {
-					String username = this.user.getUsername();
-					HashMap<String, HashMap<String, ObjectOutputStream>> allSessions = MainFrame.mainFrame.getController().getConnectionMap();
-					ArrayList<HashMap<String,ObjectOutputStream>> sessionsAsArray = new ArrayList(allSessions.values());
-					ArrayList<String> keys = new ArrayList(allSessions.keySet());
-					for (int i = 0; i< sessionsAsArray.size(); i++){
-						HashMap curHashMap = sessionsAsArray.get(i);
-						System.out.println("Deleting user: " + username + " from Session.");
-						if(curHashMap.get(username).equals(username)) {
-							ArrayList al = new ArrayList();
-							HashMap map = new HashMap();
-							curHashMap.remove(username);
-							map.put("sessionId", keys.get(i));
-							al.add(this);
-							al.add(map);
-							QuickConnect.handleRequest("leaveUser", al);
-
-						}
-
-
-					}
-					
-					connection.close();
-	
-				} catch (IOException e1) {
-					e1.printStackTrace();
-					break;
-				}
+				System.out.println("Session Dropped");
+				break;
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			}
 		}
+		
+		String username = this.user.getUsername();
+		HashMap<String, HashMap<String, ObjectOutputStream>> allSessions = MainFrame.mainFrame.getController().getConnectionMap();
+		ArrayList<HashMap<String,ObjectOutputStream>> sessionsAsArray = new ArrayList(allSessions.values());
+		ArrayList<String> keys = new ArrayList(allSessions.keySet());
+		for (int i = 0; i< sessionsAsArray.size(); i++){
+			HashMap curHashMap = sessionsAsArray.get(i);
+			System.out.println("Deleting user: " + username + " from Session.");
+			if(curHashMap.get(username).equals(username)) {
+				ArrayList al = new ArrayList();
+				HashMap map = new HashMap();
+				curHashMap.remove(username);
+				map.put("sessionId", keys.get(i));
+				al.add(this);
+				al.add(map);
+				QuickConnect.handleRequest("leaveUser", al);
+
+			}
+
+
+		}
+		
 	}
 
 	public Socket getConnection() {

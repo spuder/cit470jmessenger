@@ -36,6 +36,11 @@ public class DeleteSessionUserBCO implements ControlObject{
 			e.printStackTrace();
 		}
 		MainFrame.mainFrame.getController().getConnectionPool().returnConnection(con);
+		
+		HashMap sessionsMap = MainFrame.mainFrame.getController().getConnectionMap();
+		HashMap sessionMap = (HashMap) sessionsMap.get(sessionId);
+		sessionMap.remove(user.getUsername());
+		
 		return worked;
 	}
 
