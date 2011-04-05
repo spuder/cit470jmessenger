@@ -20,7 +20,7 @@ public class SendErrorMessageECO implements ControlObject{
 		
 		HashMap params = new HashMap();
 		
-		return null;
+		return commBean;
 	}
 
 }

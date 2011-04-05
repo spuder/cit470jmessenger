@@ -45,6 +45,7 @@ public class ValidateUserRoleValCO implements ControlObject{
 				errorsMap.put("message", "You do not have sufficient priveleges.");
 				errors.add(connection);
 				errors.add(errorsMap);
+				System.out.println("Sending Error");
 				QuickConnect.handleError("sendError", errors);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
