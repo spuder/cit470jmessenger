@@ -32,13 +32,9 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
-
 import org.quickconnect.QuickConnect;
-
 import beans.SessionBean;
-
 import Client.ClientController;
-
 import quickConnect.QCCommandMappings;
 
 @SuppressWarnings("serial")
@@ -238,6 +234,18 @@ public class MainFrame extends JFrame {
 				al.add(map);
 				QuickConnect.handleRequest("addUser", al);
 			}
+		});
+		
+		menuItemClose.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				ArrayList params = new ArrayList();
+				HashMap mapFacade = new HashMap();
+				mapFacade.put("sessionId", ((ChatSessionPanel)MainFrame.mainFrame.getTabs().getSelectedComponent()).getSession().getSessionId());
+				params.add(mapFacade); // index 0
+				QuickConnect.handleRequest("closeSession", params);
+			}
+			
 		});
 		// ***********************************************************************************
 		// *************************** END OF ACTION LISTENERS *******************************
