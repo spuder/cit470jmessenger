@@ -35,7 +35,9 @@ public class DisplaySessionListVCO implements ControlObject {
 		list = (Vector) params.get("list");
 		Vector columns = new Vector();
 		columns.add("Session");
+		columns.add("NumParts");
 		columns.add("ID");
+		
 		
 		StandardTableModel tableModel = new StandardTableModel(list, columns);
 		table = new JTable(tableModel);
@@ -50,7 +52,7 @@ public class DisplaySessionListVCO implements ControlObject {
 			public void actionPerformed(ActionEvent arg0) {
 				ArrayList params = new ArrayList();
 				String[] row = (String[]) list.get(table.getSelectedRow());
-				params.add((String)row[1]);
+				params.add((String)row[2]);
 				QuickConnect.handleRequest("joinSession", params);
 				dialog.setVisible(false);
 			}
