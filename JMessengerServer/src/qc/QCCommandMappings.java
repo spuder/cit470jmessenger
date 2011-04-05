@@ -101,6 +101,11 @@ public class QCCommandMappings {
 		QuickConnect.mapCommandToBCO("makeModerator", GetSessionUsersBCO.class);
 		QuickConnect.mapCommandToVCO("makeModerator", UpdateSessionUsersVCO.class);
 		
+		QuickConnect.mapCommandToBCO("localMakeModerator", MakeModeratorBCO.class);
+		QuickConnect.mapCommandToBCO("localMakeModerator", NotifySessionOfNewModeratorBCO.class);
+		QuickConnect.mapCommandToBCO("localMakeModerator", GetSessionUsersBCO.class);
+		QuickConnect.mapCommandToVCO("localMakeModerator", UpdateSessionUsersVCO.class);
+		
 	}
 	
 }
