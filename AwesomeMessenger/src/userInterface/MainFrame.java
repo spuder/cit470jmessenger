@@ -67,7 +67,7 @@ public class MainFrame extends JFrame {
 	private JMenuItem menuItemRemove   = new JMenuItem("Remove File", new ImageIcon("Images/filedelete.png"));
 	private JMenuItem menuItemBan    = new JMenuItem("Ban User", new ImageIcon("Images/banuser.png"));
 	private JMenuItem menuItemGrant  = new JMenuItem("Make Moderator", new ImageIcon("Images/mod.png"));
-	private JMenuItem menuItemClose    = new JMenuItem("Close Session", new ImageIcon("Images/sessionclose.png"));
+	private JMenuItem menuItemClose    = new JMenuItem("Shutdown Session", new ImageIcon("Images/sessionclose.png"));
 	private JMenuItem menuItemAdd    = new JMenuItem("Add User", new ImageIcon("Images/adduser.png"));
 	ClientController controller = new ClientController();
 
