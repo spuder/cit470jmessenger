@@ -66,6 +66,7 @@ public class QCCommandMappings {
 		QuickConnect.mapCommandToBCO("stopSession", RemoveSessionFromController.class);
 		QuickConnect.mapCommandToVCO("stopSession", RemoveStoppedSessionVCO.class);
 		
+		QuickConnect.mapCommandToBCO("uploadFile", ReceiveFileBCO.class);
 		QuickConnect.mapCommandToBCO("uploadFile", InsertNewFileBCO.class);
 		QuickConnect.mapCommandToBCO("uploadFile", GetFileListBCO.class);
 		QuickConnect.mapCommandToBCO("uploadFile", BroadcastResponseBCO.class);
