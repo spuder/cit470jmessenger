@@ -13,6 +13,9 @@ import javax.swing.JFileChooser;
 
 import org.quickconnect.ControlObject;
 
+import userInterface.ChatSessionPanel;
+import userInterface.MainFrame;
+
 import beans.FileBean;
 
 public class DownloadFileBCO implements ControlObject {
@@ -24,7 +27,10 @@ public class DownloadFileBCO implements ControlObject {
 		//FileBean fileBean = (FileBean) params.get("file");
 		File file = (File) arg0.get(arg0.size()-1);
 		
-		JFileChooser fileChooser = new JFileChooser(System.getProperty("user.dir"));  
+		JFileChooser fileChooser = new JFileChooser(System.getProperty("user.dir"));
+		ChatSessionPanel panel = (ChatSessionPanel) MainFrame.mainFrame.getTabs().getSelectedComponent();
+		String fileName = (String) panel.getaFilePanel().getTable().getModel().getValueAt(panel.getaFilePanel().getTable().getSelectedRow(), 0);
+		fileChooser.setSelectedFile(new File(fileName));
 		int returnVal = fileChooser.showSaveDialog(null);  
 		
 		if(returnVal == JFileChooser.APPROVE_OPTION){
