@@ -57,11 +57,6 @@ public class MainFrame extends JFrame{
 		Integer port = (Integer) params.get(0);
 		String un = (String) params.get(1);
 		String pw = (String) params.get(2);
-		//Setup Controller
-//		int port = Integer.parseInt(JOptionPane.showInputDialog("Enter Port:"));
-//		String un = JOptionPane.showInputDialog("Enter MySQL Username:");
-//		String pw = JOptionPane.showInputDialog("Enter MySQL Password:");
-	//	controller = new ServerController(port,un,pw);
 		
 		controller = new ServerController(port,un,pw);
 		//Set size
@@ -180,10 +175,6 @@ public void serverLogin() {
 	final JLabel uNameLabel;
 	final JLabel pWordLabel;
 	final JLabel portLabel;
-//	private JTextField portInput;
-//	private JTextField uNameInput;
-//	private JPasswordField pWordInput;
-//	private ArrayList params;
 
 	final JDialog dialog = new JDialog();
 		dialog.setLayout(new BoxLayout(dialog.getContentPane(), BoxLayout.Y_AXIS));
@@ -211,7 +202,7 @@ public void serverLogin() {
 		dialog.add(panel1);
 		dialog.add(panel2);
 		dialog.add(panel3);
-		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		ok.addActionListener(new ActionListener()
 		{
 			@SuppressWarnings("unchecked")
