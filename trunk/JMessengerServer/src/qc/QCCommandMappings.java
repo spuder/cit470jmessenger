@@ -95,6 +95,12 @@ public class QCCommandMappings {
 		QuickConnect.mapCommandToECO("userExists", UserExistsECO.class);
 		QuickConnect.mapCommandToECO("localUserExists", LocalUserExistsECO.class);
 		
+		QuickConnect.mapCommandToValCO("makeModerator", ValidateUserRoleValCO.class);
+		QuickConnect.mapCommandToBCO("makeModerator", MakeModeratorBCO.class);
+		QuickConnect.mapCommandToBCO("makeModerator", NotifySessionOfNewModeratorBCO.class);
+		QuickConnect.mapCommandToBCO("makeModerator", GetSessionUsersBCO.class);
+		QuickConnect.mapCommandToVCO("makeModerator", UpdateSessionUsersVCO.class);
+		
 	}
 	
 }
