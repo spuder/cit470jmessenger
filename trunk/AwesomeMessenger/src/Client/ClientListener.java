@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import org.quickconnect.QuickConnect;
 
 import userInterface.MainFrame;
@@ -27,11 +29,21 @@ public class ClientListener implements Runnable {
 				params.add(commBean.getParameters());
 				QuickConnect.handleRequest(commBean.getCommand(), params);
 				//mainFrame.setText(id, messageText);
-			} catch (IOException e) { e.printStackTrace(); } 
+			} catch (IOException e) { 
+				System.out.println("Session Dropped");
+				JOptionPane.showMessageDialog(mainFrame, "Connection to the server has been lost.");
+				break; 
+			} 
 			catch (ClassNotFoundException e) { 
 				System.out.println("Client: Not a CommBean!");
 				e.printStackTrace(); 
 			}
+		}
+		try {
+			mainFrame.getController().getSocket().close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}
