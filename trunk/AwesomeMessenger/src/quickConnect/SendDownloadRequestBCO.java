@@ -8,9 +8,11 @@ import javax.swing.JOptionPane;
 
 import org.quickconnect.ControlObject;
 
+import userInterface.ChatSessionPanel;
 import userInterface.MainFrame;
 
 import beans.CommunicationBean;
+import beans.SessionBean;
 
 public class SendDownloadRequestBCO implements ControlObject {
 
@@ -21,6 +23,9 @@ public class SendDownloadRequestBCO implements ControlObject {
 		HashMap params = new HashMap();
 		
 		params.put("fileId", arg0.get(0));
+		ChatSessionPanel chatpanel = (ChatSessionPanel) MainFrame.mainFrame.getTabs().getSelectedComponent();
+		SessionBean session = chatpanel.getSession();
+		params.put("sessionId", session.getSessionId());
 		
 		commBean.setCommand("requestDownload");
 		commBean.setParameters(params);
