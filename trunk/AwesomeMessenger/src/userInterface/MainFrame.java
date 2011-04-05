@@ -11,13 +11,20 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
+
 import org.quickconnect.QuickConnect;
 
 import beans.SessionBean;
@@ -33,7 +40,8 @@ public class MainFrame extends JFrame {
 	public static final int MAIN_WIDTH = 500;
 	public static MainFrame mainFrame;
 	
-	
+	private ArrayList params = null;
+	private ArrayList serverParams = null;
 	private JMenuBar menuBar = new JMenuBar();
 	private JMenu file = new JMenu("File");
 	private JMenu chat = new JMenu("Chat");
@@ -160,12 +168,15 @@ public class MainFrame extends JFrame {
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						String uName = JOptionPane.showInputDialog("Enter Username");
-						String pWord = JOptionPane.showInputDialog("Enter Password");
-						ArrayList params = new ArrayList();
-						params.add(this);
-						params.add(uName);
-						params.add(pWord);
+//						String uName = JOptionPane.showInputDialog("Enter Username");
+//						String pWord = JOptionPane.showInputDialog("Enter Password");
+//						ArrayList params = new ArrayList();
+						userLogin();						
+						params.add(0,this);
+//						params.add(uName);
+//						params.add(pWord);
+						
+						
 						QuickConnect.handleRequest("login", params);
 					} 
 				});
@@ -174,8 +185,11 @@ public class MainFrame extends JFrame {
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						controller.setIpAddress(JOptionPane.showInputDialog("Enter Server IP:"));
-						controller.setPort(Integer.parseInt(JOptionPane.showInputDialog("Enter Server Port:")));
+//						controller.setIpAddress(JOptionPane.showInputDialog("Enter Server IP:"));
+//						controller.setPort(Integer.parseInt(JOptionPane.showInputDialog("Enter Server Port:")));
+						connectToServer();
+						controller.setIpAddress((String) serverParams.get(0));
+						controller.setPort((Integer) serverParams.get(1));
 						menuItemLogin.setEnabled(true);
 					}
 				});
@@ -285,8 +299,112 @@ public class MainFrame extends JFrame {
 	}
 
 
-	
-	
+	public void connectToServer() {
+		final JDialog dialog = new JDialog();
+		final JLabel ipLabel = new JLabel("Server IP:");
+		final JLabel portLabel = new JLabel("Server Port:");
+		final JTextField ipInput = new JTextField(20);
+		final JTextField portInput = new JTextField(15);
+		JButton ok = new JButton("Ok");
+		
+		JPanel panel1 = new JPanel();
+		JPanel panel2 = new JPanel();
+		JPanel panel3 = new JPanel();
+		
+		panel1.add(ipLabel);
+		panel1.add(ipInput);
+		panel2.add(portLabel);
+		panel2.add(portInput);
+		panel3.add(ok);
+		
+		dialog.add(panel1);
+		dialog.add(panel2);
+		dialog.add(panel3);
+		
+		ok.addActionListener(new ActionListener()
+		{
+			@SuppressWarnings("unchecked")
+			public void actionPerformed(ActionEvent e)
+			{
+
+				serverParams = new ArrayList();
+
+				String server = ipInput.getText();
+				String port = portInput.getText();
+				
+				if ((server.equals("")) || (port.equals(""))) {
+					JOptionPane.showMessageDialog(dialog, "please enter valid data");
+				}
+
+				else {
+					Integer serverIP = Integer.parseInt(server);
+					Integer portNumber = Integer.parseInt(port);
+					serverParams.add(serverIP);
+					serverParams.add(portNumber);
+					dialog.setVisible(false);
+					dialog.dispose();
+				}
+
+			}
+		});
+		dialog.setModal(true);
+		dialog.setLocationRelativeTo(null);
+		dialog.pack();
+		dialog.setVisible(true);
+	}
+	public void userLogin() {
+		
+		final JDialog dialog = new JDialog();
+		final JLabel uNameLabel = new JLabel("DB UserName:");
+		final JLabel pWordLabel = new JLabel("DB Password:");
+		final JTextField uNameInput = new JTextField(15);
+		final JPasswordField pWordInput = new JPasswordField(15);
+		JButton ok = new JButton("Ok");
+		
+		JPanel panel1 = new JPanel();
+		JPanel panel2 = new JPanel();
+		JPanel panel3 = new JPanel();
+		
+		panel1.add(uNameLabel);
+		panel1.add(uNameInput);
+		panel2.add(pWordLabel);
+		panel2.add(pWordInput);
+		panel3.add(ok);
+		
+		dialog.add(panel1);
+		dialog.add(panel2);
+		dialog.add(panel3);
+		
+		ok.addActionListener(new ActionListener()
+		{
+			@SuppressWarnings("unchecked")
+			public void actionPerformed(ActionEvent e)
+			{
+
+				params = new ArrayList();
+
+				String uName = uNameInput.getText();
+				char[] pWord = pWordInput.getPassword();
+				
+				if ((uName.equals("")) || (pWord.equals(""))) {
+					JOptionPane.showMessageDialog(dialog, "please enter valid credentials");
+				}
+
+				else {
+					String password = new String(pWord);
+					params.add(uName);
+					params.add(password);
+					dialog.setVisible(false);
+					dialog.dispose();
+				}
+
+			}
+		});
+		dialog.setModal(true);
+		dialog.setLocationRelativeTo(null);
+		dialog.pack();
+		dialog.setVisible(true);
+	}
 }
 
 
