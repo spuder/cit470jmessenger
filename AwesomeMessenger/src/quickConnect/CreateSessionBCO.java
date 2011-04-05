@@ -28,6 +28,7 @@ public class CreateSessionBCO implements ControlObject {
 		
 		HashMap params = new HashMap();
 		params.put("sessionName", chatName);
+		params.put("user", MainFrame.mainFrame.getController().getCurUser().getUsername());
 		
 		commBean.setParameters(params);
 
