@@ -2,6 +2,8 @@ package ui;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Vector;
@@ -32,7 +34,9 @@ public class ChatSessionPanel extends JPanel {
 	JScrollPane chatScroll;
 	JPanel leftPanel;
 	JButton banButton;
+	JButton moderatorButton;
 	SessionBean session;
+	JPanel buttonPanel;
 	
 	static {
 		columnNames = new Vector<String>();
@@ -57,14 +61,29 @@ public class ChatSessionPanel extends JPanel {
 		chatBox.setPreferredSize(new Dimension(CHAT_BOX_WIDTH,CHAT_BOX_HEIGHT));
 		
 		banButton = new JButton("Ban User");
+		moderatorButton = new JButton("Make Moderator");
+		buttonPanel = new JPanel();
+		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
+		buttonPanel.add(banButton);
+		buttonPanel.add(moderatorButton);
 		leftPanel = new JPanel();
 		leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
 		leftPanel.add(usersTableScroll);
-		leftPanel.add(banButton);
+		leftPanel.add(buttonPanel);
 		
 		//Organize elements
 		this.add(leftPanel);
 		this.add(chatBox);
+		
+		moderatorButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				makeModerator();
+				
+			}
+			
+		});
 		
 	}
 
@@ -101,6 +120,20 @@ public class ChatSessionPanel extends JPanel {
 		al.add(MainFrame.mainFrame);
 		al.add(map);
 		QuickConnect.handleRequest("updateSessionUsers", al);
+	}
+	
+	private void makeModerator() {
+		if(usersTable.getSelectedRow() != -1){
+			HashMap map = new HashMap();
+			ArrayList al = new ArrayList();
+			al.add(this);
+			String user = (String) usersTable.getValueAt(usersTable.getSelectedRow(), 0);
+			map.put("userName", user);
+			map.put("sessionId", this.getSessionObject().getSessionId());
+			al.add(map);
+			QuickConnect.handleRequest("localMakeModerator", al);
+		}
+		
 	}
 	
 	
