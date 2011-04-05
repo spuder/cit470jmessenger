@@ -56,9 +56,9 @@ public abstract class QCCommandMappings {
 		
 		QuickConnect.mapCommandToBCO("closeSession", CloseSessionOnServerBCO.class);
 		
-		QuickConnect.mapCommandToBCO("remoteGetUsersList", null); // send 
+		QuickConnect.mapCommandToBCO("remoteGetUsersList", null); // send "sessionId" - String
 		
-		QuickConnect.mapCommandToVCO("userListResponse", null); // receive "list" - Vector
+		QuickConnect.mapCommandToVCO("userListResponse", null); // receive "list" - Vector->{"username","role"}
 	}
 
 }
