@@ -2,9 +2,16 @@ package userInterface;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.swing.BoxLayout;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -112,10 +119,28 @@ public class MainFrame extends JFrame {
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						// Open file.
-						// openFile();
+						JFileChooser fileChooser = new JFileChooser();
+						int retVal = fileChooser.showSaveDialog(mainFrame);
+						
+						if(retVal == JFileChooser.APPROVE_OPTION){
+							File file = fileChooser.getSelectedFile();
+							FileOutputStream fileOutputStream;
+							try {
+								fileOutputStream = new FileOutputStream(file);
+								int i = tabs.getSelectedIndex();
+								ChatSessionPanel panel = (ChatSessionPanel) tabs.getComponentAt(i);
+								String chatText = panel.aMessengerPanel.receiveArea.getText();
+								fileOutputStream.write(chatText.getBytes());
+								fileOutputStream.flush();
+								fileOutputStream.close();
+							} catch (Exception e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							} 
+						}
 					} 
 				});
+		
 		menuItemExit.addActionListener(
 				new ActionListener()
 				{
