@@ -52,15 +52,31 @@ public class SendRequestedFileBCO implements ControlObject {
 				System.out.println("waiting for connection...");
 				socket = fileSocket.accept();
 				System.out.println("waiting for file...");
-							   
+						
+				int current = 0;
 				byte [] mybytearray  = new byte [(int)file.length()];
 			    FileInputStream fis = new FileInputStream(file);
 			    BufferedInputStream bis = new BufferedInputStream(fis);
 			    bis.read(mybytearray,0,mybytearray.length);
 		        OutputStream os = socket.getOutputStream();
 		        System.out.println("Sending..." + file.length());
-			    os.write(mybytearray,0,mybytearray.length);
-			    os.flush();
+			    //os.write(mybytearray,0,mybytearray.length);
+			    
+		        int totalToSend = mybytearray.length;
+			      int inc = 0;
+			      while(totalToSend > 0){
+			    	  System.out.println("sending " + totalToSend + "more bytes");
+			    	  if(totalToSend > 255){
+			    		  inc = 255;
+			    	  } else {
+			    		  inc = totalToSend;
+			    	  }
+			    	  os.write(mybytearray, current, inc);
+			    	  current += inc;
+			    	  totalToSend -= inc;
+			      }
+		        
+		        os.flush();
 			    socket.close();
 								
 			    fileSocket.close();
