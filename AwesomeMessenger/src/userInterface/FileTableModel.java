@@ -1,6 +1,7 @@
 package userInterface;
 
 
+import java.util.Iterator;
 import java.util.Vector;
 
 
@@ -8,39 +9,47 @@ import javax.swing.table.AbstractTableModel;
 
 
 @SuppressWarnings("serial")
-public class FileTableModel extends AbstractTableModel {
+public class FileTableModel extends StandardTableModel {
+	
+	private String[] descriptions;
 
-
-	private Vector<String> columnNames;
-	private Vector<String[]> files;
-
-	public FileTableModel(Vector<String[]> files, Vector<String> columnNames){
-		this.columnNames = columnNames;
-		this.files = files;
+	public FileTableModel(Vector<String[]> items, Vector<String> columnNames) {
+		super(items, columnNames);
+		Iterator<String[]> iter = items.iterator();
+		Vector<String[]> newItems = new Vector<String[]>();
+		descriptions = new String[items.size()];
+		int i = 0;
+		while(iter.hasNext()) {
+			String[] columns = iter.next();
+			String[] newColumns = {columns[0], columns[1], columns[3]};
+			newItems.add(newColumns);
+			descriptions[i] = columns[2];
+			i++;
+		}
+		this.items = newItems;
+		this.fireTableDataChanged();
 	}
-
-	public String getColumnName(int col){
-		return columnNames.get(col);
+	
+	public void setItems(Vector<String[]> items) {
+		Iterator<String[]> iter = items.iterator();
+		Vector<String[]> newItems = new Vector<String[]>();
+		while(iter.hasNext()) {
+			String[] columns = iter.next();
+			String[] newColumns = {columns[0], columns[1], columns[3]};
+			newItems.add(newColumns);
+		}
+		this.items = newItems;
+		this.fireTableDataChanged();
 	}
-
-	public boolean isCellEditable(int row, int col){ 
-		return false; 
-	}
-
-	public void setValueAt(String value, int row, int col) {
-		(files.get(row))[col] = value;
-		fireTableCellUpdated(row, col);
-	}
-
-	@Override
-	public int getColumnCount() { return columnNames.size(); }
-
-	@Override
-	public int getRowCount() { return files.size(); }
+	
 
 	@Override
 	public Object getValueAt(int vectorIndex, int arrayIndex) {
-		return (files.get(vectorIndex))[arrayIndex];
+		return (items.get(vectorIndex))[arrayIndex];
+	}
+
+	public String[] getDescriptions() {
+		return descriptions;
 	}
 
 }

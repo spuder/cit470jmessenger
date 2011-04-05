@@ -25,7 +25,7 @@ public class FilePanel extends JPanel {
 	private static Vector<String> columnNames;
 
 	// UI Components
-	private JTable table = null;
+	private FileJTable table = null;
 	private JScrollPane scrollTable = null;
 	private JButton sendFileButton;
 	private JButton resendFileButton;
@@ -41,7 +41,6 @@ public class FilePanel extends JPanel {
 		columnNames = new Vector<String>();
 		columnNames.add("File");
 		columnNames.add("Sender");
-		columnNames.add("Description");
 		columnNames.add("Timestamp");
 	}
 
@@ -56,7 +55,7 @@ public class FilePanel extends JPanel {
 		Dimension dimension = new Dimension(h,w);
 
 		//setup table
-		table = new JTable(new FileTableModel(files,columnNames));
+		table = new FileJTable(new FileTableModel(files,columnNames));
 		scrollTable = new JScrollPane(table);
 		scrollTable.setMaximumSize(dimension);
 
@@ -108,7 +107,7 @@ public class FilePanel extends JPanel {
 					ChatSessionPanel panel = (ChatSessionPanel)getParent();
 					params.add(panel.getSession().getSessionId()); // index 1
 					
-					params.add(table.getModel().getValueAt(table.getSelectedRow(), 3)); // index 2 filenumber
+					params.add(table.getModel().getValueAt(table.getSelectedRow(), 2)); // index 2 filenumber
 					
 					String desc = JOptionPane.showInputDialog("Enter Updated Description");
 					if(desc.length() > 99){
@@ -125,7 +124,7 @@ public class FilePanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				ArrayList params = new ArrayList();
-				String fileNumber = (String) table.getModel().getValueAt(table.getSelectedRow(), 3); // 4th unseen row
+				String fileNumber = (String) table.getModel().getValueAt(table.getSelectedRow(), 2); // 4th unseen row
 				params.add(fileNumber);
 				QuickConnect.handleRequest("requestDownload", params);
 			}
@@ -164,7 +163,7 @@ public class FilePanel extends JPanel {
 	}
 
 	public void setFileList(Vector list) {
-		StandardTableModel newModel = new StandardTableModel(list, columnNames);
+		FileTableModel newModel = new FileTableModel(list, columnNames);
 		this.table.setModel(newModel);
 		this.table.repaint();
 	}

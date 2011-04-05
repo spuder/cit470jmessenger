@@ -8,7 +8,7 @@ public class StandardTableModel extends AbstractTableModel {
 
 
 	private Vector<String> columnNames;
-	private Vector<String[]> items;
+	protected Vector<String[]> items;
 
 	public StandardTableModel(Vector<String[]> items, Vector<String> columnNames){
 		this.columnNames = columnNames;
