@@ -19,7 +19,7 @@ public class StopSessionBCO implements ControlObject {
 	@Override
 	public Object handleIt(ArrayList<Object> arg0) {
 
-		HashMap params = (HashMap) arg0.get(0);
+		HashMap params = (HashMap) arg0.get(1);
 		String sessionId = (String) params.get("sessionId");
 		
 		Connection con = (Connection) MainFrame.mainFrame.getController().getConnectionPool().getConnection();
