@@ -53,6 +53,8 @@ public abstract class QCCommandMappings {
 		QuickConnect.mapCommandToBCO("sendFile", ActualFileUploadBCO.class);
 		
 		QuickConnect.mapCommandToBCO("addUser", AddUserToServerBCO.class);
+		
+		QuickConnect.mapCommandToBCO("closeSession", CloseSessionOnServerBCO.class);
 	}
 
 }
