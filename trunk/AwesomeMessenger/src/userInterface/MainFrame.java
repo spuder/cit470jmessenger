@@ -330,15 +330,15 @@ public class MainFrame extends JFrame {
 
 				serverParams = new ArrayList();
 
-				String server = ipInput.getText();
+				String serverIP = ipInput.getText();
 				String port = portInput.getText();
 				
-				if ((server.equals("")) || (port.equals(""))) {
+				if ((serverIP.equals("")) || (port.equals(""))) {
 					JOptionPane.showMessageDialog(dialog, "Please enter valid data");
 				}
 
 				else {
-					Integer serverIP = Integer.parseInt(server);
+					
 					Integer portNumber = Integer.parseInt(port);
 					serverParams.add(serverIP);
 					serverParams.add(portNumber);
