@@ -33,7 +33,7 @@ public class BCOConnectToServer implements ControlObject{
 			return controller;
 		} catch (IOException e) { e.printStackTrace(); }
 		
-		return false;
+		return null;
 	}
 
 }
