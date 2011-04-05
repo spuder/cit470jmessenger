@@ -1,9 +1,11 @@
 package Client;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 import org.quickconnect.QuickConnect;
@@ -47,5 +49,6 @@ public class ClientListener implements Runnable {
 		}
 
 	}
+	
 
 }
