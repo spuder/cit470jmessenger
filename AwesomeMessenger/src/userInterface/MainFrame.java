@@ -483,6 +483,16 @@ public class MainFrame extends JFrame {
 		dialog.pack();
 		dialog.setVisible(true);
 	}
+
+	public JTabbedPane getTabs() {
+		return tabs;
+	}
+
+	public void setTabs(JTabbedPane tabs) {
+		this.tabs = tabs;
+	}
+	
+	
 }
 
 
