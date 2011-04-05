@@ -45,7 +45,7 @@ public class AddSessionUserBCO implements ControlObject {
 				
 				SessionBean session = new SessionBean();
 				int sessionPk = results.getInt(1);
-				session.setSessionId(results.getString(2));
+				session.setSessionId(id);
 				session.setSessionName(results.getString(3));
 			
 				select = con.prepareStatement("INSERT SessionParticipants (SessionID,UserID,SessionRole) SELECT ?,UserID,? FROM User WHERE UserName = ?");
@@ -60,10 +60,10 @@ public class AddSessionUserBCO implements ControlObject {
 		
 				//Add user to the output stream for that session
 				HashMap<String, HashMap<String, ObjectOutputStream>> sessions = MainFrame.mainFrame.getController().getConnectionMap();
-				HashMap<String,ObjectOutputStream> sessionMap = sessions.get(session.getSessionId());
+				HashMap<String,ObjectOutputStream> sessionMap = sessions.get(id);
 				if(sessionMap == null){
 					sessionMap = new HashMap<String, ObjectOutputStream>();
-					sessions.put(session.getSessionId(), sessionMap);
+					sessions.put(id, sessionMap);
 				}
 				sessionMap.put(curUser.getUsername(), handler.getOutputStream());
 				

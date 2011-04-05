@@ -39,7 +39,7 @@ public class DeleteSessionUserBCO implements ControlObject{
 		
 		HashMap sessionsMap = MainFrame.mainFrame.getController().getConnectionMap();
 		HashMap sessionMap = (HashMap) sessionsMap.get(sessionId);
-		sessionMap.remove(user.getUsername());
+		sessionMap.remove(username);
 		
 		return worked;
 	}
