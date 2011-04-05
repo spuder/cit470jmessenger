@@ -28,6 +28,10 @@ public class DeleteBannedSessionUserBCO implements ControlObject{
 			delete.setString(1, username);
 			delete.setString(2, sessionId);
 			delete.execute();
+			delete = con.prepareStatement("DELETE FROM Moderator WHERE UserID = (SELECT UserID FROM User WHERE UserName = ?) AND SessionID = (SELECT SessionID FROM Session WHERE SessionNumber = ?)");
+			delete.setString(1, username);
+			delete.setString(2, sessionId);
+			delete.execute();
 			worked = true;
 		} catch (SQLException e) {
 			worked = false;
