@@ -51,6 +51,8 @@ public abstract class QCCommandMappings {
 		QuickConnect.mapCommandToVCO("error", HandleErrorVCO.class);
 		
 		QuickConnect.mapCommandToBCO("sendFile", ActualFileUploadBCO.class);
+		
+		QuickConnect.mapCommandToBCO("addUser", AddUserToServerBCO.class);
 	}
 
 }

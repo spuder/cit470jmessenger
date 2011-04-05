@@ -9,7 +9,10 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -208,6 +211,34 @@ public class MainFrame extends JFrame {
 						QuickConnect.handleRequest("sessionList", params);
 					}
 				});
+		
+		menuItemAdd.addActionListener( new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				String un = JOptionPane.showInputDialog("User Name to add:");
+				String pw = JOptionPane.showInputDialog("Password of user:");
+				//TYLER - Make sure you have two password inputs, and make sure they are the same before submitting.
+				
+				ArrayList al = new ArrayList();
+				al.add(MainFrame.mainFrame);
+				HashMap map = new HashMap();
+				MessageDigest md;
+				String hashString = null;
+				try {
+					md = MessageDigest.getInstance("SHA1");
+					md.update(new String(pw).getBytes());
+					hashString = convToHex(md.digest());
+				} catch (NoSuchAlgorithmException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				map.put("username", un);
+				map.put("password", hashString);
+				map.put("role", "USER");
+				al.add(map);
+				QuickConnect.handleRequest("addUser", al);
+			}
+		});
 		// ***********************************************************************************
 		// *************************** END OF ACTION LISTENERS *******************************
 		// ***********************************************************************************
@@ -498,6 +529,21 @@ public class MainFrame extends JFrame {
 		this.tabs = tabs;
 	}
 	
+	private static String convToHex(byte[] data) {
+        StringBuilder buf = new StringBuilder();
+        for (int i = 0; i < data.length; i++) {
+            int halfbyte = (data[i] >>> 4) & 0x0F;
+            int two_halfs = 0;
+            do {
+                if ((0 <= halfbyte) && (halfbyte <= 9))
+                    buf.append((char) ('0' + halfbyte));
+                else
+                        buf.append((char) ('a' + (halfbyte - 10)));
+                halfbyte = data[i] & 0x0F;
+            } while(two_halfs++ < 1);
+        }
+        return buf.toString();
+    }
 	
 }
 
