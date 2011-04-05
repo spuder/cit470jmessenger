@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.quickconnect.ControlObject;
+import org.quickconnect.QuickConnect;
 
 import ui.MainFrame;
 
@@ -39,6 +40,12 @@ public class ValidateUserRoleValCO implements ControlObject{
 					return true;
 				}
 				MainFrame.mainFrame.getController().getConnectionPool().returnConnection(con);
+				ArrayList errors = new ArrayList();
+				HashMap errorsMap = new HashMap();
+				errorsMap.put("message", "You do not have sufficient priveleges.");
+				errors.add(connection);
+				errors.add(errorsMap);
+				QuickConnect.handleError("sendError", errors);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
