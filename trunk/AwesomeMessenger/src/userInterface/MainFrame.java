@@ -358,8 +358,8 @@ public class MainFrame extends JFrame {
 		
 		final JDialog dialog = new JDialog();
 		dialog.setLayout(new BoxLayout(dialog.getContentPane(), BoxLayout.Y_AXIS));
-		final JLabel uNameLabel = new JLabel("DB Username:");
-		final JLabel pWordLabel = new JLabel("DB Password:");
+		final JLabel uNameLabel = new JLabel("Username:");
+		final JLabel pWordLabel = new JLabel("Password:");
 		final JTextField uNameInput = new JTextField(15);
 		final JPasswordField pWordInput = new JPasswordField(15);
 		JButton ok = new JButton("Ok");
