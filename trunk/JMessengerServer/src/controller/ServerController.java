@@ -69,6 +69,14 @@ public class ServerController {
 	public void setConnectionMap(HashMap<String, HashMap<String, ObjectOutputStream>> connectionMap) {
 		this.connectionMap = connectionMap;
 	}
+
+	public ServerSocket getSerSock() {
+		return serSock;
+	}
+
+	public void setSerSock(ServerSocket serSock) {
+		this.serSock = serSock;
+	}
 	
 	
 }

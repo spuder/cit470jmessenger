@@ -29,6 +29,7 @@ public class InsertNewFileBCO implements ControlObject {
 		HashMap params = (HashMap) arg0.get(1);
 		FileBean file = (FileBean) params.get("file");
 		String sessionId = (String) params.get("sessionId");
+		File actualFile = (File) arg0.get(arg0.size()-1);
 		
 		Connection con = (Connection) MainFrame.mainFrame.getController().getConnectionPool().getConnection();
 		java.sql.PreparedStatement select = null;
@@ -44,8 +45,8 @@ public class InsertNewFileBCO implements ControlObject {
 			select.setString(4, file.getFileName());
 			select.setString(5, file.getDesc());
 
-			FileInputStream fis = new FileInputStream(file.getFile());
-			select.setBinaryStream(6, fis, file.getFile().length());
+			FileInputStream fis = new FileInputStream(actualFile);
+			select.setBinaryStream(6, fis, actualFile.length());
 			
 			select.setString(7, file.getFileId());
 			
