@@ -398,14 +398,14 @@ public class MainFrame extends JFrame {
 					JOptionPane.showMessageDialog(dialog, "Please enter valid data");
 				}
 
-//				else {
-//					
-//					Integer portNumber = Integer.parseInt(port);
-//					serverParams.add(serverIP);
-//					serverParams.add(portNumber);
-//					dialog.setVisible(false);
-//					dialog.dispose();
-//				}
+				else {
+					
+					Integer portNumber = Integer.parseInt(port);
+					serverParams.add(serverIP);
+					serverParams.add(portNumber);
+					dialog.setVisible(false);
+					dialog.dispose();
+				}
 
 			}
 		});
