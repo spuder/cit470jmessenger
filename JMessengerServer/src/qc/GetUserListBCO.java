@@ -19,7 +19,7 @@ public class GetUserListBCO implements ControlObject{
 	@Override
 	public Object handleIt(ArrayList<Object> arg0) {
 		
-		Connection con = (Connection) ((MainFrame) arg0.get(0)).getController().getConnectionPool().getConnection();
+		Connection con = (Connection) MainFrame.mainFrame.getController().getConnectionPool().getConnection();
 		java.sql.PreparedStatement select = null;
 		ResultSet results = null;
 		Vector users = new Vector();
