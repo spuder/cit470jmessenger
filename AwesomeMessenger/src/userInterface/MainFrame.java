@@ -1,5 +1,7 @@
 package userInterface;
 
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -8,6 +10,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -327,26 +331,27 @@ public class MainFrame extends JFrame {
 
 	public void connectToServer() {
 		final JDialog dialog = new JDialog();
-		dialog.setLayout(new BoxLayout(dialog.getContentPane(), BoxLayout.Y_AXIS));
+		dialog.setLayout(new FlowLayout());
 		final JLabel ipLabel = new JLabel("Server IP:");
 		final JLabel portLabel = new JLabel("Server Port:");
-		final JTextField ipInput = new JTextField(20);
-		final JTextField portInput = new JTextField(15);
+		final JTextField ipInput = new JTextField(10);
+		final JTextField portInput = new JTextField(10);
 		JButton ok = new JButton("Ok");
 		
-		JPanel panel1 = new JPanel();
-		JPanel panel2 = new JPanel();
-		JPanel panel3 = new JPanel();
+		JPanel panel1 = new JPanel(new GridLayout(3, 2, 10, 10));
+//		JPanel panel2 = new JPanel();
+//		JPanel panel3 = new JPanel();
 		
 		panel1.add(ipLabel);
 		panel1.add(ipInput);
-		panel2.add(portLabel);
-		panel2.add(portInput);
-		panel3.add(ok);
+		panel1.add(portLabel);
+		panel1.add(portInput);
+		panel1.add(Box.createGlue());
+		panel1.add(ok);
 		
 		dialog.add(panel1);
-		dialog.add(panel2);
-		dialog.add(panel3);
+//		dialog.add(panel2);
+//		dialog.add(panel3);
 		portInput.addActionListener(new ActionListener()
 		{
 			@SuppressWarnings("unchecked")
@@ -408,26 +413,27 @@ public class MainFrame extends JFrame {
 	public void userLogin() {
 		
 		final JDialog dialog = new JDialog();
-		dialog.setLayout(new BoxLayout(dialog.getContentPane(), BoxLayout.Y_AXIS));
+		dialog.setLayout(new FlowLayout());
 		final JLabel uNameLabel = new JLabel("Username:");
 		final JLabel pWordLabel = new JLabel("Password:");
 		final JTextField uNameInput = new JTextField(15);
 		final JPasswordField pWordInput = new JPasswordField(15);
 		JButton ok = new JButton("Ok");
 		
-		JPanel panel1 = new JPanel();
-		JPanel panel2 = new JPanel();
-		JPanel panel3 = new JPanel();
+		JPanel panel1 = new JPanel(new GridLayout(3, 2, 10, 10));
+//		JPanel panel2 = new JPanel();
+//		JPanel panel3 = new JPanel();
 		
 		panel1.add(uNameLabel);
 		panel1.add(uNameInput);
-		panel2.add(pWordLabel);
-		panel2.add(pWordInput);
-		panel3.add(ok);
+		panel1.add(pWordLabel);
+		panel1.add(pWordInput);
+		panel1.add(Box.createGlue());
+		panel1.add(ok);
 		
 		dialog.add(panel1);
-		dialog.add(panel2);
-		dialog.add(panel3);
+//		dialog.add(panel2);
+//		dialog.add(panel3);
 		pWordInput.addActionListener(new ActionListener()
 		{
 			@SuppressWarnings("unchecked")
