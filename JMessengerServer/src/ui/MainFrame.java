@@ -207,7 +207,36 @@ public class MainFrame extends JFrame{
 		dialog.add(panel1);
 		dialog.add(panel2);
 		dialog.add(panel3);
+		pWordInput.addActionListener(new ActionListener()
+		{
+			@SuppressWarnings("unchecked")
+			public void actionPerformed(ActionEvent e)
+			{
 
+				params = new ArrayList();
+
+				String port = portInput.getText();
+				String uName = uNameInput.getText();
+				char[] pWord = pWordInput.getPassword();
+				String portListener = portListenerInput.getText();
+				if ((port.equals("")) || (uName.equals("")) || (pWord.equals("")) || (portListener.equals(""))) {
+					JOptionPane.showMessageDialog(dialog, "Please enter valid credentials");
+				}
+
+				else {
+					String password = new String(pWord);
+					Integer portNumber = Integer.parseInt(portListenerInput.getText());
+					Integer portInt = Integer.parseInt(portInput.getText());
+					params.add(portNumber);
+					params.add(portInt);
+					params.add(uName);
+					params.add(password);
+					dialog.setVisible(false);
+					dialog.dispose();
+				}
+
+			}
+		});
 		ok.addActionListener(new ActionListener()
 		{
 			@SuppressWarnings("unchecked")
