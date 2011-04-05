@@ -12,7 +12,6 @@ public class UserExistsECO implements ControlObject {
 
 	@Override
 	public Object handleIt(ArrayList<Object> arg0) {
-
 		CommunicationBean commBean = new CommunicationBean();
 		MessageBean msg = new MessageBean("SERVER","User Already Exists!");
 		commBean.setCommand("error");
