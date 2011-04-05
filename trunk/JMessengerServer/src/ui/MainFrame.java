@@ -231,7 +231,7 @@ public class MainFrame extends JFrame{
 				String uName = uNameInput.getText();
 				char[] pWord = pWordInput.getPassword();
 				String portListener = portListenerInput.getText();
-				if ((port.equals("")) || (uName.equals("")) || (pWord.equals("")) || (portListener.equals(""))) {
+				if ((port.equals("")) || (uName.equals("")) || (pWord.length == 0) || (portListener.equals(""))) {
 					JOptionPane.showMessageDialog(dialog, "Please enter valid credentials");
 				}
 
@@ -261,7 +261,7 @@ public class MainFrame extends JFrame{
 				String uName = uNameInput.getText();
 				char[] pWord = pWordInput.getPassword();
 				String portListener = portListenerInput.getText();
-				if ((port.equals("")) || (uName.equals("")) || (pWord.equals("")) || (portListener.equals(""))) {
+				if ((port.equals("")) || (uName.equals("")) || (pWord.length == 0) || (portListener.equals(""))) {
 					JOptionPane.showMessageDialog(dialog, "Please enter valid credentials");
 				}
 
