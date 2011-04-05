@@ -50,13 +50,13 @@ public class AddUserBCO implements ControlObject{
 				}
 				response.setCommand("addUserResponse");
 				HashMap responseMap = new HashMap();
-				responseMap.put("success", true);
+				responseMap.put("success", "true");
 				response.setParameters(map);
 			}
 			else {
 				response.setCommand("addUserResponse");
 				HashMap responseMap = new HashMap();
-				responseMap.put("success", false);
+				responseMap.put("success", "false");
 				response.setParameters(map);
 			}
 		} catch (Exception e) {
