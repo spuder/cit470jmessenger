@@ -251,6 +251,7 @@ public class MainFrame extends JFrame {
 				ArrayList params = new ArrayList();
 				HashMap mapFacade = new HashMap();
 				mapFacade.put("sessionId", ((ChatSessionPanel)MainFrame.mainFrame.getTabs().getSelectedComponent()).getSession().getSessionId());
+				params.add(mapFacade);
 				QuickConnect.handleRequest("getUsersList", params);
 			}
 		});
