@@ -28,10 +28,11 @@ public class GetSessionListBCO implements ControlObject {
 		ResultSet results = null;
 		Vector sessions = new Vector();
 		try {
-			select = con.prepareStatement("SELECT SessionNumber, SessionName from Session WHERE SessionActive = 1");
+			select = con.prepareStatement("SELECT s1.SessionNumber, s2.Count, s1.SessionName FROM Session s1 LEFT JOIN (SELECT SessionID, Count(SessionID) as Count FROM SessionParticipants GROUP BY SessionID) s2 ON s1.SessionID = s2.SessionID WHERE s1.SessionActive = 1");
+			
 			results = select.executeQuery();
 			while(results.next()) {
-				String[] session = {results.getString(2), results.getString(1)};
+				String[] session = {results.getString(3), results.getString(2), results.getString(1)};
 				sessions.add(session);
 			}
 		} 
