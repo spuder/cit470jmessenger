@@ -43,6 +43,8 @@ public class ReceiveFileBCO implements ControlObject {
 			commBean.setParameters(params);
 			connection.getOutputStream().writeObject(commBean);
 			
+			File tempFile = null;
+			
 			// Read in new file
 			while(fileSocket.isBound()){
 				System.out.println("waiting for connection...");
@@ -54,7 +56,7 @@ public class ReceiveFileBCO implements ControlObject {
 			    System.out.println("downloading file (" + file.getSize() + ")");
 				byte [] mybytearray  = new byte [(int) file.getSize()];
 			    InputStream is = socket.getInputStream();
-			    File tempFile =File.createTempFile(file.getFileName(), ".download");
+			    tempFile =File.createTempFile(file.getFileName(), ".download");
 			    FileOutputStream fos = new FileOutputStream(tempFile);
 			    BufferedOutputStream bos = new BufferedOutputStream(fos);
 			    bytesRead = is.read(mybytearray,0,mybytearray.length);
@@ -77,7 +79,7 @@ public class ReceiveFileBCO implements ControlObject {
 			    break;
 			}
 						
-			return new File(file.getFileName());
+			return tempFile;
 			
 			} catch (IOException e) {
 				// ECO about failed to upload
