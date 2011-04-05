@@ -48,6 +48,7 @@ public class MainFrame extends JFrame {
 	private JMenu file = new JMenu("File");
 	private JMenu chat = new JMenu("Chat");
 	private JMenu moderation = new JMenu("Moderation");
+	private JMenu help = new JMenu("Help");
 
 	// Menu items.
 	private JMenuItem menuItemNew     = new JMenuItem("New Chat Session");
@@ -57,7 +58,7 @@ public class MainFrame extends JFrame {
 	private JMenuItem menuItemServer    = new JMenuItem("Configure Server");
 	private JMenuItem menuItemChatSession    = new JMenuItem("Join Chat");
 	private JMenuItem menuItemLeaveSession = new JMenuItem("Leave Session");
-
+	private JMenuItem menuItemHelp = new JMenuItem("Help");
 	private JMenuItem menuItemRemove   = new JMenuItem("Remove File");
 	private JMenuItem menuItemBan    = new JMenuItem("Ban User");
 	private JMenuItem menuItemGrant  = new JMenuItem("Make Moderator");
@@ -204,6 +205,14 @@ public class MainFrame extends JFrame {
 						QuickConnect.handleRequest("sessionList", params);
 					}
 				});
+		menuItemHelp.addActionListener(
+				new ActionListener()
+				{
+					public void actionPerformed(ActionEvent e)
+					{
+						JOptionPane.showMessageDialog(null, "It's on the blog");
+					}
+				});
 		// ***********************************************************************************
 		// *************************** END OF ACTION LISTENERS *******************************
 		// ***********************************************************************************
@@ -237,11 +246,12 @@ public class MainFrame extends JFrame {
 		menuBar.add(file);
 		menuBar.add(chat);
 		menuBar.add(moderation);
-
+		menuBar.add(help);
 		// Set mnemonics for menu selections.
 		file.setMnemonic('F');
 		chat.setMnemonic('C');
 		moderation.setMnemonic('M');
+		help.setMnemonic('H');
 
 		// Menu items for file menu.
 		file.add(menuItemNew);
@@ -264,12 +274,13 @@ public class MainFrame extends JFrame {
 		moderation.addSeparator();
 		moderation.add(menuItemAdd);
 		menuItemAdd.setEnabled(false);
-
+		
+		help.add(menuItemHelp);
 		// Set mnemonics for menu item selections for file menu.
 		menuItemNew.setMnemonic('N');
 		menuItemExit.setMnemonic('X');
 		menuItemSave.setMnemonic('S');
-
+		menuItemHelp.setMnemonic('H');
 		// Set mnemonics for menu item selections for chat menu.
 		menuItemLogin.setMnemonic('L');
 		menuItemServer.setMnemonic('S');
