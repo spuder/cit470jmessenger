@@ -90,6 +90,8 @@ public class QCCommandMappings {
 		QuickConnect.mapCommandToBCO("updateFile", GetFileListBCO.class);
 		QuickConnect.mapCommandToBCO("updateFile", BroadcastResponseBCO.class);
 		
+		QuickConnect.mapCommandToECO("userExists", UserExistsECO.class);
+		
 	}
 	
 }
