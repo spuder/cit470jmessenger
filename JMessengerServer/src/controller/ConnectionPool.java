@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import javax.swing.JOptionPane;
+
 public class ConnectionPool {
 	
 	private ArrayList<Connection> pool;
@@ -35,6 +37,7 @@ public class ConnectionPool {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Database connection failed");
 			System.exit(0);
 		}
 		
