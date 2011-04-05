@@ -79,7 +79,7 @@ public class MainFrame extends JFrame {
 
 		//Set Frame Settings
 		this.setTitle("Palantir");
-		this.setIconImage(new ImageIcon("palantir.png").getImage());
+		this.setIconImage(new ImageIcon("Images/palantir.png").getImage());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		//Organize Interface
