@@ -13,12 +13,14 @@ public class SendErrorMessageECO implements ControlObject{
 	@Override
 	public Object handleIt(ArrayList<Object> arg0) {
 		HashMap map = (HashMap) arg0.get(1);
-		String message = (String) map.get("error");
+		String message = (String) map.get("message");
 		CommunicationBean commBean = new CommunicationBean();
 		MessageBean msg = new MessageBean("SERVER", message);
 		commBean.setCommand("error");
 		
 		HashMap params = new HashMap();
+		params.put("message",msg);
+		commBean.setParameters(params);
 		
 		return commBean;
 	}
