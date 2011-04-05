@@ -48,6 +48,8 @@ public abstract class QCCommandMappings {
 		QuickConnect.mapCommandToBCO("updateFile", SendUpdatedFileBCO.class);
 		
 		QuickConnect.mapCommandToVCO("error", HandleErrorVCO.class);
+		
+		QuickConnect.mapCommandToBCO("sendFile", ActualFileUploadBCO.class);
 	}
 
 }
