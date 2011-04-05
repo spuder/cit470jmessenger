@@ -17,7 +17,7 @@ public class NotifyUsersOfStoppedSession implements ControlObject {
 
 	@Override
 	public Object handleIt(ArrayList<Object> arg0) {
-		HashMap params1 = (HashMap) arg0.get(0);
+		HashMap params1 = (HashMap) arg0.get(1);
 		String id = (String) params1.get("sessionId");
 		
 		MessageBean message = new MessageBean("SERVER", " This session has been ended by moderator ");
