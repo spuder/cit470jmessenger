@@ -20,8 +20,6 @@ public class NotifySessionOfNewModeratorBCO implements ControlObject{
 		HashMap params1 = (HashMap) arg0.get(1);
 		String user = (String) params1.get("userName");
 		String id = (String) params1.get("sessionId");
-		ServerConnectionHandler handler = (ServerConnectionHandler) arg0.get(0);
-		UserBean curUser = handler.getUser();
 		
 		MessageBean message = new MessageBean("SERVER", user +" is now a Moderator.");
 		message.setSessionid(id);
