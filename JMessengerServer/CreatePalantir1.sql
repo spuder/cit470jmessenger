@@ -135,7 +135,7 @@ CREATE  TABLE IF NOT EXISTS `Palantir`.`File` (
   `FileSendTime` TIMESTAMP NULL ,
   `FileName` VARCHAR(45) NULL ,
   `FileDescription` VARCHAR(100) NULL ,
-  `FileData` BLOB NULL ,
+  `FileData` LONGBLOB NULL ,
   `FileActiveFlag` TINYINT(1)  NULL ,
   `FileNumber` VARCHAR(75) NULL ,
   PRIMARY KEY (`FileID`) ,
