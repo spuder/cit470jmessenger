@@ -27,6 +27,7 @@ public class SendFileToUploadBCO implements ControlObject {
 		
 		FileBean fileBean = new FileBean(uploadFile, uploadFile.getName());
 		fileBean.setDesc(description);
+		fileBean.setSize(uploadFile.length());
 		
 		HashMap params = new HashMap();
 		
