@@ -36,7 +36,7 @@ public class ActualFileUploadBCO implements ControlObject {
 		      BufferedInputStream bis = new BufferedInputStream(fis);
 		      bis.read(mybytearray,0,mybytearray.length);
 		      OutputStream os = socket.getOutputStream();
-		      System.out.println("Sending...");
+		      System.out.println("Sending..." + fileToSend.length());
 		      os.write(mybytearray,0,mybytearray.length);
 		      os.flush();
 		      socket.close();

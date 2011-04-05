@@ -20,9 +20,9 @@ public class DownloadFileBCO implements ControlObject {
 	@Override
 	public Object handleIt(ArrayList<Object> arg0) {
 
-		HashMap params = (HashMap) arg0.get(0);
-		FileBean fileBean = (FileBean) params.get("file");
-		File file = fileBean.getFile();
+		//HashMap params = (HashMap) arg0.get(0);
+		//FileBean fileBean = (FileBean) params.get("file");
+		File file = (File) arg0.get(arg0.size()-1);
 		
 		JFileChooser fileChooser = new JFileChooser(System.getProperty("user.dir"));  
 		int returnVal = fileChooser.showSaveDialog(null);  
