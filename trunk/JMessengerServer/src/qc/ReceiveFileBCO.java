@@ -51,9 +51,11 @@ public class ReceiveFileBCO implements ControlObject {
 							   
 				int bytesRead;
 			    int current = 0;
+			    System.out.println("downloading file (" + file.getSize() + ")");
 				byte [] mybytearray  = new byte [(int) file.getSize()];
 			    InputStream is = socket.getInputStream();
-			    FileOutputStream fos = new FileOutputStream(file.getFileName());
+			    File tempFile =File.createTempFile(file.getFileName(), ".download");
+			    FileOutputStream fos = new FileOutputStream(tempFile);
 			    BufferedOutputStream bos = new BufferedOutputStream(fos);
 			    bytesRead = is.read(mybytearray,0,mybytearray.length);
 			    current = bytesRead;
@@ -68,6 +70,7 @@ public class ReceiveFileBCO implements ControlObject {
 			    bos.flush();
 			    long end = System.currentTimeMillis();
 			    System.out.println("file received");
+			    System.out.println("file size: " + tempFile.length());
 			    bos.close();
 			    socket.close();
 			    fileSocket.close();
