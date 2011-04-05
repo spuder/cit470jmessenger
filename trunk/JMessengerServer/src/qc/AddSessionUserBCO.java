@@ -48,13 +48,27 @@ public class AddSessionUserBCO implements ControlObject {
 				session.setSessionId(id);
 				session.setSessionName(results.getString(3));
 			
-				select = con.prepareStatement("INSERT SessionParticipants (SessionID,UserID,SessionRole) SELECT ?,UserID,? FROM User WHERE UserName = ?");
+				select = con.prepareStatement("INSERT SessionParticipants (SessionID,UserID,SessionRole) SELECT ?,u.UserID,? FROM User u WHERE u.UserName = ?");
 				select.setInt(1,sessionPk);
 				select.setString(3, curUser.getUsername());
 				if(curUser.getRole().equals("ADMIN")){
 					select.setInt(2, 1);
 				} else {
-					select.setInt(2, 2); 
+					
+					Connection con2 = (Connection) MainFrame.mainFrame.getController().getConnectionPool().getConnection();
+					java.sql.PreparedStatement subSelect = null;
+					ResultSet subResult = null;
+					
+					subSelect = con2.prepareStatement("SELECT * FROM Moderator m JOIN User u ON u.UserID = m.UserID WHERE u.UserName = ? AND SessionID = ?");
+					subSelect.setString(1, curUser.getUsername());
+					subSelect.setInt(2, sessionPk);
+					subResult = subSelect.executeQuery();
+					if(results.next()){
+						select.setInt(2, 3);
+					} else {
+						select.setInt(2, 2);  // User
+					}
+					MainFrame.mainFrame.getController().getConnectionPool().returnConnection(con2);
 				}
 				select.execute();
 		
