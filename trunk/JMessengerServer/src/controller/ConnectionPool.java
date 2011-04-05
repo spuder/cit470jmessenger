@@ -11,11 +11,14 @@ public class ConnectionPool {
 	private static final int poolsize = 15;
 	private String username;
 	private String password;
+	private int port;
 	
 	
-	public ConnectionPool(String uname, String pword) {
+	public ConnectionPool(String uname, String pword, int dbport) {
 		username = uname;
 		password = pword;
+		port = dbport;
+		
 		pool = new ArrayList<Connection>();
 		
 		for (int i=0; i < poolsize; i++) {
@@ -28,7 +31,7 @@ public class ConnectionPool {
 		Connection con = null;
 		
 		try {
-			con = DriverManager.getConnection("jdbc:mysql://localhost:8889/Palantir", this.username, this.password);
+			con = DriverManager.getConnection("jdbc:mysql://localhost:"+port+"/Palantir", this.username, this.password);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
