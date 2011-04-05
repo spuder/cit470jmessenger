@@ -42,7 +42,7 @@ public class SendRequestedFileBCO implements ControlObject {
 			
 			// Send Message To Client
 			params.put("ip", fileSocket.getInetAddress().getHostAddress());
-			params.put("port", port);
+			params.put("port", fileSocket.getLocalPort());
 			params.put("size", (int)file.length());
 			commBean.setParameters(params);
 			connection.getOutputStream().writeObject(commBean);
