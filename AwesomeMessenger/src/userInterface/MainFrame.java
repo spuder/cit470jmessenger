@@ -64,8 +64,8 @@ public class MainFrame extends JFrame {
 	private JMenuItem menuItemChatSession    = new JMenuItem("Join Chat", new ImageIcon("Images/joinchat.png"));
 	private JMenuItem menuItemLeaveSession = new JMenuItem("Leave Session", new ImageIcon("Images/exitchat.png"));
 	private JMenuItem menuItemRemove   = new JMenuItem("Remove File", new ImageIcon("Images/filedelete.png"));
-	private JMenuItem menuItemBan    = new JMenuItem("Ban User", new ImageIcon("Images/banuser.png"));
-	private JMenuItem menuItemGrant  = new JMenuItem("Make Moderator", new ImageIcon("Images/mod.png"));
+	//private JMenuItem menuItemBan    = new JMenuItem("Ban User", new ImageIcon("Images/banuser.png"));
+	private JMenuItem menuItemGrant  = new JMenuItem("Moderate Users", new ImageIcon("Images/mod.png"));
 	private JMenuItem menuItemClose    = new JMenuItem("Shutdown Session", new ImageIcon("Images/sessionclose.png"));
 	private JMenuItem menuItemAdd    = new JMenuItem("Add User", new ImageIcon("Images/adduser.png"));
 	private JMenuItem menuItemHelp = new JMenuItem("Help", new ImageIcon("Images/iconhelp.png"));
@@ -245,6 +245,17 @@ public class MainFrame extends JFrame {
 			
 		});
 		
+		menuItemGrant.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ArrayList params = new ArrayList();
+				HashMap mapFacade = new HashMap();
+				mapFacade.put("sessionId", ((ChatSessionPanel)MainFrame.mainFrame.getTabs().getSelectedComponent()).getSession().getSessionId());
+				QuickConnect.handleRequest("getUsersList", params);
+			}
+		});
+
+		
 		menuItemHelp.addActionListener(new ActionListener(){  //  Help
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -323,7 +334,7 @@ public class MainFrame extends JFrame {
 		chat.add(menuItemLeaveSession);
 
 		moderation.add(menuItemRemove);
-		moderation.add(menuItemBan);
+		//moderation.add(menuItemBan);
 		moderation.add(menuItemGrant);
 		moderation.add(menuItemClose);
 		moderation.addSeparator();
@@ -368,7 +379,7 @@ public class MainFrame extends JFrame {
 		menuItemLogin.setEnabled(setter);
 		menuItemChatSession.setEnabled(setter);
 		menuItemRemove.setEnabled(setter);
-		menuItemBan.setEnabled(setter);
+		//menuItemBan.setEnabled(setter);
 		menuItemGrant.setEnabled(setter);
 		menuItemClose.setEnabled(setter);
 		menuItemLeaveSession.setEnabled(setter);
