@@ -35,14 +35,15 @@ public class ValidateUserRoleValCO implements ControlObject{
 				select.setString(2, sessionId);
 				results = select.executeQuery();
 				if (results.next()) {
+					MainFrame.mainFrame.getController().getConnectionPool().returnConnection(con);
 					return true;
 				}
+				MainFrame.mainFrame.getController().getConnectionPool().returnConnection(con);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		
 		return false;
 	}
 
