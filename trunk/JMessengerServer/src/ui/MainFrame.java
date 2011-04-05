@@ -179,8 +179,8 @@ public class MainFrame extends JFrame{
 		final JLabel portListenerLabel;
 		final JDialog dialog = new JDialog();
 		dialog.setLayout(new BoxLayout(dialog.getContentPane(), BoxLayout.Y_AXIS));
-		portListenerLabel = new JLabel("enter Listener port:");
-		portLabel = new JLabel("enter DB port:");
+		portListenerLabel = new JLabel("Enter Listener port:");
+		portLabel = new JLabel("Enter DB port:");
 		uNameLabel = new JLabel("DB UserName:");
 		pWordLabel = new JLabel("DB Password:");
 		final JTextField portListenerInput = new JTextField(4);
@@ -221,7 +221,7 @@ public class MainFrame extends JFrame{
 				char[] pWord = pWordInput.getPassword();
 				String portListener = portListenerInput.getText();
 				if ((port.equals("")) || (uName.equals("")) || (pWord.equals("")) || (portListener.equals(""))) {
-					JOptionPane.showMessageDialog(dialog, "please enter valid credentials");
+					JOptionPane.showMessageDialog(dialog, "Please enter valid credentials");
 				}
 
 				else {
