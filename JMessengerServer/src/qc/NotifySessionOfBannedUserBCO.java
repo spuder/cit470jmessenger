@@ -19,10 +19,9 @@ public class NotifySessionOfBannedUserBCO implements ControlObject{
 	public Object handleIt(ArrayList<Object> arg0) {
 		HashMap params1 = (HashMap) arg0.get(1);
 		String id = (String) params1.get("sessionId");
-		ServerConnectionHandler handler = (ServerConnectionHandler) arg0.get(0);
-		UserBean curUser = handler.getUser();
+		String user = (String) params1.get("userToBan");
 		
-		MessageBean message = new MessageBean("SERVER", curUser.getUsername() +" has been banned");
+		MessageBean message = new MessageBean("SERVER", user +" has been banned");
 		message.setSessionid(id);
 		
 		CommunicationBean commBean = new CommunicationBean();

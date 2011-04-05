@@ -85,6 +85,16 @@ public class ChatSessionPanel extends JPanel {
 			
 		});
 		
+		banButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				banUser();
+				
+			}
+			
+		});
+		
 	}
 
 	public ChatSessionPanel(SessionBean newSession) {
@@ -132,6 +142,20 @@ public class ChatSessionPanel extends JPanel {
 			map.put("sessionId", this.getSessionObject().getSessionId());
 			al.add(map);
 			QuickConnect.handleRequest("localMakeModerator", al);
+		}
+		
+	}
+	
+	private void banUser() {
+		if(usersTable.getSelectedRow() != -1){
+			HashMap map = new HashMap();
+			ArrayList al = new ArrayList();
+			al.add(MainFrame.mainFrame);
+			String user = (String) usersTable.getValueAt(usersTable.getSelectedRow(), 0);
+			map.put("userToBan", user);
+			map.put("sessionId", this.getSessionObject().getSessionId());
+			al.add(map);
+			QuickConnect.handleRequest("localBanUser", al);
 		}
 		
 	}

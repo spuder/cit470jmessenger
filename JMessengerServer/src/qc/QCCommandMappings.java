@@ -83,11 +83,11 @@ public class QCCommandMappings {
 		QuickConnect.mapCommandToBCO("uploadFile", BroadcastResponseBCO.class);
 		QuickConnect.mapCommandToVCO("uploadFile", UpdateLocalFileVCO.class);
 		
-		QuickConnect.mapCommandToBCO("banUser", AddBannedUserBCO.class);
-		QuickConnect.mapCommandToBCO("banUser", DeleteBannedSessionUserBCO.class);
-		QuickConnect.mapCommandToBCO("banUser", NotifySessionOfBannedUserBCO.class);
-		QuickConnect.mapCommandToBCO("banUser", GetSessionUsersBCO.class);
-		QuickConnect.mapCommandToVCO("banUser", UpdateSessionUsersVCO.class);
+		QuickConnect.mapCommandToBCO("localBanUser", AddBannedUserBCO.class);
+		QuickConnect.mapCommandToBCO("localBanUser", DeleteBannedSessionUserBCO.class);
+		QuickConnect.mapCommandToBCO("localBanUser", NotifySessionOfBannedUserBCO.class);
+		QuickConnect.mapCommandToBCO("localBanUser", GetSessionUsersBCO.class);
+		QuickConnect.mapCommandToVCO("localBanUser", UpdateSessionUsersVCO.class);
 		
 		QuickConnect.mapCommandToBCO("leaveUser", DeleteSessionUserBCO.class);
 		QuickConnect.mapCommandToBCO("leaveUser", NotifySessionOfLeftUserBCO.class);
@@ -119,6 +119,8 @@ public class QCCommandMappings {
 		QuickConnect.mapCommandToBCO("localMakeModerator", NotifySessionOfNewModeratorBCO.class);
 		QuickConnect.mapCommandToBCO("localMakeModerator", GetSessionUsersBCO.class);
 		QuickConnect.mapCommandToVCO("localMakeModerator", UpdateSessionUsersVCO.class);
+		
+		
 		
 	}
 	
