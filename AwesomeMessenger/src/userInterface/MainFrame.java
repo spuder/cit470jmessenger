@@ -214,10 +214,6 @@ public class MainFrame extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 				addUser();
-
-				//String un = JOptionPane.showInputDialog("User Name to add:");
-				//String pw = JOptionPane.showInputDialog("Password of user:");
-				//TYLER - Make sure you have two password inputs, and make sure they are the same before submitting.
 				String un = (String) addUserParams.get(0);
 				String pw = (String) addUserParams.get(1);
 				ArrayList al = new ArrayList();
@@ -237,6 +233,7 @@ public class MainFrame extends JFrame {
 				map.put("password", hashString);
 				map.put("role", "USER");
 				al.add(map);
+				JOptionPane.showMessageDialog(null, "user added");
 				QuickConnect.handleRequest("addUser", al);
 			}
 		});
@@ -553,7 +550,7 @@ public class MainFrame extends JFrame {
 		final JPasswordField pWordInput2 = new JPasswordField(15);
 		JButton ok = new JButton("Ok");
 
-		JPanel panel1 = new JPanel(new GridLayout(3, 2, 10, 10));
+		JPanel panel1 = new JPanel(new GridLayout(4, 2, 10, 10));
 
 		panel1.add(uNameLabel);
 		panel1.add(uNameInput);
@@ -566,7 +563,7 @@ public class MainFrame extends JFrame {
 
 		dialog.add(panel1);
 
-		pWordInput.addActionListener(new ActionListener()
+		pWordInput2.addActionListener(new ActionListener()
 		{
 			@SuppressWarnings("unchecked")
 			public void actionPerformed(ActionEvent e)
