@@ -54,8 +54,8 @@ public class MainFrame extends JFrame{
 		//ServerLoginPane login = new ServerLoginPane();
 		serverLogin();
 		//ArrayList credentials = login.getParams();
-		Integer portListener = (Integer) params.get(0);
-		Integer port = (Integer) params.get(1);
+		Integer portListener = (Integer) params.get(1);
+		Integer port = (Integer) params.get(0);
 		String un = (String) params.get(2);
 		String pw = (String) params.get(3);
 
@@ -226,8 +226,9 @@ public class MainFrame extends JFrame{
 
 				else {
 					String password = new String(pWord);
+					Integer portNumber = Integer.parseInt(portListenerInput.getText());
 					Integer portInt = Integer.parseInt(portInput.getText());
-					params.add(portListener);
+					params.add(portNumber);
 					params.add(portInt);
 					params.add(uName);
 					params.add(password);
