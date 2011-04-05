@@ -12,6 +12,8 @@ import java.util.HashMap;
 
 import org.quickconnect.ControlObject;
 
+import userInterface.MainFrame;
+
 import beans.FileBean;
 
 public class ActualFileUploadBCO implements ControlObject {
@@ -24,7 +26,7 @@ public class ActualFileUploadBCO implements ControlObject {
 		FileBean file = (FileBean) params.get("file");
 		File fileToSend = file.getFile().getAbsoluteFile();
 		
-		String ip = (String)params.get("ip");
+		String ip = MainFrame.mainFrame.getController().getIpAddress();
 		int port = (Integer)params.get("port");
 		// Connect to socket
 		try {

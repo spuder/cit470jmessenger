@@ -54,14 +54,14 @@ public class DisplaySessionListVCO implements ControlObject {
 				String[] row = (String[]) list.get(table.getSelectedRow());
 				params.add((String)row[2]);
 				QuickConnect.handleRequest("joinSession", params);
-				dialog.setVisible(false);
+				dialog.dispose();
 			}
 		});
 		
 		cancel.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				dialog.setVisible(false);
+				dialog.dispose();
 			}	
 		});
 		
