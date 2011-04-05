@@ -321,7 +321,32 @@ public class MainFrame extends JFrame {
 		dialog.add(panel1);
 		dialog.add(panel2);
 		dialog.add(panel3);
-		
+		portInput.addActionListener(new ActionListener()
+		{
+			@SuppressWarnings("unchecked")
+			public void actionPerformed(ActionEvent e)
+			{
+
+				serverParams = new ArrayList();
+
+				String serverIP = ipInput.getText();
+				String port = portInput.getText();
+				
+				if ((serverIP.equals("")) || (port.equals(""))) {
+					JOptionPane.showMessageDialog(dialog, "Please enter valid data");
+				}
+
+				else {
+					
+					Integer portNumber = Integer.parseInt(port);
+					serverParams.add(serverIP);
+					serverParams.add(portNumber);
+					dialog.setVisible(false);
+					dialog.dispose();
+				}
+
+			}
+		});
 		ok.addActionListener(new ActionListener()
 		{
 			@SuppressWarnings("unchecked")
@@ -377,7 +402,31 @@ public class MainFrame extends JFrame {
 		dialog.add(panel1);
 		dialog.add(panel2);
 		dialog.add(panel3);
-		
+		pWordInput.addActionListener(new ActionListener()
+		{
+			@SuppressWarnings("unchecked")
+			public void actionPerformed(ActionEvent e)
+			{
+
+				params = new ArrayList();
+
+				String uName = uNameInput.getText();
+				char[] pWord = pWordInput.getPassword();
+				
+				if ((uName.equals("")) || (pWord.equals(""))) {
+					JOptionPane.showMessageDialog(dialog, "Please enter valid credentials");
+				}
+
+				else {
+					String password = new String(pWord);
+					params.add(uName);
+					params.add(password);
+					dialog.setVisible(false);
+					dialog.dispose();
+				}
+
+			}
+		});
 		ok.addActionListener(new ActionListener()
 		{
 			@SuppressWarnings("unchecked")
