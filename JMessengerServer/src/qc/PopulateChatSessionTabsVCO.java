@@ -29,7 +29,7 @@ public class PopulateChatSessionTabsVCO implements ControlObject{
 		for(int i = 0; i< sessionsNumberArray.size(); i++){
 			SessionBean curSession = new SessionBean();
 			curSession.setSessionName(sessionsNumberArray.get(i)[0]);
-			curSession.setSessionId(sessionsNumberArray.get(i)[1]);
+			curSession.setSessionId(sessionsNumberArray.get(i)[2]);
 			MainFrame.mainFrame.getChatPanel().newSession(curSession);
 		}
 		MainFrame.mainFrame.getChatPanel().repaint();
