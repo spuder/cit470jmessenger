@@ -14,6 +14,7 @@ public class FileBean implements Serializable {
 	String desc;
 	Timestamp timestamp;
 	String fileId;
+	long size;
 	
 	public FileBean(File file, String fileName){
 		this.file = file;
@@ -67,6 +68,14 @@ public class FileBean implements Serializable {
 
 	public void setFileId(String fileId) {
 		this.fileId = fileId;
+	}
+
+	public long getSize() {
+		return size;
+	}
+
+	public void setSize(long size) {
+		this.size = size;
 	}
 	
 	
