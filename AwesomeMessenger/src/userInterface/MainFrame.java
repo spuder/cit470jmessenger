@@ -43,9 +43,10 @@ public class MainFrame extends JFrame {
 	public static final int MAIN_HEIGHT = 500;
 	public static final int MAIN_WIDTH = 500;
 	public static MainFrame mainFrame;
-	
+
 	private ArrayList params = null;
 	private ArrayList serverParams = null;
+	private ArrayList addUserParams = null;
 	private JMenuBar menuBar = new JMenuBar();
 	private JMenu file = new JMenu("File");
 	private JMenu chat = new JMenu("Chat");
@@ -69,7 +70,7 @@ public class MainFrame extends JFrame {
 
 	JTabbedPane tabs = new JTabbedPane();
 	ArrayList<ChatSessionPanel> chatSessions = new ArrayList<ChatSessionPanel>();
-	
+
 	@SuppressWarnings("unchecked")
 	public MainFrame() {
 		// initialize quick connect
@@ -134,7 +135,7 @@ public class MainFrame extends JFrame {
 					{
 						JFileChooser fileChooser = new JFileChooser();
 						int retVal = fileChooser.showSaveDialog(mainFrame);
-						
+
 						if(retVal == JFileChooser.APPROVE_OPTION){
 							File file = fileChooser.getSelectedFile();
 							FileOutputStream fileOutputStream;
@@ -153,7 +154,7 @@ public class MainFrame extends JFrame {
 						}
 					} 
 				});
-		
+
 		menuItemExit.addActionListener(
 				new ActionListener()
 				{
@@ -173,15 +174,15 @@ public class MainFrame extends JFrame {
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-//						String uName = JOptionPane.showInputDialog("Enter Username");
-//						String pWord = JOptionPane.showInputDialog("Enter Password");
-//						ArrayList params = new ArrayList();
+						//						String uName = JOptionPane.showInputDialog("Enter Username");
+						//						String pWord = JOptionPane.showInputDialog("Enter Password");
+						//						ArrayList params = new ArrayList();
 						userLogin();						
 						params.add(0,this);
-//						params.add(uName);
-//						params.add(pWord);
-						
-						
+						//						params.add(uName);
+						//						params.add(pWord);
+
+
 						QuickConnect.handleRequest("login", params);
 					} 
 				});
@@ -190,8 +191,8 @@ public class MainFrame extends JFrame {
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-//						controller.setIpAddress(JOptionPane.showInputDialog("Enter Server IP:"));
-//						controller.setPort(Integer.parseInt(JOptionPane.showInputDialog("Enter Server Port:")));
+						//						controller.setIpAddress(JOptionPane.showInputDialog("Enter Server IP:"));
+						//						controller.setPort(Integer.parseInt(JOptionPane.showInputDialog("Enter Server Port:")));
 						connectToServer();
 						controller.setIpAddress((String) serverParams.get(0));
 						controller.setPort((Integer) serverParams.get(1));
@@ -207,14 +208,18 @@ public class MainFrame extends JFrame {
 						QuickConnect.handleRequest("sessionList", params);
 					}
 				});
-		
+
 		menuItemAdd.addActionListener( new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				String un = JOptionPane.showInputDialog("User Name to add:");
-				String pw = JOptionPane.showInputDialog("Password of user:");
+
+				addUser();
+
+				//String un = JOptionPane.showInputDialog("User Name to add:");
+				//String pw = JOptionPane.showInputDialog("Password of user:");
 				//TYLER - Make sure you have two password inputs, and make sure they are the same before submitting.
-				
+				String un = (String) addUserParams.get(0);
+				String pw = (String) addUserParams.get(1);
 				ArrayList al = new ArrayList();
 				al.add(MainFrame.mainFrame);
 				HashMap map = new HashMap();
@@ -254,7 +259,7 @@ public class MainFrame extends JFrame {
 
 	private void setIconImage(ImageIcon imageIcon) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void newSession(SessionBean newSession) {
@@ -284,7 +289,7 @@ public class MainFrame extends JFrame {
 			Image image = toolkit.getImage( "NSImage://NSEveryone" );
 			JLabel icon = new JLabel( new ImageIcon( image ) );
 		}
-		
+
 		@SuppressWarnings("unused")
 		MainFrame mf = new MainFrame();
 	}
@@ -376,21 +381,21 @@ public class MainFrame extends JFrame {
 		final JTextField ipInput = new JTextField(10);
 		final JTextField portInput = new JTextField(10);
 		JButton ok = new JButton("Ok");
-		
+
 		JPanel panel1 = new JPanel(new GridLayout(3, 2, 10, 10));
-//		JPanel panel2 = new JPanel();
-//		JPanel panel3 = new JPanel();
-		
+		//		JPanel panel2 = new JPanel();
+		//		JPanel panel3 = new JPanel();
+
 		panel1.add(ipLabel);
 		panel1.add(ipInput);
 		panel1.add(portLabel);
 		panel1.add(portInput);
 		panel1.add(Box.createGlue());
 		panel1.add(ok);
-		
+
 		dialog.add(panel1);
-//		dialog.add(panel2);
-//		dialog.add(panel3);
+		//		dialog.add(panel2);
+		//		dialog.add(panel3);
 		portInput.addActionListener(new ActionListener()
 		{
 			@SuppressWarnings("unchecked")
@@ -401,13 +406,13 @@ public class MainFrame extends JFrame {
 
 				String serverIP = ipInput.getText();
 				String port = portInput.getText();
-				
+
 				if ((serverIP.equals("")) || (port.equals(""))) {
 					JOptionPane.showMessageDialog(dialog, "Please enter valid data");
 				}
 
 				else {
-					
+
 					Integer portNumber = Integer.parseInt(port);
 					serverParams.add(serverIP);
 					serverParams.add(portNumber);
@@ -427,13 +432,13 @@ public class MainFrame extends JFrame {
 
 				String serverIP = ipInput.getText();
 				String port = portInput.getText();
-				
+
 				if ((serverIP.equals("")) || (port.equals(""))) {
 					JOptionPane.showMessageDialog(dialog, "Please enter valid data");
 				}
 
 				else {
-					
+
 					Integer portNumber = Integer.parseInt(port);
 					serverParams.add(serverIP);
 					serverParams.add(portNumber);
@@ -448,9 +453,9 @@ public class MainFrame extends JFrame {
 		dialog.pack();
 		dialog.setVisible(true);
 	}
-	
+
 	public void userLogin() {
-		
+
 		final JDialog dialog = new JDialog();
 		dialog.setLayout(new FlowLayout());
 		final JLabel uNameLabel = new JLabel("Username:");
@@ -458,21 +463,21 @@ public class MainFrame extends JFrame {
 		final JTextField uNameInput = new JTextField(15);
 		final JPasswordField pWordInput = new JPasswordField(15);
 		JButton ok = new JButton("Ok");
-		
+
 		JPanel panel1 = new JPanel(new GridLayout(3, 2, 10, 10));
-//		JPanel panel2 = new JPanel();
-//		JPanel panel3 = new JPanel();
-		
+		//		JPanel panel2 = new JPanel();
+		//		JPanel panel3 = new JPanel();
+
 		panel1.add(uNameLabel);
 		panel1.add(uNameInput);
 		panel1.add(pWordLabel);
 		panel1.add(pWordInput);
 		panel1.add(Box.createGlue());
 		panel1.add(ok);
-		
+
 		dialog.add(panel1);
-//		dialog.add(panel2);
-//		dialog.add(panel3);
+		//		dialog.add(panel2);
+		//		dialog.add(panel3);
 		pWordInput.addActionListener(new ActionListener()
 		{
 			@SuppressWarnings("unchecked")
@@ -483,7 +488,7 @@ public class MainFrame extends JFrame {
 
 				String uName = uNameInput.getText();
 				char[] pWord = pWordInput.getPassword();
-				
+
 				if ((uName.equals("")) || (pWord.length == 0)) {
 					JOptionPane.showMessageDialog(dialog, "Please enter valid credentials");
 				}
@@ -508,7 +513,7 @@ public class MainFrame extends JFrame {
 
 				String uName = uNameInput.getText();
 				char[] pWord = pWordInput.getPassword();
-				
+
 				if ((uName.equals("")) || (pWord.length  == 0)) {
 					JOptionPane.showMessageDialog(dialog, "Please enter valid credentials");
 				}
@@ -536,23 +541,118 @@ public class MainFrame extends JFrame {
 	public void setTabs(JTabbedPane tabs) {
 		this.tabs = tabs;
 	}
-	
+
+	private void addUser() {
+		final JDialog dialog = new JDialog();
+		dialog.setLayout(new FlowLayout());
+		final JLabel uNameLabel = new JLabel("Username:");
+		final JLabel pWordLabel = new JLabel("Password:");
+		final JLabel pWordLabel2 = new JLabel("Re-enter Password:");
+		final JTextField uNameInput = new JTextField(15);
+		final JPasswordField pWordInput = new JPasswordField(15);
+		final JPasswordField pWordInput2 = new JPasswordField(15);
+		JButton ok = new JButton("Ok");
+
+		JPanel panel1 = new JPanel(new GridLayout(3, 2, 10, 10));
+
+		panel1.add(uNameLabel);
+		panel1.add(uNameInput);
+		panel1.add(pWordLabel);
+		panel1.add(pWordInput);
+		panel1.add(pWordLabel2);
+		panel1.add(pWordInput2);
+		panel1.add(Box.createGlue());
+		panel1.add(ok);
+
+		dialog.add(panel1);
+
+		pWordInput.addActionListener(new ActionListener()
+		{
+			@SuppressWarnings("unchecked")
+			public void actionPerformed(ActionEvent e)
+			{
+
+				addUserParams = new ArrayList();
+
+				String uName = uNameInput.getText();
+				char[] pWord = pWordInput.getPassword();
+				char[] pWord2 = pWordInput2.getPassword();
+
+				if ((uName.equals("")) || (pWord.length == 0) || (pWord2.length == 0)) {
+					JOptionPane.showMessageDialog(dialog, "Please enter valid credentials");
+				}
+
+				else {
+					String password = new String(pWord);
+					String password2 = new String(pWord2);
+					if (password.equals(password2)) {
+						addUserParams.add(uName);
+						addUserParams.add(password);
+						dialog.setVisible(false);
+						dialog.dispose();
+					}
+					else {
+						JOptionPane.showMessageDialog(dialog, "Passwords must match");
+					}
+				}
+
+			}
+		});
+
+		ok.addActionListener(new ActionListener()
+		{
+			@SuppressWarnings("unchecked")
+			public void actionPerformed(ActionEvent e)
+			{
+
+				addUserParams = new ArrayList();
+
+				String uName = uNameInput.getText();
+				char[] pWord = pWordInput.getPassword();
+				char[] pWord2 = pWordInput2.getPassword();
+
+				if ((uName.equals("")) || (pWord.length == 0) || (pWord2.length == 0)) {
+					JOptionPane.showMessageDialog(dialog, "Please enter valid credentials");
+				}
+
+				else {
+					String password = new String(pWord);
+					String password2 = new String(pWord2);
+					if (password.equals(password2)) {
+						addUserParams.add(uName);
+						addUserParams.add(password);
+						dialog.setVisible(false);
+						dialog.dispose();
+					}
+					else {
+						JOptionPane.showMessageDialog(dialog, "Passwords must match");
+					}
+				}
+
+			}
+		});
+		dialog.setModal(true);
+		dialog.setLocationRelativeTo(null);
+		dialog.pack();
+		dialog.setVisible(true);
+	}
+
 	private static String convToHex(byte[] data) {
-        StringBuilder buf = new StringBuilder();
-        for (int i = 0; i < data.length; i++) {
-            int halfbyte = (data[i] >>> 4) & 0x0F;
-            int two_halfs = 0;
-            do {
-                if ((0 <= halfbyte) && (halfbyte <= 9))
-                    buf.append((char) ('0' + halfbyte));
-                else
-                        buf.append((char) ('a' + (halfbyte - 10)));
-                halfbyte = data[i] & 0x0F;
-            } while(two_halfs++ < 1);
-        }
-        return buf.toString();
-    }
-	
+		StringBuilder buf = new StringBuilder();
+		for (int i = 0; i < data.length; i++) {
+			int halfbyte = (data[i] >>> 4) & 0x0F;
+			int two_halfs = 0;
+			do {
+				if ((0 <= halfbyte) && (halfbyte <= 9))
+					buf.append((char) ('0' + halfbyte));
+				else
+					buf.append((char) ('a' + (halfbyte - 10)));
+				halfbyte = data[i] & 0x0F;
+			} while(two_halfs++ < 1);
+		}
+		return buf.toString();
+	}
+
 }
 
 
