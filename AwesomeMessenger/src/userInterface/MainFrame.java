@@ -95,7 +95,7 @@ public class MainFrame extends JFrame {
 		buildMenu();
 		setAll(false);
 		this.add(tabs);
-		Dimension startupSize = new Dimension(500, 500);
+		Dimension startupSize = new Dimension(700, 500);
 		tabs.setPreferredSize(startupSize);
 		this.pack();
 		this.setVisible(true);
