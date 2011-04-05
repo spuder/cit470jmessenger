@@ -1,5 +1,7 @@
 package userInterface;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -234,6 +236,11 @@ public class MainFrame extends JFrame {
 				// If Nimbus is not available, you can set the GUI to another look and feel.
 			}
 		}
+		else {
+			Toolkit toolkit = Toolkit.getDefaultToolkit( );
+			Image image = toolkit.getImage( "NSImage://NSEveryone" );
+			JLabel icon = new JLabel( new ImageIcon( image ) );
+		}
 		
 		@SuppressWarnings("unused")
 		MainFrame mf = new MainFrame();
@@ -355,14 +362,14 @@ public class MainFrame extends JFrame {
 					JOptionPane.showMessageDialog(dialog, "Please enter valid data");
 				}
 
-				else {
-					
-					Integer portNumber = Integer.parseInt(port);
-					serverParams.add(serverIP);
-					serverParams.add(portNumber);
-					dialog.setVisible(false);
-					dialog.dispose();
-				}
+//				else {
+//					
+//					Integer portNumber = Integer.parseInt(port);
+//					serverParams.add(serverIP);
+//					serverParams.add(portNumber);
+//					dialog.setVisible(false);
+//					dialog.dispose();
+//				}
 
 			}
 		});
