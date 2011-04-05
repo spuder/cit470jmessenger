@@ -212,8 +212,8 @@ public class MainFrame extends JFrame {
 					public void actionPerformed(ActionEvent e)
 					{
 						
-						ImageIcon icon = new ImageIcon("C:\\Documents and Settings\\tyler\\Desktop\\mclaughlinm.jpg");
-						JOptionPane.showMessageDialog(null, "It's on the blog", "The Answer", JOptionPane.INFORMATION_MESSAGE, icon);
+						//ImageIcon icon = new ImageIcon("C:\\Documents and Settings\\tyler\\Desktop\\mclaughlinm.jpg");
+						//JOptionPane.showMessageDialog(null, "It's on the blog", "The Answer", JOptionPane.INFORMATION_MESSAGE, icon);
 					}
 				});
 		// ***********************************************************************************
