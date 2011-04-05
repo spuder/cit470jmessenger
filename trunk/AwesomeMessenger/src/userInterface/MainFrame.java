@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
@@ -210,7 +211,9 @@ public class MainFrame extends JFrame {
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						JOptionPane.showMessageDialog(null, "It's on the blog");
+						
+						ImageIcon icon = new ImageIcon("C:\\Documents and Settings\\tyler\\Desktop\\mclaughlinm.jpg");
+						JOptionPane.showMessageDialog(null, "It's on the blog", "The Answer", JOptionPane.INFORMATION_MESSAGE, icon);
 					}
 				});
 		// ***********************************************************************************
