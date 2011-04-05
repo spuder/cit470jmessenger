@@ -48,6 +48,7 @@ public class MainFrame extends JFrame {
 	private ArrayList params = null;
 	private ArrayList serverParams = null;
 	private ArrayList addUserParams = null;
+	
 	private JMenuBar menuBar = new JMenuBar();
 	private JMenu file = new JMenu("File");
 	private JMenu chat = new JMenu("Chat");
@@ -62,7 +63,6 @@ public class MainFrame extends JFrame {
 	private JMenuItem menuItemServer    = new JMenuItem("Configure Server", new ImageIcon("Images/configure.png"));
 	private JMenuItem menuItemChatSession    = new JMenuItem("Join Chat", new ImageIcon("Images/joinchat.png"));
 	private JMenuItem menuItemLeaveSession = new JMenuItem("Leave Session", new ImageIcon("Images/exitchat.png"));
-
 	private JMenuItem menuItemRemove   = new JMenuItem("Remove File", new ImageIcon("Images/filedelete.png"));
 	private JMenuItem menuItemBan    = new JMenuItem("Ban User", new ImageIcon("Images/banuser.png"));
 	private JMenuItem menuItemGrant  = new JMenuItem("Make Moderator", new ImageIcon("Images/mod.png"));
@@ -104,7 +104,7 @@ public class MainFrame extends JFrame {
 		// ********************************** ACTION LISTENERS *******************************
 		// ***********************************************************************************
 
-		menuItemNew.addActionListener(
+		menuItemNew.addActionListener(  // Creates a new Chat Session
 				new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)
@@ -118,7 +118,7 @@ public class MainFrame extends JFrame {
 					} // End of actionPerformed method.
 				}); // End of menuItemNew action listener.
 
-		menuItemLeaveSession.addActionListener(
+		menuItemLeaveSession.addActionListener(  // Leaves the current Chat Session
 				new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)
@@ -132,7 +132,7 @@ public class MainFrame extends JFrame {
 						QuickConnect.handleRequest("leaveSession", params);
 					} 
 				}); 
-		menuItemSave.addActionListener(
+		menuItemSave.addActionListener(  // Saves current chat dialog to text file
 				new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)
@@ -159,7 +159,7 @@ public class MainFrame extends JFrame {
 					} 
 				});
 
-		menuItemExit.addActionListener(
+		menuItemExit.addActionListener(  //  Closes the application
 				new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)
@@ -173,37 +173,28 @@ public class MainFrame extends JFrame {
 						System.exit(EXIT_ON_CLOSE);
 					} 
 				});
-		menuItemLogin.addActionListener(
+		menuItemLogin.addActionListener(  // user login
 				new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						//						String uName = JOptionPane.showInputDialog("Enter Username");
-						//						String pWord = JOptionPane.showInputDialog("Enter Password");
-						//						ArrayList params = new ArrayList();
 						userLogin();						
 						params.add(0,this);
-						//						params.add(uName);
-						//						params.add(pWord);
-
-
 						QuickConnect.handleRequest("login", params);
 					} 
 				});
-		menuItemServer.addActionListener(
+		menuItemServer.addActionListener(  //  Connect to the server
 				new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						//						controller.setIpAddress(JOptionPane.showInputDialog("Enter Server IP:"));
-						//						controller.setPort(Integer.parseInt(JOptionPane.showInputDialog("Enter Server Port:")));
 						connectToServer();
 						controller.setIpAddress((String) serverParams.get(0));
 						controller.setPort((Integer) serverParams.get(1));
 						menuItemLogin.setEnabled(true);
 					}
 				});
-		menuItemChatSession.addActionListener(
+		menuItemChatSession.addActionListener(  //  Join an existing chat session
 				new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)
@@ -213,7 +204,7 @@ public class MainFrame extends JFrame {
 					}
 				});
 
-		menuItemAdd.addActionListener( new ActionListener(){
+		menuItemAdd.addActionListener( new ActionListener(){  //  add user
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 
@@ -242,7 +233,7 @@ public class MainFrame extends JFrame {
 			}
 		});
 		
-		menuItemClose.addActionListener(new ActionListener(){
+		menuItemClose.addActionListener(new ActionListener(){  //  close current session
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				ArrayList params = new ArrayList();
@@ -254,7 +245,7 @@ public class MainFrame extends JFrame {
 			
 		});
 		
-		menuItemHelp.addActionListener(new ActionListener(){
+		menuItemHelp.addActionListener(new ActionListener(){  //  Help
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				JOptionPane.showMessageDialog(MainFrame.mainFrame, "It's on the blog", "The Answer",JOptionPane.INFORMATION_MESSAGE, new ImageIcon("Images/mclaughlinm.jpg"));
@@ -469,6 +460,11 @@ public class MainFrame extends JFrame {
 		dialog.setVisible(true);
 	}
 
+	
+	
+	
+	
+	
 	public void userLogin() {
 
 		final JDialog dialog = new JDialog();
