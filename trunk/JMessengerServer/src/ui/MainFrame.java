@@ -6,12 +6,19 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
 
 import org.quickconnect.QuickConnect;
 
@@ -24,7 +31,7 @@ public class MainFrame extends JFrame{
 	private static final int MAIN_FRAME_WIDTH = 800;
 	private static final int MAIN_FRAME_HEIGHT = 500;
 	public static MainFrame mainFrame;
-
+	public ArrayList params = null;
 	JTabbedPane tabPane;
 	ChatPanel chatPanel;
 	UserAdminPanel adminPanel;
@@ -43,12 +50,20 @@ public class MainFrame extends JFrame{
 		//Setup QC
 		QCCommandMappings.mapCommands();
 		
-		//Setup Controller
-		int port = Integer.parseInt(JOptionPane.showInputDialog("Enter Port:"));
-		String un = JOptionPane.showInputDialog("Enter MySQL Username:");
-		String pw = JOptionPane.showInputDialog("Enter MySQL Password:");
-		controller = new ServerController(port,un,pw);
 		
+		//ServerLoginPane login = new ServerLoginPane();
+		serverLogin();
+		//ArrayList credentials = login.getParams();
+		Integer port = (Integer) params.get(0);
+		String un = (String) params.get(1);
+		String pw = (String) params.get(2);
+		//Setup Controller
+//		int port = Integer.parseInt(JOptionPane.showInputDialog("Enter Port:"));
+//		String un = JOptionPane.showInputDialog("Enter MySQL Username:");
+//		String pw = JOptionPane.showInputDialog("Enter MySQL Password:");
+	//	controller = new ServerController(port,un,pw);
+		
+		controller = new ServerController(port,un,pw);
 		//Set size
 		Dimension dim = new Dimension(MAIN_FRAME_WIDTH,MAIN_FRAME_HEIGHT);
 		this.setPreferredSize(dim);
@@ -161,4 +176,76 @@ public class MainFrame extends JFrame{
 	public static void main(String args[]){		
 		MainFrame mf = new MainFrame();
 	}
+public void serverLogin() {
+	final JLabel uNameLabel;
+	final JLabel pWordLabel;
+	final JLabel portLabel;
+//	private JTextField portInput;
+//	private JTextField uNameInput;
+//	private JPasswordField pWordInput;
+//	private ArrayList params;
+
+	final JDialog dialog = new JDialog();
+		dialog.setLayout(new BoxLayout(dialog.getContentPane(), BoxLayout.Y_AXIS));
+		portLabel = new JLabel("enter port number:");
+		uNameLabel = new JLabel("DB UserName:");
+		pWordLabel = new JLabel("DB Password:");
+		final JTextField portInput = new JTextField(4);
+		final JTextField uNameInput = new JTextField(15);
+		final JPasswordField pWordInput = new JPasswordField(15);
+		JButton ok = new JButton("Ok");
+
+		JPanel panel1 = new JPanel();
+		JPanel panel2 = new JPanel();
+		JPanel panel3 = new JPanel();
+		JPanel panel4 = new JPanel();
+		panel4.add(portLabel);
+		panel4.add(portInput);
+		panel1.add(uNameLabel);
+		panel1.add(uNameInput);
+		panel2.add(pWordLabel);
+		panel2.add(pWordInput);
+		panel3.add(ok);
+
+		dialog.add(panel4);
+		dialog.add(panel1);
+		dialog.add(panel2);
+		dialog.add(panel3);
+		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		ok.addActionListener(new ActionListener()
+		{
+			@SuppressWarnings("unchecked")
+			public void actionPerformed(ActionEvent e)
+			{
+				
+				params = new ArrayList();
+				
+				String port = portInput.getText();
+				String uName = uNameInput.getText();
+				char[] pWord = pWordInput.getPassword();
+				
+				if ((port.equals("")) || (uName.equals("")) || (pWord.equals(""))) {
+					JOptionPane.showMessageDialog(dialog, "please enter valid credentials");
+				}
+				
+				else {
+					String password = new String(pWord);
+					Integer portInt = Integer.parseInt(portInput.getText());
+					params.add(portInt);
+					params.add(uName);
+					params.add(password);
+					dialog.setVisible(false);
+					dialog.dispose();
+				}
+				
+			}
+		});
+		dialog.setModal(true);
+		dialog.setLocationRelativeTo(null);
+		dialog.pack();
+		dialog.setVisible(true);
+		
+		
+	}
+	
 }
