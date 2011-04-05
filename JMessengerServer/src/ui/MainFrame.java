@@ -206,16 +206,16 @@ public class MainFrame extends JFrame{
 		final JDialog dialog = new JDialog();
 		final JTextField portListenerInput = new JTextField(4);
 		final JTextField portInput = new JTextField(4);
-		final JTextField uNameInput = new JTextField(4);
-		final JPasswordField pWordInput = new JPasswordField(4);
+		final JTextField uNameInput = new JTextField(15);
+		final JPasswordField pWordInput = new JPasswordField(15);
 		dialog.setLayout(new FlowLayout());
 		portListenerLabel = new JLabel("Enter Listener port:");
 		portLabel = new JLabel("Enter DB port:");
 		uNameLabel = new JLabel("DB UserName:");
 		pWordLabel = new JLabel("DB Password:");
 		JButton ok = new JButton("Ok");
-		JPanel panel1 = new JPanel(new GridLayout(5, 2, 10, 10));
-//		JPanel panel2 = new JPanel(new GridLayout(2, 4));
+		JPanel panel1 = new JPanel(new GridLayout(2, 2, 10, 10));
+		JPanel panel2 = new JPanel(new GridLayout(3, 2, 10, 10));
 //		JPanel panel2 = new JPanel();
 //		JPanel panel3 = new JPanel();
 //		JPanel panel4 = new JPanel();
@@ -223,16 +223,16 @@ public class MainFrame extends JFrame{
 		panel1.add(portListenerInput);
 		panel1.add(portLabel);
 		panel1.add(portInput);
-		panel1.add(uNameLabel);
-		panel1.add(uNameInput);
-		panel1.add(pWordLabel);
-		panel1.add(pWordInput);
-		panel1.add(Box.createGlue());
-		panel1.add(ok);
+		panel2.add(uNameLabel);
+		panel2.add(uNameInput);
+		panel2.add(pWordLabel);
+		panel2.add(pWordInput);
+		panel2.add(Box.createGlue());
+		panel2.add(ok);
 		dialog.add(panel1);
 //		dialog.add(panel4);
 //		dialog.add(panel2);
-//		dialog.add(panel2);
+		dialog.add(panel2);
 //		dialog.add(panel3);
 		pWordInput.addActionListener(new ActionListener()
 		{
