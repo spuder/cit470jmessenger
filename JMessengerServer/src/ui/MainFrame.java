@@ -138,8 +138,8 @@ public class MainFrame extends JFrame{
 				HashMap mapFacade = new HashMap();
 				mapFacade.put("sessionId",((ChatSessionPanel)chatPanel.getTabbedPane().getSelectedComponent())
 						.getSessionObject().getSessionId());
-				params.add(mapFacade); // index 0
 				params.add(chatPanel.getTabbedPane().getSelectedIndex()); // index 1
+				params.add(mapFacade); // index 0
 				QuickConnect.handleRequest("stopSession", params);
 			}			
 		});
