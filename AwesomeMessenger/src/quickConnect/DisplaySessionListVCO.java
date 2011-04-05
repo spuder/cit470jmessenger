@@ -35,7 +35,7 @@ public class DisplaySessionListVCO implements ControlObject {
 		list = (Vector) params.get("list");
 		Vector columns = new Vector();
 		columns.add("Session");
-		columns.add("NumParts");
+		columns.add("Active Participants");
 		columns.add("ID");
 		
 		
