@@ -27,6 +27,7 @@ public class AddSessionUserBCO implements ControlObject {
 		String id = (String) params.get("sessionId");
 		ServerConnectionHandler handler = (ServerConnectionHandler) arg0.get(0);
 		UserBean curUser = handler.getUser();
+		String userRole = curUser.getRole();
 		
 		CommunicationBean commBean = new CommunicationBean();
 		commBean.setCommand("sessionJoined");
@@ -34,6 +35,7 @@ public class AddSessionUserBCO implements ControlObject {
 		
 		Connection con = (Connection) MainFrame.mainFrame.getController().getConnectionPool().getConnection();
 		java.sql.PreparedStatement select = null;
+		java.sql.PreparedStatement select1 = null;
 		ResultSet results = null;
 		
 		try {
@@ -47,29 +49,25 @@ public class AddSessionUserBCO implements ControlObject {
 				int sessionPk = results.getInt(1);
 				session.setSessionId(id);
 				session.setSessionName(results.getString(3));
-			
-				select = con.prepareStatement("INSERT SessionParticipants (SessionID,UserID,SessionRole) SELECT ?,u.UserID,? FROM User u WHERE u.UserName = ?");
-				select.setInt(1,sessionPk);
-				select.setString(3, curUser.getUsername());
-				if(curUser.getRole().equals("ADMIN")){
-					select.setInt(2, 1);
-				} else {
-					
-					Connection con2 = (Connection) MainFrame.mainFrame.getController().getConnectionPool().getConnection();
-					java.sql.PreparedStatement subSelect = null;
-					ResultSet subResult = null;
-					
-					subSelect = con2.prepareStatement("SELECT * FROM Moderator m JOIN User u ON u.UserID = m.UserID WHERE u.UserName = ? AND SessionID = ?");
-					subSelect.setString(1, curUser.getUsername());
-					subSelect.setInt(2, sessionPk);
-					subResult = subSelect.executeQuery();
-					if(results.next()){
-						select.setInt(2, 3);
-					} else {
-						select.setInt(2, 2);  // User
+				
+				if(curUser.getRole().equals("USER")) {
+					select1 = con.prepareStatement("SELECT ModeratorID FROM Moderator WHERE UserID = (SELECT UserID FROM User WHERE UserName = ?) AND SessionID = (SELECT SessionID FROM Session WHERE SessionNumber = ?)");
+					select1.setString(1, curUser.getUsername());
+					select1.setString(2, id);
+					results = select1.executeQuery();
+					if (results.next()) {
+						userRole = "MODERATOR";
 					}
-					MainFrame.mainFrame.getController().getConnectionPool().returnConnection(con2);
+					
 				}
+				
+				
+			
+				select = con.prepareStatement("INSERT INTO SessionParticipants (SessionID, UserID, SessionRole) VALUES ((SELECT SessionID from Session WHERE SessionNumber = ?),(SELECT UserID FROM User WHERE UserName = ?), (SELECT CommonLookupID FROM CommonLookup WHERE CommonLookupDescription = ?))");
+				select.setString(1, session.getSessionId());
+				select.setString(2, curUser.getUsername());
+				select.setString(3, userRole);
+				
 				select.execute();
 		
 				//Add user to the output stream for that session
