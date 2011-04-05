@@ -35,6 +35,7 @@ public class ConnectionPool {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.exit(0);
 		}
 		
 		return con;
