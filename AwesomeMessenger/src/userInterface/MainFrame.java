@@ -425,7 +425,7 @@ public class MainFrame extends JFrame {
 				String uName = uNameInput.getText();
 				char[] pWord = pWordInput.getPassword();
 				
-				if ((uName.equals("")) || (pWord.equals(""))) {
+				if ((uName.equals("")) || (pWord.length == 0)) {
 					JOptionPane.showMessageDialog(dialog, "Please enter valid credentials");
 				}
 
@@ -450,7 +450,7 @@ public class MainFrame extends JFrame {
 				String uName = uNameInput.getText();
 				char[] pWord = pWordInput.getPassword();
 				
-				if ((uName.equals("")) || (pWord.equals(""))) {
+				if ((uName.equals("")) || (pWord.length  == 0)) {
 					JOptionPane.showMessageDialog(dialog, "Please enter valid credentials");
 				}
 
