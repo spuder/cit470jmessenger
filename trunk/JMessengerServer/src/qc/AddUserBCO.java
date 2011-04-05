@@ -12,6 +12,8 @@ import beans.CommunicationBean;
 
 import com.mysql.jdbc.Connection;
 
+import controller.ServerConnectionHandler;
+
 import ui.MainFrame;
 
 public class AddUserBCO implements ControlObject{
@@ -61,7 +63,11 @@ public class AddUserBCO implements ControlObject{
 				response.setParameters(map);
 				ArrayList params = new ArrayList();
 				params.add(arg0.get(0));
-				QuickConnect.handleError("localUserExists", params);
+				if(!(arg0.get(0) instanceof ServerConnectionHandler)){
+					QuickConnect.handleError("localUserExists", params);
+				} else {
+					QuickConnect.handleError("userExists", params);
+				}
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
