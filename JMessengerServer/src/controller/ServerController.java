@@ -15,10 +15,10 @@ public class ServerController {
 	HashMap<String, HashMap<String, ObjectOutputStream>> connectionMap; //K= Session Number   Value=HashMap   <--- That map has Username - OutputStream pair
 	ConnectionPool connectionPool;
 	
-	public ServerController(int port, String uname, String pword){
+	public ServerController(int port, String uname, String pword, int dbport){
 		
 		connectionMap = new HashMap<String, HashMap<String, ObjectOutputStream>>();
-		connectionPool = new ConnectionPool(uname, pword);
+		connectionPool = new ConnectionPool(uname, pword, dbport);
 		
 		try{
 			serSock = new ServerSocket(port);
