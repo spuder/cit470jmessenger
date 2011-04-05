@@ -1,12 +1,15 @@
 package ui;
 
 import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -172,15 +175,23 @@ public class MainFrame extends JFrame{
 	}
 
 	public static void main(String args[]){	
-		try {
-			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-				if ("Nimbus".equals(info.getName())) {
-					UIManager.setLookAndFeel(info.getClassName());
-					break;
+		if ( System.getProperty( "os.name" ).toLowerCase( ).startsWith( "windows" ) )
+		{
+			try {
+				for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+					if ("Nimbus".equals(info.getName())) {
+						UIManager.setLookAndFeel(info.getClassName());
+						break;
+					}
 				}
+			} catch (Exception e) {
+				// If Nimbus is not available, you can set the GUI to another look and feel.
 			}
-		} catch (Exception e) {
-			// If Nimbus is not available, you can set the GUI to another look and feel.
+		}
+		else {
+			Toolkit toolkit = Toolkit.getDefaultToolkit( );
+			Image image = toolkit.getImage( "NSImage://NSEveryone" );
+			JLabel icon = new JLabel( new ImageIcon( image ) );
 		}
 		MainFrame mf = new MainFrame();
 	}
