@@ -1,6 +1,8 @@
 package ui;
 
 import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -8,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -201,35 +204,36 @@ public class MainFrame extends JFrame{
 		final JLabel portLabel;
 		final JLabel portListenerLabel;
 		final JDialog dialog = new JDialog();
-		dialog.setLayout(new BoxLayout(dialog.getContentPane(), BoxLayout.Y_AXIS));
+		final JTextField portListenerInput = new JTextField(4);
+		final JTextField portInput = new JTextField(4);
+		final JTextField uNameInput = new JTextField(4);
+		final JPasswordField pWordInput = new JPasswordField(4);
+		dialog.setLayout(new FlowLayout());
 		portListenerLabel = new JLabel("Enter Listener port:");
 		portLabel = new JLabel("Enter DB port:");
 		uNameLabel = new JLabel("DB UserName:");
 		pWordLabel = new JLabel("DB Password:");
-		final JTextField portListenerInput = new JTextField(4);
-		final JTextField portInput = new JTextField(4);
-		final JTextField uNameInput = new JTextField(15);
-		final JPasswordField pWordInput = new JPasswordField(15);
 		JButton ok = new JButton("Ok");
-		JPanel panel5 = new JPanel();
-		JPanel panel1 = new JPanel();
-		JPanel panel2 = new JPanel();
-		JPanel panel3 = new JPanel();
-		JPanel panel4 = new JPanel();
-		panel5.add(portListenerLabel);
-		panel5.add(portListenerInput);
-		panel4.add(portLabel);
-		panel4.add(portInput);
+		JPanel panel1 = new JPanel(new GridLayout(5, 2, 10, 10));
+//		JPanel panel2 = new JPanel(new GridLayout(2, 4));
+//		JPanel panel2 = new JPanel();
+//		JPanel panel3 = new JPanel();
+//		JPanel panel4 = new JPanel();
+		panel1.add(portListenerLabel);
+		panel1.add(portListenerInput);
+		panel1.add(portLabel);
+		panel1.add(portInput);
 		panel1.add(uNameLabel);
 		panel1.add(uNameInput);
-		panel2.add(pWordLabel);
-		panel2.add(pWordInput);
-		panel3.add(ok);
-		dialog.add(panel5);
-		dialog.add(panel4);
+		panel1.add(pWordLabel);
+		panel1.add(pWordInput);
+		panel1.add(Box.createGlue());
+		panel1.add(ok);
 		dialog.add(panel1);
-		dialog.add(panel2);
-		dialog.add(panel3);
+//		dialog.add(panel4);
+//		dialog.add(panel2);
+//		dialog.add(panel2);
+//		dialog.add(panel3);
 		pWordInput.addActionListener(new ActionListener()
 		{
 			@SuppressWarnings("unchecked")
