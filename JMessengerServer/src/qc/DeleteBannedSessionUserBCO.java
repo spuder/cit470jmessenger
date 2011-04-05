@@ -32,6 +32,11 @@ public class DeleteBannedSessionUserBCO implements ControlObject{
 			delete.setString(1, username);
 			delete.setString(2, sessionId);
 			delete.execute();
+			
+			HashMap sessions = MainFrame.mainFrame.getController().getConnectionMap();
+			HashMap session = (HashMap) sessions.get(sessionId);
+			session.remove(username);
+			
 			worked = true;
 		} catch (SQLException e) {
 			worked = false;
