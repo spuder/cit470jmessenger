@@ -43,10 +43,24 @@ public class ActualReceiveFileBCO implements ControlObject {
 		    tempFile = File.createTempFile(file.getFileName(), ".download");
 		    FileOutputStream fos = new FileOutputStream(tempFile);
 		    BufferedOutputStream bos = new BufferedOutputStream(fos);
-		    bytesRead = is.read(mybytearray,0,mybytearray.length);
-		    current = bytesRead;
+		   // bytesRead = is.read(mybytearray,0,mybytearray.length);
+		   // current = bytesRead;
 	
-		    FileDescriptor fd = fos.getFD();
+		    int totalToSend = mybytearray.length;
+		      int inc = 0;
+		      while(totalToSend > 0){
+		    	  System.out.println("receiving " + totalToSend + "more bytes");
+		    	  if(totalToSend > 255){
+		    		  inc = 255;
+		    	  } else {
+		    		  inc = totalToSend;
+		    	  }
+		    	  is.read(mybytearray, current, inc);
+		    	  current += inc;
+		    	  totalToSend -= inc;
+		      }
+		    
+		   // FileDescriptor fd = fos.getFD();
 		  /*  do {
 		       bytesRead =
 		          is.read(mybytearray, current, (mybytearray.length-current));
