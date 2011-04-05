@@ -83,8 +83,8 @@ public class QCCommandMappings {
 		QuickConnect.mapCommandToBCO("leaveUser", GetSessionUsersBCO.class);
 		QuickConnect.mapCommandToVCO("leaveUser", UpdateSessionUsersVCO.class);
 		
+		QuickConnect.mapCommandToBCO("requestDownload",GetRequestedFileBCO.class);
 		QuickConnect.mapCommandToBCO("requestDownload",SendRequestedFileBCO.class);
-		QuickConnect.mapCommandToBCO("requestDownload",SendResponseBCO.class);
 		
 		QuickConnect.mapCommandToBCO("updateFile", DeactivateOldFileBCO.class);
 		QuickConnect.mapCommandToBCO("updateFile", InsertNewFileBCO.class);

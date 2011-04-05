@@ -1,72 +1,94 @@
 package qc;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.io.OutputStream;
+import java.net.BindException;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import org.quickconnect.ControlObject;
-import ui.MainFrame;
-import beans.CommunicationBean;
-import beans.FileBean;
-import com.mysql.jdbc.Connection;
+
 import controller.ServerConnectionHandler;
 
-public class SendRequestedFileBCO implements ControlObject{
-	
+import ui.MainFrame;
+
+import beans.CommunicationBean;
+import beans.FileBean;
+
+public class SendRequestedFileBCO implements ControlObject {
+
 	@Override
 	public Object handleIt(ArrayList<Object> arg0) {
 
-		ServerConnectionHandler handler = (ServerConnectionHandler) arg0.get(0);
-		HashMap params = (HashMap) arg0.get(1);
+		ServerConnectionHandler connection = (ServerConnectionHandler) arg0.get(0);
+		CommunicationBean commBean = (CommunicationBean) arg0.get(arg0.size()-1);
+		HashMap params = commBean.getParameters();
+		FileBean fileBean = (FileBean) params.get("file");
+		File file = fileBean.getFile();
 		
-		String fileId = (String) params.get("fileId");
-		
-		CommunicationBean commBean = new CommunicationBean();
-		commBean.setCommand("fileDownloadResponse");
-		HashMap responseParams = new HashMap();
-		
-		Connection con = (Connection) MainFrame.mainFrame.getController().getConnectionPool().getConnection();
-		java.sql.PreparedStatement select = null;
-		ResultSet results = null;
+		// Open New Socket
+		int port = MainFrame.mainFrame.getController().getSerSock().getLocalPort()-1;
 		try {
-			select = con.prepareStatement("SELECT FileName, FileData FROM File WHERE FileNumber = ? AND FileActiveFlag = 1");
-			select.setString(1, fileId);
-			results = select.executeQuery();
-			while(results.next()) {
-				String fileName = results.getString(1);
-				File file = File.createTempFile(fileName, ".tmp");
-				FileOutputStream fos = new FileOutputStream(file);
-				
-				byte[] buffer = new byte[256];
-				
-				InputStream is = results.getBinaryStream(2);
-				while (is.read(buffer) > 0) {
-					fos.write(buffer);
-				}
-				
-				fos.close();
-				
-				FileBean fileBean = new FileBean(file, fileName);	
-				responseParams.put("file", fileBean);
+			ServerSocket fileSocket = getRandomFileSocket(port);
+			Socket socket;
+			
+			// Send Message To Client
+			params.put("ip", fileSocket.getInetAddress().getHostAddress());
+			params.put("port", port);
+			params.put("size", (int)file.length());
+			commBean.setParameters(params);
+			connection.getOutputStream().writeObject(commBean);
+			
+			// Read in new file
+			while(fileSocket.isBound()){
+				System.out.println("waiting for connection...");
+				socket = fileSocket.accept();
+				System.out.println("waiting for file...");
+							   
+				byte [] mybytearray  = new byte [(int)file.length()];
+			    FileInputStream fis = new FileInputStream(file);
+			    BufferedInputStream bis = new BufferedInputStream(fis);
+			    bis.read(mybytearray,0,mybytearray.length);
+		        OutputStream os = socket.getOutputStream();
+		        System.out.println("Sending..." + file.length());
+			    os.write(mybytearray,0,mybytearray.length);
+			    os.flush();
+			    socket.close();
+								
+			    fileSocket.close();
+			    break;
 			}
-		} 
-		catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+						
+			return new File(fileBean.getFileName());
+			
+			} catch (IOException e) {
+				// ECO about failed to upload
 			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		commBean.setParameters(responseParams);
-		return commBean;
+			}
+		
+		return null;
 	}
 	
+	private ServerSocket getRandomFileSocket(int startingPort){
+		ServerSocket serSock = null;
+		
+		try{
+			serSock = new ServerSocket(startingPort);
+		} catch (BindException e){
+			getRandomFileSocket(++startingPort);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return serSock;
+	}
+
 }
