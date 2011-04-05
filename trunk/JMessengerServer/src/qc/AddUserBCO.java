@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.quickconnect.ControlObject;
+import org.quickconnect.QuickConnect;
 
 import beans.CommunicationBean;
 
@@ -58,6 +59,9 @@ public class AddUserBCO implements ControlObject{
 				HashMap responseMap = new HashMap();
 				responseMap.put("success", "false");
 				response.setParameters(map);
+				//ArrayList params = new ArrayList();
+				//params.add(arg0.get(0));
+				//QuickConnect.handleError("userExists", params);
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
