@@ -237,7 +237,7 @@ public class MainFrame extends JFrame {
 				map.put("password", hashString);
 				map.put("role", "USER");
 				al.add(map);
-				JOptionPane.showMessageDialog(null, "user added");
+				JOptionPane.showMessageDialog(MainFrame.mainFrame, "user added");
 				QuickConnect.handleRequest("addUser", al);
 			}
 		});
@@ -257,7 +257,7 @@ public class MainFrame extends JFrame {
 		menuItemHelp.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null, "It's on the blog", "The Answer",JOptionPane.INFORMATION_MESSAGE, new ImageIcon("Images/mclaughlinm.jpg"));
+				JOptionPane.showMessageDialog(MainFrame.mainFrame, "It's on the blog", "The Answer",JOptionPane.INFORMATION_MESSAGE, new ImageIcon("Images/mclaughlinm.jpg"));
 			}
 			
 		});
