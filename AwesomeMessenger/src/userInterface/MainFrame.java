@@ -1,5 +1,6 @@
 package userInterface;
 
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -92,7 +93,8 @@ public class MainFrame extends JFrame {
 		buildMenu();
 		setAll(false);
 		this.add(tabs);
-
+		Dimension startupSize = new Dimension(500, 500);
+		tabs.setPreferredSize(startupSize);
 		this.pack();
 		this.setVisible(true);
 
