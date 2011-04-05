@@ -22,8 +22,7 @@ public class CheckForBannedUserForFileValCO implements ControlObject{
 	@Override
 	public Object handleIt(ArrayList<Object> arg0) {
 		HashMap params = (HashMap) arg0.get(1);
-		FileBean msg = (FileBean) params.get("file");
-		String session = (String) params.get("sessionId");
+		String sessionId = (String) params.get("sessionId");
 		ServerConnectionHandler handler = (ServerConnectionHandler) arg0.get(0);
 		UserBean curUser = handler.getUser();
 		String userName = curUser.getUsername();
@@ -34,7 +33,7 @@ public class CheckForBannedUserForFileValCO implements ControlObject{
 		try {
 			select = con.prepareStatement("SELECT BannedUserID FROM BannedUser WHERE UserID=(SELECT UserID FROM User WHERE UserName = ?) AND SessionID=(SELECT SessionID FROM Session WHERE SessionNumber = ?)");
 			select.setString(1, userName);
-			select.setString(2, session);
+			select.setString(2, sessionId);
 			results = select.executeQuery();
 			
 			if (results.next()) {
