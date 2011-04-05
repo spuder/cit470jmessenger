@@ -301,6 +301,7 @@ public class MainFrame extends JFrame {
 
 	public void connectToServer() {
 		final JDialog dialog = new JDialog();
+		dialog.setLayout(new BoxLayout(dialog.getContentPane(), BoxLayout.Y_AXIS));
 		final JLabel ipLabel = new JLabel("Server IP:");
 		final JLabel portLabel = new JLabel("Server Port:");
 		final JTextField ipInput = new JTextField(20);
@@ -333,7 +334,7 @@ public class MainFrame extends JFrame {
 				String port = portInput.getText();
 				
 				if ((server.equals("")) || (port.equals(""))) {
-					JOptionPane.showMessageDialog(dialog, "please enter valid data");
+					JOptionPane.showMessageDialog(dialog, "Please enter valid data");
 				}
 
 				else {
@@ -352,10 +353,12 @@ public class MainFrame extends JFrame {
 		dialog.pack();
 		dialog.setVisible(true);
 	}
+	
 	public void userLogin() {
 		
 		final JDialog dialog = new JDialog();
-		final JLabel uNameLabel = new JLabel("DB UserName:");
+		dialog.setLayout(new BoxLayout(dialog.getContentPane(), BoxLayout.Y_AXIS));
+		final JLabel uNameLabel = new JLabel("DB Username:");
 		final JLabel pWordLabel = new JLabel("DB Password:");
 		final JTextField uNameInput = new JTextField(15);
 		final JPasswordField pWordInput = new JPasswordField(15);
@@ -387,7 +390,7 @@ public class MainFrame extends JFrame {
 				char[] pWord = pWordInput.getPassword();
 				
 				if ((uName.equals("")) || (pWord.equals(""))) {
-					JOptionPane.showMessageDialog(dialog, "please enter valid credentials");
+					JOptionPane.showMessageDialog(dialog, "Please enter valid credentials");
 				}
 
 				else {
