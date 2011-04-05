@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
@@ -46,13 +47,13 @@ public class MainFrame extends JFrame {
 	private JMenu moderation = new JMenu("Moderation");
 
 	// Menu items.
-	private JMenuItem menuItemNew     = new JMenuItem("New Chat Session");
+	private JMenuItem menuItemNew     = new JMenuItem("New Chat Session", new ImageIcon("Images/livechat.png"));
 	private JMenuItem menuItemExit   = new JMenuItem("Exit");
-	private JMenuItem menuItemSave    = new JMenuItem("Save");
-	private JMenuItem menuItemLogin  = new JMenuItem("Login");
-	private JMenuItem menuItemServer    = new JMenuItem("Configure Server");
-	private JMenuItem menuItemChatSession    = new JMenuItem("Join Chat");
-	private JMenuItem menuItemLeaveSession = new JMenuItem("Leave Session");
+	private JMenuItem menuItemSave    = new JMenuItem("Save", new ImageIcon("Images/save.png"));
+	private JMenuItem menuItemLogin  = new JMenuItem("Login", new ImageIcon("Images/login.png"));
+	private JMenuItem menuItemServer    = new JMenuItem("Configure Server", new ImageIcon("Images/configure.png"));
+	private JMenuItem menuItemChatSession    = new JMenuItem("Join Chat", new ImageIcon("Images/joinchat.png"));
+	private JMenuItem menuItemLeaveSession = new JMenuItem("Leave Session", new ImageIcon("Images/exitchat.png"));
 
 	private JMenuItem menuItemRemove   = new JMenuItem("Remove File");
 	private JMenuItem menuItemBan    = new JMenuItem("Ban User");
@@ -78,6 +79,7 @@ public class MainFrame extends JFrame {
 
 		//Set Frame Settings
 		this.setTitle("Palantir");
+		this.setIconImage(new ImageIcon("palantir.png").getImage());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		//Organize Interface
@@ -203,6 +205,11 @@ public class MainFrame extends JFrame {
 		// ***********************************************************************************
 		// *************************** END OF ACTION LISTENERS *******************************
 		// ***********************************************************************************
+	}
+
+	private void setIconImage(ImageIcon imageIcon) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	public void newSession(SessionBean newSession) {
