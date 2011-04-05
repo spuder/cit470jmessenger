@@ -21,7 +21,7 @@ public class CheckForBannedUserValCO implements ControlObject{
 	public Object handleIt(ArrayList<Object> arg0) {
 		
 		HashMap map = (HashMap) arg0.get(1);
-		String session = (String) map.get("SessionId");
+		String session = (String) map.get("sessionId");
 		ServerConnectionHandler handler = (ServerConnectionHandler) arg0.get(0);
 		UserBean curUser = handler.getUser();
 		String userName = curUser.getUsername();
@@ -42,13 +42,16 @@ public class CheckForBannedUserValCO implements ControlObject{
 				errors.add(handler);
 				errors.add(errorsMap);
 				QuickConnect.handleError("sendError", errors);
-				return false;
+			
+			}
+			else {
+				return true;
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return true;
+		return false;
 	}
 
 }
