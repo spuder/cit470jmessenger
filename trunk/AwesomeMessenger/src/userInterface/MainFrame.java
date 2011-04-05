@@ -52,6 +52,7 @@ public class MainFrame extends JFrame {
 	private JMenu file = new JMenu("File");
 	private JMenu chat = new JMenu("Chat");
 	private JMenu moderation = new JMenu("Moderation");
+	private JMenu help = new JMenu("Help");
 
 	// Menu items.
 	private JMenuItem menuItemNew     = new JMenuItem("New Chat Session", new ImageIcon("Images/livechat.png"));
@@ -67,6 +68,7 @@ public class MainFrame extends JFrame {
 	private JMenuItem menuItemGrant  = new JMenuItem("Make Moderator", new ImageIcon("Images/mod.png"));
 	private JMenuItem menuItemClose    = new JMenuItem("Shutdown Session", new ImageIcon("Images/sessionclose.png"));
 	private JMenuItem menuItemAdd    = new JMenuItem("Add User", new ImageIcon("Images/adduser.png"));
+	private JMenuItem menuItemHelp = new JMenuItem("Help", new ImageIcon("Images/iconhelp.png"));
 	ClientController controller = new ClientController();
 
 	JTabbedPane tabs = new JTabbedPane();
@@ -251,6 +253,15 @@ public class MainFrame extends JFrame {
 			}
 			
 		});
+		
+		menuItemHelp.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				JOptionPane.showMessageDialog(null, "It's on the blog", "The Answer",JOptionPane.INFORMATION_MESSAGE, new ImageIcon("Images/mclaughlinm.jpg"));
+			}
+			
+		});
+		
 		// ***********************************************************************************
 		// *************************** END OF ACTION LISTENERS *******************************
 		// ***********************************************************************************
@@ -298,11 +309,13 @@ public class MainFrame extends JFrame {
 		menuBar.add(file);
 		menuBar.add(chat);
 		menuBar.add(moderation);
+		menuBar.add(help);
 
 		// Set mnemonics for menu selections.
 		file.setMnemonic('F');
 		chat.setMnemonic('C');
 		moderation.setMnemonic('M');
+		help.setMnemonic('H');
 
 		// Menu items for file menu.
 		file.add(menuItemNew);
@@ -326,6 +339,7 @@ public class MainFrame extends JFrame {
 		moderation.add(menuItemAdd);
 		menuItemAdd.setEnabled(false);
 
+		help.add(menuItemHelp);
 		// Set mnemonics for menu item selections for file menu.
 		menuItemNew.setMnemonic('N');
 		menuItemExit.setMnemonic('X');
@@ -335,6 +349,8 @@ public class MainFrame extends JFrame {
 		menuItemLogin.setMnemonic('L');
 		menuItemServer.setMnemonic('S');
 		menuItemChatSession.setMnemonic('C');
+		
+		menuItemHelp.setMnemonic('H');
 		// Set the menu bar in the frame and return menu bar.
 		setJMenuBar(menuBar);
 
