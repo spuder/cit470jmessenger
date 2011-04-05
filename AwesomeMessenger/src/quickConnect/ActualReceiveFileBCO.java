@@ -13,6 +13,8 @@ import java.util.HashMap;
 
 import org.quickconnect.ControlObject;
 
+import userInterface.MainFrame;
+
 import beans.FileBean;
 
 public class ActualReceiveFileBCO implements ControlObject {
@@ -27,7 +29,7 @@ public class ActualReceiveFileBCO implements ControlObject {
 		
 		File tempFile = null;
 		
-		String ip = (String)params.get("ip");
+		String ip = MainFrame.mainFrame.getController().getIpAddress();//(String)params.get("ip");
 		int port = (Integer)params.get("port");
 		int size = (Integer)params.get("size");
 		// Connect to socket
