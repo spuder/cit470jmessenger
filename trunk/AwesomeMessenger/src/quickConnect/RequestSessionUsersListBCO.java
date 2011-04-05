@@ -16,7 +16,7 @@ public class RequestSessionUsersListBCO implements ControlObject {
 
 		CommunicationBean commBean = new CommunicationBean();
 		commBean.setCommand("remoteGetUsersList");
-		HashMap params = new HashMap();
+		HashMap params = (HashMap) arg0.get(0);
 		commBean.setParameters(params);
 		
 		try {
