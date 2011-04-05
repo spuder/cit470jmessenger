@@ -20,6 +20,7 @@ public class GetSessionUsersBCO implements ControlObject{
 		Connection con = (Connection) MainFrame.mainFrame.getController().getConnectionPool().getConnection();
 		HashMap map = (HashMap) arg0.get(1);
 		String session = (String) map.get("sessionId");
+		System.out.println("Session: " +session);
 		java.sql.PreparedStatement select = null;
 		ResultSet results = null;
 		Vector users = new Vector();
