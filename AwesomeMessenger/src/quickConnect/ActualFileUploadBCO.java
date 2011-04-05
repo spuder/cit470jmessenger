@@ -28,6 +28,7 @@ public class ActualFileUploadBCO implements ControlObject {
 		int port = (Integer)params.get("port");
 		// Connect to socket
 		try {
+			System.out.println("IP:"+ip + " Port:" + port);
 			Socket socket = new Socket(ip,port);
 			
 			// Write File
