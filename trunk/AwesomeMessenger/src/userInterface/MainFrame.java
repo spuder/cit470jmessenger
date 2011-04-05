@@ -55,11 +55,11 @@ public class MainFrame extends JFrame {
 	private JMenuItem menuItemChatSession    = new JMenuItem("Join Chat", new ImageIcon("Images/joinchat.png"));
 	private JMenuItem menuItemLeaveSession = new JMenuItem("Leave Session", new ImageIcon("Images/exitchat.png"));
 
-	private JMenuItem menuItemRemove   = new JMenuItem("Remove File");
-	private JMenuItem menuItemBan    = new JMenuItem("Ban User");
-	private JMenuItem menuItemGrant  = new JMenuItem("Make Moderator");
-	private JMenuItem menuItemClose    = new JMenuItem("Close Session");
-	private JMenuItem menuItemAdd    = new JMenuItem("Add User");
+	private JMenuItem menuItemRemove   = new JMenuItem("Remove File", new ImageIcon("Images/filedelete.png"));
+	private JMenuItem menuItemBan    = new JMenuItem("Ban User", new ImageIcon("Images/banuser.png"));
+	private JMenuItem menuItemGrant  = new JMenuItem("Make Moderator", new ImageIcon("Images/mod.png"));
+	private JMenuItem menuItemClose    = new JMenuItem("Close Session", new ImageIcon("Images/sessionclose.png"));
+	private JMenuItem menuItemAdd    = new JMenuItem("Add User", new ImageIcon("Images/adduser.png"));
 	ClientController controller = new ClientController();
 
 	JTabbedPane tabs = new JTabbedPane();
