@@ -42,6 +42,7 @@ public class QCCommandMappings {
 		QuickConnect.mapCommandToBCO("localCreateSession", CreateSessionBCO.class);
 		QuickConnect.mapCommandToVCO("localCreateSession", AddSessionVCO.class);
 		
+		QuickConnect.mapCommandToValCO("joinSession", CheckForBannedUserValCO.class);
 		QuickConnect.mapCommandToBCO("joinSession", AddSessionUserBCO.class);
 		QuickConnect.mapCommandToBCO("joinSession", SendResponseBCO.class);
 		QuickConnect.mapCommandToBCO("joinSession", GetFileListBCO.class);
@@ -88,6 +89,13 @@ public class QCCommandMappings {
 		QuickConnect.mapCommandToBCO("localBanUser", NotifySessionOfBannedUserBCO.class);
 		QuickConnect.mapCommandToBCO("localBanUser", GetSessionUsersBCO.class);
 		QuickConnect.mapCommandToVCO("localBanUser", UpdateSessionUsersVCO.class);
+		
+		QuickConnect.mapCommandToValCO("banUser", ValidateUserRoleValCO.class);
+		QuickConnect.mapCommandToBCO("banUser", AddBannedUserBCO.class);
+		QuickConnect.mapCommandToBCO("banUser", DeleteBannedSessionUserBCO.class);
+		QuickConnect.mapCommandToBCO("banUser", NotifySessionOfBannedUserBCO.class);
+		QuickConnect.mapCommandToBCO("banUser", GetSessionUsersBCO.class);
+		QuickConnect.mapCommandToVCO("banUser", UpdateSessionUsersVCO.class);
 		
 		QuickConnect.mapCommandToBCO("leaveUser", DeleteSessionUserBCO.class);
 		QuickConnect.mapCommandToBCO("leaveUser", NotifySessionOfLeftUserBCO.class);
