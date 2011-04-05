@@ -24,7 +24,7 @@ public class ReceiveMessageBCO implements ControlObject {
 		for(int i = 0; i < sessions.size(); i++){
 			SessionBean curSession = sessions.get(i).getSession();
 			if(curSession.getSessionId().equals(msg.getSessionid())){
-				String timestamp = msg.getTimestamp().getHours() + ":" + msg.getTimestamp().getMinutes() + ":" + msg.getTimestamp().getSeconds();
+				String timestamp = msg.getTimestamp().getHours() + ":" + msg.getTimestamp().getMinutes();
 				sessions.get(i).getaMessengerPanel().getReceiveArea().append("[" + timestamp + "] " + msg.getSender()+ " > " +msg.getMessage() + "\n");
 				break;
 			}
