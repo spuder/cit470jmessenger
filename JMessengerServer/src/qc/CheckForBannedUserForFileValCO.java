@@ -9,6 +9,7 @@ import org.quickconnect.ControlObject;
 import org.quickconnect.QuickConnect;
 
 import ui.MainFrame;
+import beans.FileBean;
 import beans.MessageBean;
 import beans.UserBean;
 
@@ -16,13 +17,13 @@ import com.mysql.jdbc.Connection;
 
 import controller.ServerConnectionHandler;
 
-public class CheckForBannedUserForMessageValCO implements ControlObject{
+public class CheckForBannedUserForFileValCO implements ControlObject{
 
 	@Override
 	public Object handleIt(ArrayList<Object> arg0) {
 		HashMap params = (HashMap) arg0.get(1);
-		MessageBean msg = (MessageBean) params.get("message");
-		String session = msg.getSessionid();
+		FileBean msg = (FileBean) params.get("file");
+		String session = (String) params.get("sessionId");
 		ServerConnectionHandler handler = (ServerConnectionHandler) arg0.get(0);
 		UserBean curUser = handler.getUser();
 		String userName = curUser.getUsername();

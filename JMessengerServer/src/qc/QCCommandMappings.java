@@ -60,7 +60,7 @@ public class QCCommandMappings {
 		QuickConnect.mapCommandToBCO("fileList", GetFileListBCO.class);
 		QuickConnect.mapCommandToBCO("fileList", SendResponseBCO.class);
 		
-		QuickConnect.mapCommandToValCO("sendMessage", CheckForBannedUserValCO.class);
+		QuickConnect.mapCommandToValCO("sendMessage", CheckForBannedUserForMessageValCO.class);
 		QuickConnect.mapCommandToBCO("sendMessage", ParseMessageBCO.class);
 		QuickConnect.mapCommandToBCO("sendMessage", BroadcastMessageBCO.class);
 		QuickConnect.mapCommandToVCO("sendMessage", UpdateLocalChatVCO.class);
@@ -79,7 +79,7 @@ public class QCCommandMappings {
 		QuickConnect.mapCommandToBCO("remoteCloseSession", RemoveSessionFromController.class);
 		QuickConnect.mapCommandToVCO("remoteCloseSession", RemoveStoppedSessionVCO.class);
 		
-		QuickConnect.mapCommandToValCO("uploadFile", CheckForBannedUserValCO.class);
+		QuickConnect.mapCommandToValCO("uploadFile", CheckForBannedUserForFileValCO.class);
 		QuickConnect.mapCommandToBCO("uploadFile", ReceiveFileBCO.class);
 		QuickConnect.mapCommandToBCO("uploadFile", InsertNewFileBCO.class);
 		QuickConnect.mapCommandToBCO("uploadFile", GetFileListBCO.class);
@@ -107,7 +107,7 @@ public class QCCommandMappings {
 		QuickConnect.mapCommandToBCO("requestDownload",GetRequestedFileBCO.class);
 		QuickConnect.mapCommandToBCO("requestDownload",SendRequestedFileBCO.class);
 		
-		QuickConnect.mapCommandToValCO("updateFile", CheckForBannedUserValCO.class);
+		QuickConnect.mapCommandToValCO("updateFile", CheckForBannedUserForFileValCO.class);
 		QuickConnect.mapCommandToBCO("updateFile", DeactivateOldFileBCO.class);
 		QuickConnect.mapCommandToBCO("updateFile", ReceiveFileBCO.class);
 		QuickConnect.mapCommandToBCO("updateFile", InsertNewFileBCO.class);
