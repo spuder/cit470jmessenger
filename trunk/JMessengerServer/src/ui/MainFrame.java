@@ -44,6 +44,7 @@ public class MainFrame extends JFrame{
 	JMenuBar menuBar;
 	JMenu fileMenu, sessionsMenu;
 	JMenuItem exitItem, newSessionItem, closeSessionItem;
+	String newSessionPassword = "";
 
 	ServerController controller;
 
@@ -130,10 +131,10 @@ public class MainFrame extends JFrame{
 					
 					int result = JOptionPane.showConfirmDialog(null, "Would you like to set a password?","Password?", JOptionPane.YES_NO_OPTION);
 					if(result == JOptionPane.YES_OPTION){
-						String password = JOptionPane.showInputDialog("Password:");
-						if(password != null || !password.equals("")){
+						getPassword();
+						if(newSessionPassword != null || !newSessionPassword.equals("")){
 							try {
-								facadeMap.put("password", SHA1(password));
+								facadeMap.put("password", SHA1(newSessionPassword));
 							} catch (NoSuchAlgorithmException e1) {
 								e1.printStackTrace();
 							} catch (UnsupportedEncodingException e1) {
@@ -337,6 +338,49 @@ public class MainFrame extends JFrame{
 		md.update(text.getBytes("iso-8859-1"), 0, text.length());
 		sha1hash = md.digest();
 		return convToHex(sha1hash);
+	}
+	
+	public void getPassword(){
+
+		final JDialog dialog = new JDialog(MainFrame.mainFrame, "User Login");
+		dialog.setLayout(new FlowLayout());
+		final JLabel pWordLabel = new JLabel("Password:");
+		final JPasswordField pWordInput = new JPasswordField(15);
+		JButton ok = new JButton("Ok");
+
+		JPanel panel1 = new JPanel(new GridLayout(2, 2, 10, 10));
+		//		JPanel panel2 = new JPanel();
+		//		JPanel panel3 = new JPanel();
+
+		panel1.add(pWordLabel);
+		panel1.add(pWordInput);
+		panel1.add(Box.createGlue());
+		panel1.add(ok);
+
+		dialog.add(panel1);
+		
+		ActionListener go = new ActionListener()
+		{
+			@SuppressWarnings("unchecked")
+			public void actionPerformed(ActionEvent e)
+			{
+
+
+				char[] pWord = pWordInput.getPassword();
+
+
+				newSessionPassword = new String(pWord);
+				dialog.setVisible(false);
+				dialog.dispose();
+			}
+		};
+
+		pWordInput.addActionListener(go);
+		ok.addActionListener(go);
+		dialog.setModal(true);
+		dialog.setLocationRelativeTo(null);
+		dialog.pack();
+		dialog.setVisible(true);
 	}
 
 }
