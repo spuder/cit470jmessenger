@@ -90,6 +90,7 @@ public class QCCommandMappings {
 		QuickConnect.mapCommandToBCO("uploadFile", InsertNewFileBCO.class);
 		QuickConnect.mapCommandToBCO("uploadFile", GetFileListBCO.class);
 		QuickConnect.mapCommandToBCO("uploadFile", BroadcastResponseBCO.class);
+		QuickConnect.mapCommandToBCO("uploadFile", NotifyUsersOfNewFileBCO.class);
 		QuickConnect.mapCommandToVCO("uploadFile", UpdateLocalFileVCO.class);
 		
 		QuickConnect.mapCommandToBCO("localBanUser", AddBannedUserBCO.class);
@@ -124,6 +125,7 @@ public class QCCommandMappings {
 		QuickConnect.mapCommandToBCO("updateFile", InsertNewFileBCO.class);
 		QuickConnect.mapCommandToBCO("updateFile", GetFileListBCO.class);
 		QuickConnect.mapCommandToBCO("updateFile", BroadcastResponseBCO.class);
+		QuickConnect.mapCommandToBCO("updateFile", NotifyUsersOfUpdatedFileBCO.class);
 		
 		QuickConnect.mapCommandToECO("userExists", UserExistsECO.class);
 		QuickConnect.mapCommandToECO("localUserExists", LocalUserExistsECO.class);
@@ -148,6 +150,7 @@ public class QCCommandMappings {
 		QuickConnect.mapCommandToBCO("removeFile", DeleteFileBCO.class);
 		QuickConnect.mapCommandToBCO("removeFile", GetFileListBCO.class);
 		QuickConnect.mapCommandToBCO("removeFile", BroadcastResponseBCO.class);
+		QuickConnect.mapCommandToBCO("removeFile", NotifyUsersOfDeletedFileBCO.class);
 		
 	}
 	
