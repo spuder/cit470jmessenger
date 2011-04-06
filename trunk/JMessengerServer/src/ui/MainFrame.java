@@ -80,13 +80,13 @@ public class MainFrame extends JFrame{
 
 		//Set Frame Settings
 		this.setTitle("Palantir Server");
-		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		ArrayList params = new ArrayList();
 		QuickConnect.handleRequest("getActiveSessions", params);
 
 		this.pack();
+		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 
 		controller.startServer();
