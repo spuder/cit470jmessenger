@@ -182,6 +182,7 @@ public class MainFrame extends JFrame {
 						userLogin();						
 						params.add(0,this);
 						QuickConnect.handleRequest("login", params);
+					
 					} 
 				});
 		menuItemServer.addActionListener(  //  Connect to the server
