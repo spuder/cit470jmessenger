@@ -86,11 +86,11 @@ public class MainFrame extends JFrame{
 		QuickConnect.handleRequest("getActiveSessions", params);
 
 		this.pack();
-		this.setLocationRelativeTo(null);
+		
 		this.setVisible(true);
 
 		controller.startServer();
-
+		this.setLocationRelativeTo(null);
 	}
 
 	private void buildMenu() {
@@ -207,10 +207,6 @@ public class MainFrame extends JFrame{
 		pWordLabel = new JLabel("DB Password:");
 		JButton ok = new JButton("Ok");
 		JPanel panel1 = new JPanel(new GridLayout(5, 2, 10, 10));
-//		JPanel panel2 = new JPanel(new GridLayout(2, 4));
-//		JPanel panel2 = new JPanel();
-//		JPanel panel3 = new JPanel();
-//		JPanel panel4 = new JPanel();
 		panel1.add(portListenerLabel);
 		panel1.add(portListenerInput);
 		panel1.add(portLabel);
@@ -222,10 +218,7 @@ public class MainFrame extends JFrame{
 		panel1.add(Box.createGlue());
 		panel1.add(ok);
 		dialog.add(panel1);
-//		dialog.add(panel4);
-//		dialog.add(panel2);
-//		dialog.add(panel2);
-//		dialog.add(panel3);
+		
 		pWordInput.addActionListener(new ActionListener()
 		{
 			@SuppressWarnings("unchecked")
