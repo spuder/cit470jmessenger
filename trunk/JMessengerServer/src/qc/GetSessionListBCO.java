@@ -40,7 +40,6 @@ public class GetSessionListBCO implements ControlObject {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		MainFrame.mainFrame.getController().getConnectionPool().returnConnection(con);
 		responseParams.put("list",sessions);
 		commBean.setParameters(responseParams);
 		MainFrame.mainFrame.getController().getConnectionPool().returnConnection(con);
