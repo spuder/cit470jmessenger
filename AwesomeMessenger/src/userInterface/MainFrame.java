@@ -213,9 +213,14 @@ public class MainFrame extends JFrame {
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						userLogin();						
-						params.add(0,this);
-						QuickConnect.handleRequest("login", params);
+						try{
+							userLogin();						
+							params.add(0,this);
+							QuickConnect.handleRequest("login", params);
+						}catch(Exception e1){
+							
+						}
+						
 					
 					} 
 				});
@@ -224,10 +229,15 @@ public class MainFrame extends JFrame {
 				{
 					public void actionPerformed(ActionEvent e)
 					{
-						connectToServer();
-						controller.setIpAddress((String) serverParams.get(0));
-						controller.setPort((Integer) serverParams.get(1));
-						menuItemLogin.setEnabled(true);
+						try{
+							connectToServer();
+							controller.setIpAddress((String) serverParams.get(0));
+							controller.setPort((Integer) serverParams.get(1));
+							menuItemLogin.setEnabled(true);
+						}catch(Exception e1){
+							
+						}
+						
 					}
 				});
 		menuItemChatSession.addActionListener(  //  Join an existing chat session
