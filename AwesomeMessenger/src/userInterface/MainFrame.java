@@ -314,7 +314,6 @@ public class MainFrame extends JFrame {
 				// If Nimbus is not available, you can set the GUI to another look and feel.
 			}
 		}
-
 		
         PalantirSplash splash = new PalantirSplash(4000);
         splash.showSplash();
