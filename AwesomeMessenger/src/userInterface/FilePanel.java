@@ -2,10 +2,14 @@ package userInterface;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Vector;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -14,6 +18,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.SwingUtilities;
 
 import org.quickconnect.QuickConnect;
 
@@ -30,7 +36,9 @@ public class FilePanel extends JPanel {
 	private JButton sendFileButton;
 	private JButton resendFileButton;
 	private JButton downloadFileButton;
+	private JButton seeVersionsButton;
 	private JPanel buttonPanel;
+	private JPanel lowerButtonPanel;
 
 	// Other Components
 	private JFileChooser chooser;
@@ -63,13 +71,18 @@ public class FilePanel extends JPanel {
 		buttonPanel = new JPanel();
 		buttonPanel.setMaximumSize(new Dimension(w,BUTTON_PANEL_HEIGHT));
 		
+		lowerButtonPanel = new JPanel();
+		lowerButtonPanel.setMaximumSize(new Dimension(w,BUTTON_PANEL_HEIGHT));
+		
 		sendFileButton = new JButton();
 		resendFileButton = new JButton();
 		downloadFileButton = new JButton();
+		seeVersionsButton = new JButton();
 		
 		sendFileButton.setText("Send File");
 		resendFileButton.setText("Update File");
 		downloadFileButton.setText("Download File");
+		seeVersionsButton.setText("File Versions");
 		
 
 		//set button action listeners
@@ -129,6 +142,54 @@ public class FilePanel extends JPanel {
 				QuickConnect.handleRequest("requestDownload", params);
 			}
 		});
+		
+		seeVersionsButton.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		table.addMouseListener( new MouseAdapter()
+		{
+			public void mouseClicked( MouseEvent e )
+			{
+				// Left mouse click
+				if ( SwingUtilities.isLeftMouseButton( e ) )
+				{
+					// get the coordinates of the mouse click
+					Point p = e.getPoint();
+		 
+					// get the row index that contains that coordinate
+					int rowNumber = table.rowAtPoint( p );
+		 
+					// Get the ListSelectionModel of the JTable
+					ListSelectionModel model = table.getSelectionModel();
+		 
+					// set the selected interval of rows. Using the "rowNumber"
+					// variable for the beginning and end selects only that one row.
+					model.setSelectionInterval( rowNumber, rowNumber );
+				}
+				// Right mouse click
+				else if ( SwingUtilities.isRightMouseButton( e ) )
+				{
+					// get the coordinates of the mouse click
+					Point p = e.getPoint();
+		 
+					// get the row index that contains that coordinate
+					int rowNumber = table.rowAtPoint( p );
+					
+					String fileNumber = (String) table.getModel().getValueAt(rowNumber, 2);
+					ArrayList params = new ArrayList();
+					HashMap map = new HashMap();
+					map.put("fileId", fileNumber);
+					params.add(map);
+					QuickConnect.handleRequest("getFileVersions", params);
+				}
+			}
+		});
 
 		this.organizeComponents();
 	}
@@ -140,13 +201,17 @@ public class FilePanel extends JPanel {
 		buttonPanel.setLayout(new FlowLayout());
 		buttonPanel.add(sendFileButton);
 		buttonPanel.add(resendFileButton);
+		
+		lowerButtonPanel.setLayout(new FlowLayout());
+		lowerButtonPanel.add(downloadFileButton);
+		lowerButtonPanel.add(seeVersionsButton);
 
 		//set layout to be vertically aligned
 
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.add(buttonPanel);
 		this.add(scrollTable);
-		this.add(downloadFileButton);
+		this.add(lowerButtonPanel);
 
 	}
 

@@ -44,7 +44,7 @@ public class FileTableModel extends StandardTableModel {
 	
 
 	@Override
-	public Object getValueAt(int vectorIndex, int arrayIndex) {
+	public Object getValueAt(int vectorIndex, int arrayIndex) throws ArrayIndexOutOfBoundsException{
 		return (items.get(vectorIndex))[arrayIndex];
 	}
 
