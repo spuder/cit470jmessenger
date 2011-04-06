@@ -317,7 +317,6 @@ public class MainFrame extends JFrame {
 
 		
         PalantirSplash splash = new PalantirSplash(4000);
-
         splash.showSplash();
 		
 		@SuppressWarnings("unused")
