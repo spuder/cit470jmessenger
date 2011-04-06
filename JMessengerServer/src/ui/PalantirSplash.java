@@ -35,7 +35,6 @@ public class PalantirSplash extends JWindow {
 		int y = (screen.height-height)/2;
 		setBounds(x,y,width,height);
 
-		// Build the splash screen
 		JLabel label = new JLabel(new ImageIcon("Images/eyeconnected.jpg"));
 //		JLabel copyrt = new JLabel("Palantir v1.2 RC", JLabel.CENTER);
 		JButton hidden = new JButton();
