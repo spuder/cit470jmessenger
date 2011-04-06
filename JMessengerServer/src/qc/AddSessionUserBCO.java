@@ -23,6 +23,7 @@ public class AddSessionUserBCO implements ControlObject {
 	@Override
 	public Object handleIt(ArrayList<Object> arg0) {
 
+		System.out.println("Adding Session User");
 		HashMap params = (HashMap) arg0.get(1);
 		String id = (String) params.get("sessionId");
 		ServerConnectionHandler handler = (ServerConnectionHandler) arg0.get(0);

@@ -25,7 +25,7 @@ public class ServerConnectionHandler implements Runnable {
 	
 	ServerConnectionHandler(Socket sock){
 		this.connection = sock;
-		passwordMap = new HashMap<String,String>();
+		this.passwordMap = new HashMap<String,String>();
 	}
 	
 	@Override

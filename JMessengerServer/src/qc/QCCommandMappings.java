@@ -1,7 +1,4 @@
-	package qc;
-
-
-import javax.swing.JOptionPane;
+package qc;
 
 import org.quickconnect.QuickConnect;
 import qc.*;
@@ -14,6 +11,7 @@ public class QCCommandMappings {
 		QuickConnect.mapCommandToBCO("getUsersList", GetUserListBCO.class);
 		QuickConnect.mapCommandToVCO("getUsersList", UpdateUserListVCO.class);
 		
+		QuickConnect.mapCommandToValCO("remoteGetUsersList", CheckPasswordValCO.class);
 		QuickConnect.mapCommandToBCO("remoteGetUsersList", GetSessionUsersBCO.class);
 		QuickConnect.mapCommandToBCO("remoteGetUsersList", SendUserListBCO.class);
 		QuickConnect.mapCommandToBCO("remoteGetUsersList", SendResponseBCO.class);
@@ -48,7 +46,10 @@ public class QCCommandMappings {
 		QuickConnect.mapCommandToBCO("localCreateSession", CreateSessionBCO.class);
 		QuickConnect.mapCommandToVCO("localCreateSession", AddSessionVCO.class);
 		
+		
 		QuickConnect.mapCommandToValCO("joinSession", CheckForBannedUserValCO.class);
+		QuickConnect.mapCommandToValCO("joinSession", CheckForSessionPasswordValCO.class);
+		QuickConnect.mapCommandToValCO("joinSession", CheckPasswordValCO.class);
 		QuickConnect.mapCommandToBCO("joinSession", AddSessionUserBCO.class);
 		QuickConnect.mapCommandToBCO("joinSession", SendResponseBCO.class);
 		QuickConnect.mapCommandToBCO("joinSession", GetFileListBCO.class);
@@ -63,10 +64,12 @@ public class QCCommandMappings {
 		QuickConnect.mapCommandToBCO("sessionList", GetSessionListBCO.class);
 		QuickConnect.mapCommandToBCO("sessionList", SendResponseBCO.class);
 		
+		QuickConnect.mapCommandToValCO("fileList", CheckPasswordValCO.class);
 		QuickConnect.mapCommandToBCO("fileList", GetFileListBCO.class);
 		QuickConnect.mapCommandToBCO("fileList", SendResponseBCO.class);
 		
 		QuickConnect.mapCommandToValCO("sendMessage", CheckForBannedUserForMessageValCO.class);
+		QuickConnect.mapCommandToValCO("sendMessage", CheckPasswordValCO.class);
 		QuickConnect.mapCommandToBCO("sendMessage", ParseMessageBCO.class);
 		QuickConnect.mapCommandToBCO("sendMessage", BroadcastMessageBCO.class);
 		QuickConnect.mapCommandToVCO("sendMessage", UpdateLocalChatVCO.class);
@@ -86,6 +89,7 @@ public class QCCommandMappings {
 		QuickConnect.mapCommandToVCO("remoteCloseSession", RemoveStoppedSessionVCO.class);
 		
 		QuickConnect.mapCommandToValCO("uploadFile", CheckForBannedUserForFileValCO.class);
+		QuickConnect.mapCommandToValCO("uploadFile", CheckPasswordValCO.class);
 		QuickConnect.mapCommandToBCO("uploadFile", ReceiveFileBCO.class);
 		QuickConnect.mapCommandToBCO("uploadFile", InsertNewFileBCO.class);
 		QuickConnect.mapCommandToBCO("uploadFile", GetFileListBCO.class);
@@ -101,6 +105,7 @@ public class QCCommandMappings {
 		
 		QuickConnect.mapCommandToValCO("banUser", ValidateUserRoleValCO.class);
 		QuickConnect.mapCommandToValCO("banUser", ValidateNotBanningHigherValCO.class);
+		QuickConnect.mapCommandToValCO("banUser", CheckPasswordValCO.class);
 		QuickConnect.mapCommandToBCO("banUser", AddBannedUserBCO.class);
 		QuickConnect.mapCommandToBCO("banUser", DeleteBannedSessionUserBCO.class);
 		QuickConnect.mapCommandToBCO("banUser", NotifySessionOfBannedUserBCO.class);
@@ -116,10 +121,12 @@ public class QCCommandMappings {
 		QuickConnect.mapCommandToVCO("leaveUser", UpdateSessionUsersVCO.class);
 		
 		QuickConnect.mapCommandToValCO("requestDownload", CheckForBannedUserForFileValCO.class);
+		QuickConnect.mapCommandToValCO("requestDownload", CheckPasswordValCO.class);
 		QuickConnect.mapCommandToBCO("requestDownload",GetRequestedFileBCO.class);
 		QuickConnect.mapCommandToBCO("requestDownload",SendRequestedFileBCO.class);
 		
 		QuickConnect.mapCommandToValCO("updateFile", CheckForBannedUserForFileValCO.class);
+		QuickConnect.mapCommandToValCO("updateFile", CheckPasswordValCO.class);
 		QuickConnect.mapCommandToBCO("updateFile", DeactivateOldFileBCO.class);
 		QuickConnect.mapCommandToBCO("updateFile", ReceiveFileBCO.class);
 		QuickConnect.mapCommandToBCO("updateFile", InsertNewFileBCO.class);
@@ -137,10 +144,10 @@ public class QCCommandMappings {
 		QuickConnect.mapCommandToBCO("makeModerator", MakeModeratorBCO.class);
 		QuickConnect.mapCommandToBCO("makeModerator", NotifySessionOfNewModeratorBCO.class);
 		QuickConnect.mapCommandToBCO("makeModerator", GetSessionUsersBCO.class);
-		QuickConnect.mapCommandToVCO("makeModerator", UpdateSessionUsersVCO.class);
-		QuickConnect.mapCommandToBCO("makeModerator", GetSessionUsersBCO.class);
 		QuickConnect.mapCommandToBCO("makeModerator", SendUserListBCO.class);
 		QuickConnect.mapCommandToBCO("makeModerator", SendResponseBCO.class);
+		QuickConnect.mapCommandToVCO("makeModerator", UpdateSessionUsersVCO.class);
+
 		
 		QuickConnect.mapCommandToBCO("localMakeModerator", MakeModeratorBCO.class);
 		QuickConnect.mapCommandToBCO("localMakeModerator", NotifySessionOfNewModeratorBCO.class);
@@ -148,18 +155,24 @@ public class QCCommandMappings {
 		QuickConnect.mapCommandToVCO("localMakeModerator", UpdateSessionUsersVCO.class);
 		
 		QuickConnect.mapCommandToValCO("removeFile", CheckForBannedUserForFileValCO.class);
+		QuickConnect.mapCommandToValCO("removeFile", CheckPasswordValCO.class);
 		QuickConnect.mapCommandToBCO("removeFile", DeleteFileBCO.class);
 		QuickConnect.mapCommandToBCO("removeFile", GetFileListBCO.class);
 		QuickConnect.mapCommandToBCO("removeFile", BroadcastResponseBCO.class);
 		QuickConnect.mapCommandToBCO("removeFile", NotifyUsersOfDeletedFileBCO.class);
 		
 		QuickConnect.mapCommandToValCO("getFileVersions", CheckForBannedUserForFileValCO.class);
+		QuickConnect.mapCommandToValCO("getFileVersions", CheckPasswordValCO.class);
 		QuickConnect.mapCommandToBCO("getFileVersions", GetFileVersionsListBCO.class);
 		QuickConnect.mapCommandToBCO("getFileVersions", SendResponseBCO.class);
 		
 		QuickConnect.mapCommandToValCO("requestVersionDownload", CheckForBannedUserForFileValCO.class);
+		QuickConnect.mapCommandToValCO("requestVersionDownload", CheckPasswordValCO.class);
 		QuickConnect.mapCommandToBCO("requestVersionDownload", GetRequestedVersionBCO.class);
 		QuickConnect.mapCommandToBCO("requestVersionDownload", SendRequestedFileBCO.class);
+		
+		QuickConnect.mapCommandToECO("sendPromptLogin", SendSessionLoginPromptECO.class);
+		QuickConnect.mapCommandToECO("sendPromptLogin", SendResponseBCO.class);
 		
 	}
 	

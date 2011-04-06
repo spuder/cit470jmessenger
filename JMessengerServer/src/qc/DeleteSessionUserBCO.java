@@ -41,6 +41,9 @@ public class DeleteSessionUserBCO implements ControlObject{
 		HashMap sessionMap = (HashMap) sessionsMap.get(sessionId);
 		sessionMap.remove(username);
 		
+		HashMap passwordMap = ((ServerConnectionHandler) arg0.get(0)).getPasswordMap();
+		passwordMap.remove(sessionId);
+		
 		return worked;
 	}
 

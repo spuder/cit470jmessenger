@@ -38,6 +38,7 @@ public class GetSessionUsersBCO implements ControlObject{
 			e1.printStackTrace();
 		}
 		MainFrame.mainFrame.getController().getConnectionPool().returnConnection(con);
+		((HashMap)arg0.get(1)).put("list", users);
 		return users;
 	}
 
