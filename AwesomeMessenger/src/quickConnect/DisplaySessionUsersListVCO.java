@@ -65,14 +65,16 @@ public class DisplaySessionUsersListVCO implements ControlObject {
 			modButton.addActionListener(new ActionListener(){
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					ArrayList params = new ArrayList();
 					String[] row = (String[]) list.get(table.getSelectedRow());
-					HashMap paramMap = new HashMap();
-					paramMap.put("userName",(String)row[0]);
-					paramMap.put("sessionId", ((ChatSessionPanel)MainFrame.mainFrame.getTabs().getSelectedComponent()).getSession().getSessionId());
-					params.add(paramMap);
-					QuickConnect.handleRequest("makeModerator", params);
-					dialog.dispose();
+					if(!(row[1].equals("ADMIN") || row[1].equals("MODERATOR"))){
+						ArrayList params = new ArrayList();
+						HashMap paramMap = new HashMap();
+						paramMap.put("userName",(String)row[0]);
+						paramMap.put("sessionId", ((ChatSessionPanel)MainFrame.mainFrame.getTabs().getSelectedComponent()).getSession().getSessionId());
+						params.add(paramMap);
+						QuickConnect.handleRequest("makeModerator", params);
+						dialog.dispose();
+					}
 				}
 				
 			});
