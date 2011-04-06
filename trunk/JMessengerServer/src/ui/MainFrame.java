@@ -55,15 +55,20 @@ public class MainFrame extends JFrame{
 		QCCommandMappings.mapCommands();
 
 
-		//ServerLoginPane login = new ServerLoginPane();
-		serverLogin();
-		//ArrayList credentials = login.getParams();
-		Integer portListener = (Integer) params.get(1);
-		Integer port = (Integer) params.get(0);
-		String un = (String) params.get(2);
-		String pw = (String) params.get(3);
+		try{
+			//ServerLoginPane login = new ServerLoginPane();
+			serverLogin();
+			//ArrayList credentials = login.getParams();
+			Integer portListener = (Integer) params.get(1);
+			Integer port = (Integer) params.get(0);
+			String un = (String) params.get(2);
+			String pw = (String) params.get(3);
 
-		controller = new ServerController(port,un,pw, portListener);
+			controller = new ServerController(port,un,pw, portListener);
+		}catch(Exception e){
+			System.exit(NORMAL);
+		}
+		
 		//Set size
 		Dimension dim = new Dimension(MAIN_FRAME_WIDTH,MAIN_FRAME_HEIGHT);
 		this.setPreferredSize(dim);
