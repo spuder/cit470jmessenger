@@ -62,6 +62,9 @@ public abstract class QCCommandMappings {
 	
 		QuickConnect.mapCommandToBCO("banUser", SendBanUserBCO.class);
 		QuickConnect.mapCommandToBCO("banUser", RequestSessionUsersListBCO.class);
+		
+		QuickConnect.mapCommandToBCO("makeModerator", SendMakeModeratorBCO.class);
+		QuickConnect.mapCommandToBCO("makeModerator", RequestSessionUsersListBCO.class);
 	}
 
 }
