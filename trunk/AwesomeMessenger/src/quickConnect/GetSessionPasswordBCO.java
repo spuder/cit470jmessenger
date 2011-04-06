@@ -62,9 +62,8 @@ public class GetSessionPasswordBCO implements ControlObject {
 			panel1.add(ok);
 
 			dialog.add(panel1);
-			//		dialog.add(panel2);
-			//		dialog.add(panel3);
-			pWordInput.addActionListener(new ActionListener()
+			
+			ActionListener go = new ActionListener()
 			{
 				@SuppressWarnings("unchecked")
 				public void actionPerformed(ActionEvent e)
@@ -78,22 +77,10 @@ public class GetSessionPasswordBCO implements ControlObject {
 					dialog.setVisible(false);
 					dialog.dispose();
 				}
-			});
-			ok.addActionListener(new ActionListener()
-			{
-				@SuppressWarnings("unchecked")
-				public void actionPerformed(ActionEvent e)
-				{
+			};
 
-
-					char[] pWord = pWordInput.getPassword();
-
-					password = new String(pWord);
-					dialog.setVisible(false);
-					dialog.dispose();
-
-				}
-			});
+			pWordInput.addActionListener(go);
+			ok.addActionListener(go);
 			dialog.setModal(true);
 			dialog.setLocationRelativeTo(null);
 			dialog.pack();
