@@ -45,7 +45,7 @@ public class PalantirSplash extends JWindow {
 		// Build the splash screen
 		JLabel label = new JLabel(new ImageIcon("Images/palantirBG.png"));
 		JLabel copyrt = new JLabel
-		("Palantir v1.2 RC", JLabel.CENTER);
+		("Palantir Server v1.2 RC", JLabel.CENTER);
 		JButton hidden = new JButton();
 
 		progressBar = new JProgressBar(0, 100);
