@@ -266,6 +266,22 @@ public class MainFrame extends JFrame {
 			
 		});
 		
+		menuItemRemove.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				ArrayList params = new ArrayList();
+				HashMap mapFacade = new HashMap();
+				mapFacade.put("sessionId", ((ChatSessionPanel)MainFrame.mainFrame.getTabs().getSelectedComponent()).getSession().getSessionId());
+				int row = ((ChatSessionPanel)MainFrame.mainFrame.getTabs().getSelectedComponent()).getaFilePanel().getTable().getSelectedRow();
+				String fileId = (String) ((ChatSessionPanel)MainFrame.mainFrame.getTabs().getSelectedComponent()).getaFilePanel().getTable().getModel().getValueAt(row, 2);
+				System.out.println("File: " + fileId);
+				mapFacade.put("fileId", fileId);
+				params.add(mapFacade);
+				QuickConnect.handleRequest("removeFile", params);
+			}
+			
+		});
+		
 		// ***********************************************************************************
 		// *************************** END OF ACTION LISTENERS *******************************
 		// ***********************************************************************************
