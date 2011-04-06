@@ -80,6 +80,16 @@ public class MainFrame extends JFrame {
 		QCCommandMappings.mapCommands();
 		MainFrame.mainFrame = this;
 
+		// initialize server connection and login user on startup
+		connectToServer();
+		controller.setIpAddress((String) serverParams.get(0));
+		controller.setPort((Integer) serverParams.get(1));
+		menuItemLogin.setEnabled(true);
+		
+		userLogin();						
+		params.add(0,this);
+		QuickConnect.handleRequest("login", params);
+		
 		//Configure Layout
 		this.setLayout(new BoxLayout(getContentPane(), BoxLayout.X_AXIS));
 		this.setSize(MAIN_WIDTH,MAIN_HEIGHT);
@@ -409,7 +419,7 @@ public class MainFrame extends JFrame {
 
 
 	public void connectToServer() {
-		final JDialog dialog = new JDialog();
+		final JDialog dialog = new JDialog(this, "Server Configuration");
 		dialog.setLayout(new FlowLayout());
 		final JLabel ipLabel = new JLabel("Server IP:");
 		final JLabel portLabel = new JLabel("Server Port:");
@@ -496,7 +506,7 @@ public class MainFrame extends JFrame {
 	
 	public void userLogin() {
 
-		final JDialog dialog = new JDialog();
+		final JDialog dialog = new JDialog(this, "User Login");
 		dialog.setLayout(new FlowLayout());
 		final JLabel uNameLabel = new JLabel("Username:");
 		final JLabel pWordLabel = new JLabel("Password:");
@@ -671,6 +681,82 @@ public class MainFrame extends JFrame {
 
 			}
 		});
+		dialog.setModal(true);
+		dialog.setLocationRelativeTo(null);
+		dialog.pack();
+		dialog.setVisible(true);
+	}
+	
+	private void configureServerLoginUser() {
+		final JDialog dialog = new JDialog();
+		dialog.setLayout(new FlowLayout());
+		final JLabel ipLabel = new JLabel("Server IP:");
+		final JLabel portLabel = new JLabel("Server Port:");
+		final JLabel uNameLabel = new JLabel("Username:");
+		final JLabel pWordLabel = new JLabel("Password:");
+		final JTextField ipInput = new JTextField(10);
+		final JTextField portInput = new JTextField(10);
+		final JTextField uNameInput = new JTextField(10);
+		final JPasswordField pWordInput = new JPasswordField(10);
+		
+		JButton cancel = new JButton("Cancel");
+		JButton login = new JButton("Login");
+		
+		JPanel panel1 = new JPanel(new GridLayout(5, 2, 10, 10));
+		
+		panel1.add(ipLabel);
+		panel1.add(ipInput);
+		panel1.add(portLabel);
+		panel1.add(portInput);
+		panel1.add(uNameLabel);
+		panel1.add(uNameInput);
+		panel1.add(pWordLabel);
+		panel1.add(pWordInput);
+		panel1.add(cancel);
+		panel1.add(login);
+		
+		dialog.add(panel1);
+		
+		cancel.addActionListener(
+				new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						dialog.setVisible(false);
+						dialog.dispose();
+					}
+				});
+		
+		login.addActionListener(
+				new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						String serverIP = ipInput.getText();
+						String serverPort = portInput.getText();
+						String uName = uNameInput.getText();
+						char[] pWord = pWordInput.getPassword();
+						if ((serverIP.equals("")) || (serverPort.equals("")) || (uName.equals("")) || (pWord.length == 0)) {
+							JOptionPane.showMessageDialog(dialog, "Please enter valid data and credentials");
+						}
+						
+						else {
+							ClientController cont = MainFrame.mainFrame.getController();
+							int portNumber = Integer.parseInt(serverPort);
+							cont.setIpAddress(serverIP);
+							cont.setPort(portNumber);
+							
+							params = new ArrayList();
+						
+							params.add(this);
+							params.add(uName);
+							params.add(pWord);
+							QuickConnect.handleRequest("login", params);
+						}
+						
+					}
+				});
+		
 		dialog.setModal(true);
 		dialog.setLocationRelativeTo(null);
 		dialog.pack();
