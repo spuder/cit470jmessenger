@@ -29,6 +29,7 @@ public class QCCommandMappings {
 		QuickConnect.mapCommandToBCO("deleteUser", GetUserListBCO.class);
 		QuickConnect.mapCommandToVCO("deleteUser", UpdateUserListVCO.class);
 		
+		QuickConnect.mapCommandToValCO("login", CheckForLoggedInUserValCO.class);
 		QuickConnect.mapCommandToBCO("login", ProcessLoginBCO.class);
 		QuickConnect.mapCommandToBCO("login", SendResponseBCO.class);
 		
@@ -115,6 +116,7 @@ public class QCCommandMappings {
 		QuickConnect.mapCommandToBCO("banUser", SendUserListBCO.class);
 		QuickConnect.mapCommandToBCO("banUser", SendResponseBCO.class);
 		
+		QuickConnect.mapCommandToBCO("leaveUser", LogOffUserBCO.class);
 		QuickConnect.mapCommandToBCO("leaveUser", DeleteSessionUserBCO.class);
 		QuickConnect.mapCommandToBCO("leaveUser", NotifySessionOfLeftUserBCO.class);
 		QuickConnect.mapCommandToBCO("leaveUser", GetSessionUsersBCO.class);
