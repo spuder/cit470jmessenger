@@ -177,6 +177,8 @@ public class QCCommandMappings {
 		QuickConnect.mapCommandToECO("sendPromptLogin", SendSessionLoginPromptECO.class);
 		QuickConnect.mapCommandToECO("sendPromptLogin", SendResponseBCO.class);
 		
+		QuickConnect.mapCommandToBCO("cleanUp", CleanUpDatabaseDataBCO.class);
+		
 	}
 	
 }
