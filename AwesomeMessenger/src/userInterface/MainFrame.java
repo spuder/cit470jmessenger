@@ -70,6 +70,7 @@ public class MainFrame extends JFrame {
 	private JMenuItem menuItemAdd    = new JMenuItem("Add User", new ImageIcon("Images/adduser.png"));
 	private JMenuItem menuItemHelp = new JMenuItem("Help", new ImageIcon("Images/iconhelp.png"));
 	ClientController controller = new ClientController();
+	String newSessionPassword = "";
 
 	JTabbedPane tabs = new JTabbedPane();
 	ArrayList<ChatSessionPanel> chatSessions = new ArrayList<ChatSessionPanel>();
@@ -133,11 +134,11 @@ public class MainFrame extends JFrame {
 							
 							int result = JOptionPane.showConfirmDialog(null, "Would you like to set a password?","Password?", JOptionPane.YES_NO_OPTION);
 							if(result == JOptionPane.YES_OPTION){
-								String password = JOptionPane.showInputDialog("Password:");
-								if(password != null || !password.equals("")){
+								getPassword();
+								if(newSessionPassword != null || !newSessionPassword.equals("")){
 									try {
-										System.out.println("found password:" + password);
-										map.put("password", BCOHashPassword.SHA1(password));
+										System.out.println("found password:" + newSessionPassword);
+										map.put("password", BCOHashPassword.SHA1(newSessionPassword));
 									} catch (NoSuchAlgorithmException e1) {
 										e1.printStackTrace();
 									} catch (UnsupportedEncodingException e1) {
@@ -812,6 +813,49 @@ public class MainFrame extends JFrame {
 		}
 		return buf.toString();
 	}
+	
+	public void getPassword(){
+
+		final JDialog dialog = new JDialog(MainFrame.mainFrame, "User Login");
+		dialog.setLayout(new FlowLayout());
+		final JLabel pWordLabel = new JLabel("Password:");
+		final JPasswordField pWordInput = new JPasswordField(15);
+		JButton ok = new JButton("Ok");
+
+		JPanel panel1 = new JPanel(new GridLayout(2, 2, 10, 10));
+		//		JPanel panel2 = new JPanel();
+		//		JPanel panel3 = new JPanel();
+
+		panel1.add(pWordLabel);
+		panel1.add(pWordInput);
+		panel1.add(Box.createGlue());
+		panel1.add(ok);
+
+		dialog.add(panel1);
+		
+		ActionListener go = new ActionListener()
+		{
+			@SuppressWarnings("unchecked")
+			public void actionPerformed(ActionEvent e)
+			{
+
+
+				char[] pWord = pWordInput.getPassword();
+
+
+				newSessionPassword = new String(pWord);
+				dialog.setVisible(false);
+				dialog.dispose();
+			}
+		};
+
+		pWordInput.addActionListener(go);
+		ok.addActionListener(go);
+		dialog.setModal(true);
+		dialog.setLocationRelativeTo(null);
+		dialog.pack();
+		dialog.setVisible(true);
+}
 
 }
 
