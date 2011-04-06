@@ -8,24 +8,24 @@ import javax.swing.JOptionPane;
 
 import org.quickconnect.ControlObject;
 
-import beans.CommunicationBean;
-import beans.UserBean;
-
 import userInterface.MainFrame;
-
 import Client.ClientController;
+import beans.CommunicationBean;
 
-public class CreateSessionBCO implements ControlObject {
+public class JoinPasswordProtectedSessionBCO implements ControlObject {
 
 	@Override
 	public Object handleIt(ArrayList<Object> arg0) {
 
+		String password = (String) arg0.get(arg0.size()-1);
 		ClientController controller = MainFrame.mainFrame.getController();
 		
 		CommunicationBean commBean = new CommunicationBean();
-		commBean.setCommand("createSession");
-		commBean.setParameters((HashMap) arg0.get(0));
-
+		commBean.setCommand("joinSession");
+		
+		HashMap params = (HashMap) arg0.get(0);
+		params.put("password", password);
+		commBean.setParameters(params);
 		try {
 			controller.getoStream().writeObject(commBean);
 		} catch (IOException e) {
@@ -35,4 +35,5 @@ public class CreateSessionBCO implements ControlObject {
 		
 		return null;
 	}
+
 }
