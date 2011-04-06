@@ -28,7 +28,7 @@ public class CheckForLoggedInUserValCO implements ControlObject{
 		ResultSet results = null;
 		
 		try {
-			select = con.prepareStatement("SELECT UserID FROM User WHERE UserName=? AND UserLoggedIn = 0 AND UserActiveFlag = 1");
+			select = con.prepareStatement("SELECT UserID FROM User WHERE UserName=? AND UserLoggedIn = 1 AND UserActiveFlag = 1");
 			select.setString(1, username);
 			results = select.executeQuery();
 			if (results.next()) {
