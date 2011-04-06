@@ -179,6 +179,9 @@ public class QCCommandMappings {
 		
 		QuickConnect.mapCommandToBCO("cleanUp", CleanUpDatabaseDataBCO.class);
 		
+		QuickConnect.mapCommandToBCO("refreshList", GetUserListBCO.class);
+		QuickConnect.mapCommandToVCO("refreshList", UpdateUserListVCO.class);
+		
 	}
 	
 }
