@@ -18,6 +18,7 @@ import javax.swing.WindowConstants;
 import org.quickconnect.ControlObject;
 import org.quickconnect.QuickConnect;
 
+import userInterface.ChatSessionPanel;
 import userInterface.MainFrame;
 import userInterface.StandardTableModel;
 
@@ -50,10 +51,14 @@ public class DisplaySessionUsersListVCO implements ControlObject {
 			banButton.addActionListener(new ActionListener(){
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					/*ArrayList params = new ArrayList();
+					ArrayList params = new ArrayList();
 					String[] row = (String[]) list.get(table.getSelectedRow());
-					params.add((String)row[2]);
-					QuickConnect.handleRequest("joinSession", params);*/
+					HashMap paramMap = new HashMap();
+					paramMap.put("userToBan",(String)row[0]);
+					paramMap.put("sessionId", ((ChatSessionPanel)MainFrame.mainFrame.getTabs().getSelectedComponent()).getSession().getSessionId());
+					params.add(paramMap);
+					QuickConnect.handleRequest("banUser", params);
+					dialog.dispose();
 				}
 			});
 			
