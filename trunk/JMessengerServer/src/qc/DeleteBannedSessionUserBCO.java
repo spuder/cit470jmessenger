@@ -21,7 +21,7 @@ public class DeleteBannedSessionUserBCO implements ControlObject{
 		HashMap map = (HashMap) arg0.get(1);
 		String username = (String) map.get("userToBan");
 		String sessionId = (String) map.get("sessionId");
-		Connection con = (Connection) ((MainFrame) arg0.get(0)).getController().getConnectionPool().getConnection();
+		Connection con = (Connection) MainFrame.mainFrame.getController().getConnectionPool().getConnection();
 		boolean worked = false;
 		try {
 			java.sql.PreparedStatement delete = con.prepareStatement("DELETE FROM SessionParticipants WHERE UserID = (SELECT UserID FROM User WHERE UserName = ?) AND SessionID = (SELECT SessionID FROM Session WHERE SessionNumber = ?)");
