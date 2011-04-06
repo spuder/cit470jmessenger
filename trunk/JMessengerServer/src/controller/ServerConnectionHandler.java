@@ -21,9 +21,11 @@ public class ServerConnectionHandler implements Runnable {
 	UserBean user;
 	ObjectOutputStream outputStream;
 	ObjectInputStream inputStream;
+	HashMap<String,String> passwordMap;
 	
 	ServerConnectionHandler(Socket sock){
 		this.connection = sock;
+		passwordMap = new HashMap<String,String>();
 	}
 	
 	@Override
@@ -109,7 +111,13 @@ public class ServerConnectionHandler implements Runnable {
 	public void setUser(UserBean user) {
 		this.user = user;
 	}
-	
-	
+
+	public HashMap<String, String> getPasswordMap() {
+		return passwordMap;
+	}
+
+	public void setPasswordMap(HashMap<String, String> passwordMap) {
+		this.passwordMap = passwordMap;
+	}
 	
 }
