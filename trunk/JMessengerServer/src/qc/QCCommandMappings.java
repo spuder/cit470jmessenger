@@ -145,7 +145,9 @@ public class QCCommandMappings {
 		QuickConnect.mapCommandToBCO("localMakeModerator", GetSessionUsersBCO.class);
 		QuickConnect.mapCommandToVCO("localMakeModerator", UpdateSessionUsersVCO.class);
 		
-		
+		QuickConnect.mapCommandToBCO("removeFile", DeleteFileBCO.class);
+		QuickConnect.mapCommandToBCO("removeFile", GetFileListBCO.class);
+		QuickConnect.mapCommandToBCO("removeFile", BroadcastResponseBCO.class);
 		
 	}
 	
