@@ -6,6 +6,9 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.Box;
@@ -113,8 +116,24 @@ public class MainFrame extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				String name = JOptionPane.showInputDialog("New Session Name:");
 				if(name != null || !name.equals("")){
+					
 					HashMap facadeMap = new HashMap();
 					facadeMap.put("sessionName", name);
+					
+					int result = JOptionPane.showConfirmDialog(null, "Would you like to set a password?","Password?", JOptionPane.YES_NO_OPTION);
+					if(result == JOptionPane.YES_OPTION){
+						String password = JOptionPane.showInputDialog("Password:");
+						if(password != null || !password.equals("")){
+							try {
+								facadeMap.put("password", SHA1(password));
+							} catch (NoSuchAlgorithmException e1) {
+								e1.printStackTrace();
+							} catch (UnsupportedEncodingException e1) {
+								e1.printStackTrace();
+							}
+						}
+					}
+					
 					ArrayList params = new ArrayList();
 					params.add(this);
 					params.add(facadeMap);
@@ -285,6 +304,31 @@ public class MainFrame extends JFrame{
 		dialog.setVisible(true);
 
 
+	}
+	
+	private static String convToHex(byte[] data) {
+		StringBuffer buf = new StringBuffer();
+		for (int i = 0; i < data.length; i++) { 
+			int halfbyte = (data[i] >>> 4) & 0x0F;
+			int two_halfs = 0;
+			do { 
+				if ((0 <= halfbyte) && (halfbyte <= 9)) 
+					buf.append((char) ('0' + halfbyte));
+				else 
+					buf.append((char) ('a' + (halfbyte - 10)));
+				halfbyte = data[i] & 0x0F;
+			} while(two_halfs++ < 1);
+		} 
+		return buf.toString();
+	}
+	
+	public static String SHA1(String text) throws NoSuchAlgorithmException,UnsupportedEncodingException {
+		MessageDigest md;
+		md = MessageDigest.getInstance("SHA-1");
+		byte[] sha1hash = new byte[40];
+		md.update(text.getBytes("iso-8859-1"), 0, text.length());
+		sha1hash = md.digest();
+		return convToHex(sha1hash);
 	}
 
 }

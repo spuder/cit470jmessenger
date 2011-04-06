@@ -42,6 +42,7 @@ CREATE  TABLE IF NOT EXISTS `Palantir`.`Session` (
   `SessionID` INT NOT NULL AUTO_INCREMENT ,
   `SessionNumber` VARCHAR(45) NULL ,
   `SessionName` VARCHAR(45) NULL ,
+  `SessionPassword` VARCHAR(45) NULL ,
   `SessionActive` TINYINT(1)  NULL ,
   PRIMARY KEY (`SessionID`) )
 ENGINE = InnoDB;
