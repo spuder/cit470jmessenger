@@ -98,6 +98,7 @@ public class MainFrame extends JFrame {
 		Dimension startupSize = new Dimension(700, 500);
 		tabs.setPreferredSize(startupSize);
 		this.pack();
+		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 
 		// ***********************************************************************************
