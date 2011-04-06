@@ -116,7 +116,8 @@ public class QCCommandMappings {
 		QuickConnect.mapCommandToBCO("banUser", SendUserListBCO.class);
 		QuickConnect.mapCommandToBCO("banUser", SendResponseBCO.class);
 		
-		QuickConnect.mapCommandToBCO("leaveUser", LogOffUserBCO.class);
+		QuickConnect.mapCommandToBCO("logOffUser", LogOffUserBCO.class);
+		
 		QuickConnect.mapCommandToBCO("leaveUser", DeleteSessionUserBCO.class);
 		QuickConnect.mapCommandToBCO("leaveUser", NotifySessionOfLeftUserBCO.class);
 		QuickConnect.mapCommandToBCO("leaveUser", GetSessionUsersBCO.class);
