@@ -40,7 +40,7 @@ public class MakeModeratorOnCreationBCO implements ControlObject{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		MainFrame.mainFrame.getController().getConnectionPool().returnConnection(con);
 		return success;
 	}
 

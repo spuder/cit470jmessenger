@@ -46,12 +46,14 @@ public class CheckForBannedUserForMessageValCO implements ControlObject{
 			
 			}
 			else {
+				MainFrame.mainFrame.getController().getConnectionPool().returnConnection(con);
 				return true;
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		MainFrame.mainFrame.getController().getConnectionPool().returnConnection(con);
 		return false;
 	}
 

@@ -67,6 +67,7 @@ public class GetRequestedFileBCO implements ControlObject{
 			e.printStackTrace();
 		}
 		commBean.setParameters(responseParams);
+		MainFrame.mainFrame.getController().getConnectionPool().returnConnection(con);
 		return commBean;
 	}
 	
