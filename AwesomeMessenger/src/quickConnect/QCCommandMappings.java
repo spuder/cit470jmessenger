@@ -72,6 +72,9 @@ public abstract class QCCommandMappings {
 		QuickConnect.mapCommandToVCO("fileVersionListResponse", DisplayFileVersionsListVCO.class);
 		
 		QuickConnect.mapCommandToBCO("downloadVersion", SendDownloadVersionRequestBCO.class);
+		
+		QuickConnect.mapCommandToBCO("getSessionPassword", GetSessionPasswordBCO.class);
+		QuickConnect.mapCommandToBCO("getSessionPassword", JoinPasswordProtectedSessionBCO.class);
 	}
 
 }
