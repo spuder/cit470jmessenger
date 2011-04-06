@@ -61,6 +61,9 @@ public class ServerConnectionHandler implements Runnable {
 		HashMap<String, HashMap<String, ObjectOutputStream>> allSessions = MainFrame.mainFrame.getController().getConnectionMap();
 		ArrayList<HashMap<String,ObjectOutputStream>> sessionsAsArray = new ArrayList(allSessions.values());
 		ArrayList<String> keys = new ArrayList(allSessions.keySet());
+		ArrayList array = new ArrayList();
+		array.add(this);
+		QuickConnect.handleRequest("logOffUser", array);
 		for (int i = 0; i< sessionsAsArray.size(); i++){
 			HashMap curHashMap = sessionsAsArray.get(i);
 			System.out.println("Deleting user: " + username + " from Session.");
