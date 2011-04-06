@@ -147,10 +147,19 @@ public class QCCommandMappings {
 		QuickConnect.mapCommandToBCO("localMakeModerator", GetSessionUsersBCO.class);
 		QuickConnect.mapCommandToVCO("localMakeModerator", UpdateSessionUsersVCO.class);
 		
+		QuickConnect.mapCommandToValCO("removeFile", CheckForBannedUserForFileValCO.class);
 		QuickConnect.mapCommandToBCO("removeFile", DeleteFileBCO.class);
 		QuickConnect.mapCommandToBCO("removeFile", GetFileListBCO.class);
 		QuickConnect.mapCommandToBCO("removeFile", BroadcastResponseBCO.class);
 		QuickConnect.mapCommandToBCO("removeFile", NotifyUsersOfDeletedFileBCO.class);
+		
+		QuickConnect.mapCommandToValCO("getFileVersions", CheckForBannedUserForFileValCO.class);
+		QuickConnect.mapCommandToBCO("getFileVersions", GetFileVersionsListBCO.class);
+		QuickConnect.mapCommandToBCO("getFileVersions", SendResponseBCO.class);
+		
+		QuickConnect.mapCommandToValCO("requestVersionDownload", CheckForBannedUserForFileValCO.class);
+		QuickConnect.mapCommandToBCO("requestVersionDownload", GetRequestedVersionBCO.class);
+		QuickConnect.mapCommandToBCO("requestVersionDownload", SendRequestedFileBCO.class);
 		
 	}
 	
