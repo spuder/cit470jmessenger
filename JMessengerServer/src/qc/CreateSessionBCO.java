@@ -36,6 +36,7 @@ public class CreateSessionBCO implements ControlObject {
 			select.execute();
 			System.out.println("Server: Session " + session.getSessionName() + " Created with ID " + session.getSessionId());
 			responseParams.put("success", true);
+			responseParams.put("sessionId", session.getSessionId());
 			responseParams.put("session", session);
 			
 			HashMap connections = MainFrame.mainFrame.getController().getConnectionMap();

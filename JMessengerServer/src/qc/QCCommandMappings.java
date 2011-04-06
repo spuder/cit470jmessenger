@@ -39,10 +39,12 @@ public class QCCommandMappings {
 		QuickConnect.mapCommandToBCO("updateRole", GetUserListBCO.class);
 		QuickConnect.mapCommandToVCO("updateRole", UpdateUserListVCO.class);
 		
-		//TODO Add the make user moderator BCOs to this. Will need to modify the VCO index number with that change.
 		QuickConnect.mapCommandToBCO("createSession", CreateSessionBCO.class);
 		QuickConnect.mapCommandToBCO("createSession", SendResponseBCO.class);
-		QuickConnect.mapCommandToVCO("createSession", AddSessionVCO.class);
+		QuickConnect.mapCommandToBCO("createSession", MakeModeratorOnCreationBCO.class);
+		QuickConnect.mapCommandToBCO("createSession", GetSessionUsersOnCreationBCO.class);
+		QuickConnect.mapCommandToVCO("createSession", AddSessionOnCreationVCO.class);
+		QuickConnect.mapCommandToVCO("createSession", UpdateSessionUsersOnCreationVCO.class);
 		
 		QuickConnect.mapCommandToBCO("localCreateSession", CreateSessionBCO.class);
 		QuickConnect.mapCommandToVCO("localCreateSession", AddSessionVCO.class);
