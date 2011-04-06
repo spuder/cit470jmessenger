@@ -81,14 +81,19 @@ public class MainFrame extends JFrame {
 		MainFrame.mainFrame = this;
 
 		// initialize server connection and login user on startup
-		connectToServer();
-		controller.setIpAddress((String) serverParams.get(0));
-		controller.setPort((Integer) serverParams.get(1));
-		menuItemLogin.setEnabled(true);
+		try{
+			connectToServer();
+			controller.setIpAddress((String) serverParams.get(0));
+			controller.setPort((Integer) serverParams.get(1));
+			menuItemLogin.setEnabled(true);
+			
+			userLogin();						
+			params.add(0,this);
+			QuickConnect.handleRequest("login", params);
+		}catch(Exception e){
+			System.out.println("User chose to bypass Server/User Credentials");
+		}
 		
-		userLogin();						
-		params.add(0,this);
-		QuickConnect.handleRequest("login", params);
 		
 		//Configure Layout
 		this.setLayout(new BoxLayout(getContentPane(), BoxLayout.X_AXIS));
