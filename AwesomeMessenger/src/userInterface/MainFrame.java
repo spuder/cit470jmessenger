@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -34,6 +35,7 @@ import javax.swing.UIManager.LookAndFeelInfo;
 import org.quickconnect.QuickConnect;
 import beans.SessionBean;
 import Client.ClientController;
+import quickConnect.BCOHashPassword;
 import quickConnect.QCCommandMappings;
 
 @SuppressWarnings("serial")
@@ -121,7 +123,26 @@ public class MainFrame extends JFrame {
 						String name = JOptionPane.showInputDialog("Enter New Chat Session Name");
 						if(name != null || !name.equals("")){
 							ArrayList params = new ArrayList();
-							params.add(name);
+							HashMap map = new HashMap();
+							map.put("sessionName", name);
+							
+							int result = JOptionPane.showConfirmDialog(null, "Would you like to set a password?","Password?", JOptionPane.YES_NO_OPTION);
+							if(result == JOptionPane.YES_OPTION){
+								String password = JOptionPane.showInputDialog("Password:");
+								if(password != null || !password.equals("")){
+									try {
+										System.out.println("found password:" + password);
+										map.put("password", BCOHashPassword.SHA1(password));
+									} catch (NoSuchAlgorithmException e1) {
+										e1.printStackTrace();
+									} catch (UnsupportedEncodingException e1) {
+										e1.printStackTrace();
+									}
+								}
+							}
+							
+							map.put("userName", MainFrame.mainFrame.getController().getCurUser().getUsername());
+							params.add(map);
 							QuickConnect.handleRequest("createSession", params);
 						}
 					} // End of actionPerformed method.
