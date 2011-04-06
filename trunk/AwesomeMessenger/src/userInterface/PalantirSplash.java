@@ -23,47 +23,40 @@ public class PalantirSplash extends JWindow {
 		duration = d;
 	}
 
-	// A simple little method to show a title screen in the center
-	// of the screen for the amount of time given in the constructor
 	public void showSplash() {
 
 		JPanel content = (JPanel)getContentPane();
 		content.setBackground(Color.white);
 
-		// Set the window's bounds, centering the window
-		int width = 350;
-		int height =200;
+		int width = 600;
+		int height =450;
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
 		int x = (screen.width-width)/2;
 		int y = (screen.height-height)/2;
 		setBounds(x,y,width,height);
 
 		// Build the splash screen
-		JLabel label = new JLabel(new ImageIcon("Images/palantirBG.png"));
-		JLabel copyrt = new JLabel
-		("Palantir v1.2 RC", JLabel.CENTER);
+		JLabel label = new JLabel(new ImageIcon("Images/eyeconnected.jpg"));
+//		JLabel copyrt = new JLabel("Palantir v1.2 RC", JLabel.CENTER);
 		JButton hidden = new JButton();
-
 		progressBar = new JProgressBar(0, 100);
 		progressBar.setValue(0);
 		progressBar.setStringPainted(true);
 		progressBar.setIndeterminate(false);
 		progressBar.setVisible(true);
 
-		copyrt.setFont(new Font("Sans-Serif", Font.BOLD, 12));
+//		copyrt.setFont(new Font("Sans-Serif", Font.BOLD, 14));
 		content.add(progressBar, BorderLayout.SOUTH);
 		content.add(label, BorderLayout.CENTER);
-		content.add(copyrt, BorderLayout.NORTH);
-		Color oraRed = new Color(156, 20, 20,  255);
+//		content.add(copyrt, BorderLayout.NORTH);
+		Color oraRed = new Color(0, 0, 0,  255);
 		content.setBorder(BorderFactory.createLineBorder(oraRed, 1));
 
 		hidden.addActionListener(new progressBar());
 
-		// Display it
 		setVisible(true);
 		hidden.doClick();
 
-		// Wait a little while, maybe while loading resources
 		try { Thread.sleep(duration); } catch (Exception e) {}
 
 		setVisible(false);
@@ -72,7 +65,7 @@ public class PalantirSplash extends JWindow {
 
 	public static class progressBar implements ActionListener{
 		public void actionPerformed (ActionEvent e){
-			new Thread(new thread1()).start(); //Start the thread
+			new Thread(new thread1()).start(); 
 		}
 	}
 
