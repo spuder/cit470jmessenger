@@ -59,6 +59,9 @@ public abstract class QCCommandMappings {
 		QuickConnect.mapCommandToBCO("getUsersList", RequestSessionUsersListBCO.class); // send "sessionId" - String
 		
 		QuickConnect.mapCommandToVCO("userListResponse", DisplaySessionUsersListVCO.class); // receive "list" - Vector->{"username","role"}
+	
+		QuickConnect.mapCommandToBCO("banUser", SendBanUserBCO.class);
+		QuickConnect.mapCommandToBCO("banUser", RequestSessionUsersListBCO.class);
 	}
 
 }
