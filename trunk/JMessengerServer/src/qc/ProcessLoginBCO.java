@@ -53,6 +53,10 @@ public class ProcessLoginBCO implements ControlObject {
 				responseParams.put("user", user);
 				responseParams.put("response", false);
 				System.out.println("Server: Login Successful as " + user.getUsername());
+				
+				select = con.prepareStatement("UPDATE User SET UserLoggedIn = 1 WHERE UserName = ? AND UserActiveFlag = 1");
+				select.setString(1, un);
+				select.execute();
 			}
 			
 		} 
