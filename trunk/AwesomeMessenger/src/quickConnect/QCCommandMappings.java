@@ -66,6 +66,12 @@ public abstract class QCCommandMappings {
 		QuickConnect.mapCommandToBCO("makeModerator", SendMakeModeratorBCO.class);
 		//QuickConnect.mapCommandToBCO("makeModerator", RequestSessionUsersListBCO.class);
 		QuickConnect.mapCommandToBCO("removeFile", SendDeleteFileBCO.class);
+		
+		QuickConnect.mapCommandToBCO("getFileVersions", RequestFileVersionsListBCO.class);
+		
+		QuickConnect.mapCommandToVCO("fileVersionListResponse", DisplayFileVersionsListVCO.class);
+		
+		QuickConnect.mapCommandToBCO("downloadVersion", SendDownloadVersionRequestBCO.class);
 	}
 
 }
