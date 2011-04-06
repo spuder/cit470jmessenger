@@ -69,6 +69,8 @@ public class MainFrame extends JFrame{
 			System.exit(NORMAL);
 		}
 		
+		ArrayList cleanup = new ArrayList();
+		QuickConnect.handleRequest("cleanUp", cleanup);
 		//Set size
 		Dimension dim = new Dimension(MAIN_FRAME_WIDTH,MAIN_FRAME_HEIGHT);
 		this.setPreferredSize(dim);
@@ -96,6 +98,7 @@ public class MainFrame extends JFrame{
 		this.pack();
 		
 		this.setVisible(true);
+		QuickConnect.handleRequest("refreshList", cleanup);
 
 		controller.startServer();
 		this.setLocationRelativeTo(null);
