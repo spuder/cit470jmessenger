@@ -21,10 +21,10 @@ public class UpdateSessionUsersVCO implements ControlObject {
 		for (int i = 0; i < sessions.size(); i++) {
 			if (sessions.get(i).getSessionObject().getSessionId().equals(session)) {
 				sessions.get(i).setUsersList(users);
-				return null;
+				return true;
 			}
 		}
-		return null;
+		return true;
 	}
 
 }
