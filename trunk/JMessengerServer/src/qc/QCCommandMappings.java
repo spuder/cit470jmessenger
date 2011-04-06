@@ -100,6 +100,7 @@ public class QCCommandMappings {
 		QuickConnect.mapCommandToVCO("localBanUser", UpdateSessionUsersVCO.class);
 		
 		QuickConnect.mapCommandToValCO("banUser", ValidateUserRoleValCO.class);
+		QuickConnect.mapCommandToValCO("banUser", ValidateNotBanningHigherValCO.class);
 		QuickConnect.mapCommandToBCO("banUser", AddBannedUserBCO.class);
 		QuickConnect.mapCommandToBCO("banUser", DeleteBannedSessionUserBCO.class);
 		QuickConnect.mapCommandToBCO("banUser", NotifySessionOfBannedUserBCO.class);
