@@ -297,12 +297,12 @@ public class MainFrame extends JFrame {
 				// If Nimbus is not available, you can set the GUI to another look and feel.
 			}
 		}
-		else {
-			Toolkit toolkit = Toolkit.getDefaultToolkit( );
-			Image image = toolkit.getImage( "NSImage://NSEveryone" );
-			JLabel icon = new JLabel( new ImageIcon( image ) );
-		}
 
+		
+        PalantirSplash splash = new PalantirSplash(4000);
+
+        splash.showSplash();
+		
 		@SuppressWarnings("unused")
 		MainFrame mf = new MainFrame();
 	}
