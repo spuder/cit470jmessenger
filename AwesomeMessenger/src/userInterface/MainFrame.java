@@ -56,19 +56,18 @@ public class MainFrame extends JFrame {
 	private JMenu help = new JMenu("Help");
 
 	// Menu items.
-	private JMenuItem menuItemNew     = new JMenuItem("New Chat Session", new ImageIcon("Images/livechat.png"));
-	private JMenuItem menuItemExit   = new JMenuItem("Exit", new ImageIcon("Images/exitprog.png"));
-	private JMenuItem menuItemSave    = new JMenuItem("Save", new ImageIcon("Images/save.png"));
-	private JMenuItem menuItemLogin  = new JMenuItem("Login", new ImageIcon("Images/login.png"));
-	private JMenuItem menuItemServer    = new JMenuItem("Configure Server", new ImageIcon("Images/configure.png"));
-	private JMenuItem menuItemChatSession    = new JMenuItem("Join Chat", new ImageIcon("Images/joinchat.png"));
-	private JMenuItem menuItemLeaveSession = new JMenuItem("Leave Session", new ImageIcon("Images/exitchat.png"));
-	private JMenuItem menuItemRemove   = new JMenuItem("Remove File", new ImageIcon("Images/filedelete.png"));
-	//private JMenuItem menuItemBan    = new JMenuItem("Ban User", new ImageIcon("Images/banuser.png"));
-	private JMenuItem menuItemGrant  = new JMenuItem("View Users", new ImageIcon("Images/mod.png"));
-	private JMenuItem menuItemClose    = new JMenuItem("Shutdown Session", new ImageIcon("Images/sessionclose.png"));
-	private JMenuItem menuItemAdd    = new JMenuItem("Add User", new ImageIcon("Images/adduser.png"));
-	private JMenuItem menuItemHelp = new JMenuItem("Help", new ImageIcon("Images/iconhelp.png"));
+	private JMenuItem menuItemNew     = new JMenuItem("New Chat Session", new ImageIcon(getClass().getResource("livechat.png")));
+	private JMenuItem menuItemExit   = new JMenuItem("Exit", new ImageIcon(getClass().getResource("exitprog.png")));
+	private JMenuItem menuItemSave    = new JMenuItem("Save", new ImageIcon(getClass().getResource("save.png")));
+	private JMenuItem menuItemLogin  = new JMenuItem("Login", new ImageIcon(getClass().getResource("Login.png")));
+	private JMenuItem menuItemServer    = new JMenuItem("Configure Server", new ImageIcon(getClass().getResource("configure.png")));
+	private JMenuItem menuItemChatSession    = new JMenuItem("Join Chat", new ImageIcon(getClass().getResource("joinchat.png")));
+	private JMenuItem menuItemLeaveSession = new JMenuItem("Leave Session", new ImageIcon(getClass().getResource("exitchat.png")));
+	private JMenuItem menuItemRemove   = new JMenuItem("Remove File", new ImageIcon(getClass().getResource("filedelete.png")));
+	private JMenuItem menuItemGrant  = new JMenuItem("View Users", new ImageIcon(getClass().getResource("mod.png")));
+	private JMenuItem menuItemClose    = new JMenuItem("Shutdown Session", new ImageIcon(getClass().getResource("sessionclose.png")));
+	private JMenuItem menuItemAdd    = new JMenuItem("Add User", new ImageIcon(getClass().getResource("addUser.png")));
+	private JMenuItem menuItemHelp = new JMenuItem("Help", new ImageIcon(getClass().getResource("iconhelp.png")));
 	ClientController controller = new ClientController();
 	String newSessionPassword = "";
 
@@ -104,7 +103,7 @@ public class MainFrame extends JFrame {
 
 		//Set Frame Settings
 		this.setTitle("Palantir");
-		this.setIconImage(new ImageIcon("Images/palantir.png").getImage());
+		this.setIconImage(new ImageIcon(getClass().getResource("palantir.png")));
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		//Organize Interface
@@ -307,7 +306,7 @@ public class MainFrame extends JFrame {
 		menuItemHelp.addActionListener(new ActionListener(){  //  Help
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(MainFrame.mainFrame, "It's on the blog", "The Answer",JOptionPane.INFORMATION_MESSAGE, new ImageIcon("Images/mclaughlinm.jpg"));
+				JOptionPane.showMessageDialog(MainFrame.mainFrame, "It's on the blog", "The Answer",JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getResource("mclaughlinm.jpg")));
 			}
 			
 		});
