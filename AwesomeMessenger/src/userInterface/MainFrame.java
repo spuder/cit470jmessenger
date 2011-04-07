@@ -360,8 +360,9 @@ public class MainFrame extends JFrame {
 			}
 		}
 		
-        PalantirSplash splash = new PalantirSplash(4000);
-        splash.showSplash();
+		//***Commented out for development phase**//
+//        PalantirSplash splash = new PalantirSplash(4000);
+//        splash.showSplash();
 		
 		@SuppressWarnings("unused")
 		MainFrame mf = new MainFrame();
