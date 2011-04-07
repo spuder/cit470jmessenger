@@ -57,7 +57,7 @@ public class MainFrame extends JFrame {
 
 	// Menu items.
 	private JMenuItem menuItemNew     = new JMenuItem("New Chat Session", new ImageIcon(getClass().getResource("livechat.png")));
-	private JMenuItem menuItemExit   = new JMenuItem("Exit", new ImageIcon(getClass().getResource("exitprog.png")));
+	private JMenuItem menuItemExit   = new JMenuItem("Exit", new ImageIcon(getClass().getResource("exit.png")));
 	private JMenuItem menuItemSave    = new JMenuItem("Save", new ImageIcon(getClass().getResource("save.png")));
 	private JMenuItem menuItemLogin  = new JMenuItem("Login", new ImageIcon(getClass().getResource("Login.png")));
 	private JMenuItem menuItemServer    = new JMenuItem("Configure Server", new ImageIcon(getClass().getResource("configure.png")));
