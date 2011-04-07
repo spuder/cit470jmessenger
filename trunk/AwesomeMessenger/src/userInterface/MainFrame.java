@@ -56,18 +56,18 @@ public class MainFrame extends JFrame {
 	private JMenu help = new JMenu("Help");
 
 	// Menu items.
-	private JMenuItem menuItemNew     = new JMenuItem("New Chat Session", new ImageIcon(getClass().getResource("livechat.png")));
+	private JMenuItem menuItemNew     = new JMenuItem("New Chat Session", new ImageIcon(getClass().getResource("newchat.png")));
 	private JMenuItem menuItemExit   = new JMenuItem("Exit", new ImageIcon(getClass().getResource("exit.png")));
 	private JMenuItem menuItemSave    = new JMenuItem("Save", new ImageIcon(getClass().getResource("save.png")));
-	private JMenuItem menuItemLogin  = new JMenuItem("Login", new ImageIcon(getClass().getResource("Login.png")));
-	private JMenuItem menuItemServer    = new JMenuItem("Configure Server", new ImageIcon(getClass().getResource("configure.png")));
+	private JMenuItem menuItemLogin  = new JMenuItem("Login", new ImageIcon(getClass().getResource("securelogin.png")));
+	private JMenuItem menuItemServer    = new JMenuItem("Configure Server", new ImageIcon(getClass().getResource("configureserver.png")));
 	private JMenuItem menuItemChatSession    = new JMenuItem("Join Chat", new ImageIcon(getClass().getResource("joinchat.png")));
-	private JMenuItem menuItemLeaveSession = new JMenuItem("Leave Session", new ImageIcon(getClass().getResource("exitchat.png")));
-	private JMenuItem menuItemRemove   = new JMenuItem("Remove File", new ImageIcon(getClass().getResource("filedelete.png")));
-	private JMenuItem menuItemGrant  = new JMenuItem("View Users", new ImageIcon(getClass().getResource("mod.png")));
-	private JMenuItem menuItemClose    = new JMenuItem("Shutdown Session", new ImageIcon(getClass().getResource("sessionclose.png")));
-	private JMenuItem menuItemAdd    = new JMenuItem("Add User", new ImageIcon(getClass().getResource("addUser.png")));
-	private JMenuItem menuItemHelp = new JMenuItem("Help", new ImageIcon(getClass().getResource("iconhelp.png")));
+	private JMenuItem menuItemLeaveSession = new JMenuItem("Leave Session", new ImageIcon(getClass().getResource("leavesession.png")));
+	private JMenuItem menuItemRemove   = new JMenuItem("Remove File", new ImageIcon(getClass().getResource("removefile.png")));
+	private JMenuItem menuItemGrant  = new JMenuItem("View Users", new ImageIcon(getClass().getResource("viewusers.png")));
+	private JMenuItem menuItemClose    = new JMenuItem("Shutdown Session", new ImageIcon(getClass().getResource("shutdownsession.png")));
+	private JMenuItem menuItemAdd    = new JMenuItem("Add User", new ImageIcon(getClass().getResource("adduser.png")));
+	private JMenuItem menuItemHelp = new JMenuItem("Help", new ImageIcon(getClass().getResource("help.png")));
 	ClientController controller = new ClientController();
 	String newSessionPassword = "";
 
