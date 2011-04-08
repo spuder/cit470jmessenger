@@ -12,6 +12,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.Box;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -109,9 +110,9 @@ public class MainFrame extends JFrame{
 		menuBar = new JMenuBar();
 		fileMenu = new JMenu("File");
 		sessionsMenu = new JMenu("Sessions");
-		exitItem = new JMenuItem("Exit");
-		newSessionItem = new JMenuItem("New Session");
-		closeSessionItem = new JMenuItem("Stop Session");
+		exitItem = new JMenuItem("Exit", new ImageIcon(getClass().getResource("exit.png")));
+		newSessionItem = new JMenuItem("New Session", new ImageIcon(getClass().getResource("newchat.png")));
+		closeSessionItem = new JMenuItem("Stop Session", new ImageIcon(getClass().getResource("shutdownsession.png")));
 
 		menuBar.add(fileMenu);
 		menuBar.add(sessionsMenu);
