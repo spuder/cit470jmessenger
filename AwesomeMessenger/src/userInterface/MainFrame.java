@@ -33,6 +33,8 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import org.quickconnect.QuickConnect;
+
+import beans.ConnectionBean;
 import beans.SessionBean;
 import Client.ClientController;
 import quickConnect.BCOHashPassword;
@@ -73,6 +75,8 @@ public class MainFrame extends JFrame {
 
 	JTabbedPane tabs = new JTabbedPane();
 	ArrayList<ChatSessionPanel> chatSessions = new ArrayList<ChatSessionPanel>();
+	
+	ConnectionBean serverConfigs;
 
 	@SuppressWarnings("unchecked")
 	public MainFrame() {
@@ -454,6 +458,7 @@ public class MainFrame extends JFrame {
 
 
 	public void connectToServer() {
+		serverConfigs = new ConnectionBean();
 		final JDialog dialog = new JDialog(this, "Server Configuration");
 		dialog.setLayout(new FlowLayout());
 		final JLabel ipLabel = new JLabel("Server IP:");
@@ -461,6 +466,9 @@ public class MainFrame extends JFrame {
 		final JTextField ipInput = new JTextField(10);
 		final JTextField portInput = new JTextField(10);
 		JButton ok = new JButton("Ok");
+		
+		ipInput.setText(serverConfigs.getIp());
+		portInput.setText(serverConfigs.getPort());
 
 		JPanel panel1 = new JPanel(new GridLayout(3, 2, 10, 10));
 		//		JPanel panel2 = new JPanel();
@@ -492,7 +500,9 @@ public class MainFrame extends JFrame {
 				}
 
 				else {
-
+					serverConfigs.setIp(serverIP);
+					serverConfigs.setPort(port);
+					serverConfigs.saveBean();
 					Integer portNumber = Integer.parseInt(port);
 					serverParams.add(serverIP);
 					serverParams.add(portNumber);
@@ -518,7 +528,10 @@ public class MainFrame extends JFrame {
 				}
 
 				else {
-
+					
+					serverConfigs.setIp(serverIP);
+					serverConfigs.setPort(port);
+					serverConfigs.saveBean();
 					Integer portNumber = Integer.parseInt(port);
 					serverParams.add(serverIP);
 					serverParams.add(portNumber);
@@ -723,6 +736,7 @@ public class MainFrame extends JFrame {
 	}
 	
 	private void configureServerLoginUser() {
+		ConnectionBean serverConfigs = new ConnectionBean();
 		final JDialog dialog = new JDialog();
 		dialog.setLayout(new FlowLayout());
 		final JLabel ipLabel = new JLabel("Server IP:");
@@ -736,6 +750,9 @@ public class MainFrame extends JFrame {
 		
 		JButton cancel = new JButton("Cancel");
 		JButton login = new JButton("Login");
+		
+		ipInput.setText(serverConfigs.getIp());
+		portInput.setText(serverConfigs.getPort());
 		
 		JPanel panel1 = new JPanel(new GridLayout(5, 2, 10, 10));
 		
