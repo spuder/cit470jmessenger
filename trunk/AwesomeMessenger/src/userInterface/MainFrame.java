@@ -106,8 +106,8 @@ public class MainFrame extends JFrame {
 
 
 		//Set Frame Settings
-		this.setTitle("Palantir");
-		this.setIconImage(new ImageIcon(getClass().getResource("palantir.png")));
+		this.setTitle("Villicus");
+		//this.setIconImage(new ImageIcon(getClass().getResource("palantir.png")));
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		//Organize Interface
@@ -366,7 +366,7 @@ public class MainFrame extends JFrame {
 		}
 		
 		//***Commented out for development phase**//
-//        PalantirSplash splash = new PalantirSplash(4000);
+//        VillicusSplash splash = new VillicusSplash(4000);
 //        splash.showSplash();
 		
 		@SuppressWarnings("unused")
