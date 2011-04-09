@@ -344,6 +344,7 @@ public class MainFrame extends JFrame {
 	public void newSession(SessionBean newSession) {
 		ChatSessionPanel newPanel = new ChatSessionPanel(newSession);
 		tabs.addTab(newSession.getSessionName(), newPanel);
+		tabs.setSelectedComponent(newPanel);
 		chatSessions.add(newPanel);
 		this.repaint();
 		this.pack();
