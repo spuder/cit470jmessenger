@@ -14,12 +14,12 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JWindow;
 
-public class PalantirSplash extends JWindow {
+public class VillicusSplash extends JWindow {
 
 	private int duration;
 	static JProgressBar progressBar;
 
-	public PalantirSplash(int d) {
+	public VillicusSplash(int d) {
 		duration = d;
 	}
 
@@ -35,7 +35,7 @@ public class PalantirSplash extends JWindow {
 		int y = (screen.height-height)/2;
 		setBounds(x,y,width,height);
 
-		JLabel label = new JLabel(new ImageIcon(getClass().getResource("eyeconnected.jpg")));
+		JLabel label = new JLabel(new ImageIcon(getClass().getResource("VillicusServerSplash.jpg")));
 //		JLabel copyrt = new JLabel("Palantir v1.2 RC", JLabel.CENTER);
 		JButton hidden = new JButton();
 		progressBar = new JProgressBar(0, 100);

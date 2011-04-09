@@ -1,6 +1,6 @@
 package ui;
 
-import ui.PalantirSplash;
+import ui.VillicusSplash;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -91,7 +91,7 @@ public class MainFrame extends JFrame{
 		setJMenuBar(menuBar);
 
 		//Set Frame Settings
-		this.setTitle("Palantir Server");
+		this.setTitle("Villicus Server");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		ArrayList params = new ArrayList();
@@ -214,7 +214,7 @@ public class MainFrame extends JFrame{
 			}
 		}
 		
-		PalantirSplash splash = new PalantirSplash(4000);
+		VillicusSplash splash = new VillicusSplash(4000);
         splash.showSplash();
         
 		MainFrame mf = new MainFrame();
